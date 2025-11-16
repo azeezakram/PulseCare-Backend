@@ -28,11 +28,11 @@ public class Users {
     private String lastName;
     @Column(nullable = false, unique = true)
     private String username;
-    @Column(nullable = false, unique = true)
+    @Column(nullable = true, unique = true)
     private String email;
     @Column(nullable = false)
     private String password;
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String mobileNumber;
 
     //Profile picture attributes
