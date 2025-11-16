@@ -4,6 +4,7 @@ import com.pulsecare.backend.common.template.response.ResponseBody;
 import com.pulsecare.backend.module.user.dto.UserRequestDTO;
 import com.pulsecare.backend.module.user.dto.UserResponseDTO;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin
@@ -25,13 +26,13 @@ public class UserControllerImpl implements UserController {
 
     @Override
     @PostMapping("/")
-    public ResponseEntity<ResponseBody<UserResponseDTO>> create(@RequestBody UserRequestDTO data) {
+    public ResponseEntity<ResponseBody<UserResponseDTO>> create(@RequestBody UserRequestDTO data, BindingResult result) {
         return null;
     }
 
     @Override
     @PutMapping("/")
-    public ResponseEntity<ResponseBody<UserResponseDTO>> update(@RequestBody UserRequestDTO data) {
+    public ResponseEntity<ResponseBody<UserResponseDTO>> update(@RequestBody UserRequestDTO data, BindingResult result) {
         return null;
     }
 
