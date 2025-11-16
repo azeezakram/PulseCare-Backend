@@ -8,16 +8,6 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
 
     @Override
-    public UserResponseDTO create(UserRequestDTO data) {
-        return null;
-    }
-
-    @Override
-    public String delete(Byte id) {
-        return "";
-    }
-
-    @Override
     public UserResponseDTO findById(String id) {
         return null;
     }
@@ -28,7 +18,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public UserResponseDTO create(UserRequestDTO data) {
+        return null;
+    }
+
+    @Override
     public UserResponseDTO update(UserRequestDTO data) {
         return null;
     }
+
+    @Override
+    public Byte delete(String id) {
+        return null;
+    }
+
 }

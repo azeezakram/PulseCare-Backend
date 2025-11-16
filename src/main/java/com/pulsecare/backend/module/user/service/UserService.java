@@ -11,5 +11,5 @@ public interface UserService extends
         FindableService<String, UserResponseDTO>,
         CreatableService<UserRequestDTO, UserResponseDTO>,
         UpdatableService<UserRequestDTO, UserResponseDTO>,
-        DeletableService<Byte, String> {
+        DeletableService<String, Byte> {
 }
