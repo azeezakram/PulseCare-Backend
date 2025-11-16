@@ -25,13 +25,13 @@ public class UserControllerImpl implements UserController {
 
     @Override
     @PostMapping("/")
-    public ResponseEntity<ResponseBody<UserResponseDTO>> create(UserRequestDTO data) {
+    public ResponseEntity<ResponseBody<UserResponseDTO>> create(@RequestBody UserRequestDTO data) {
         return null;
     }
 
     @Override
     @PutMapping("/")
-    public ResponseEntity<ResponseBody<UserResponseDTO>> update(UserRequestDTO data) {
+    public ResponseEntity<ResponseBody<UserResponseDTO>> update(@RequestBody UserRequestDTO data) {
         return null;
     }
 
