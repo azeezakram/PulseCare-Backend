@@ -1,37 +1,37 @@
-package com.pulsecare.backend.module.user.admin.controller;
+package com.pulsecare.backend.module.user.controller;
 
 import com.pulsecare.backend.common.template.response.ResponseBody;
-import com.pulsecare.backend.module.user.admin.dto.AdminRequestDTO;
-import com.pulsecare.backend.module.user.admin.dto.AdminResponseDTO;
+import com.pulsecare.backend.module.user.dto.UserRequestDTO;
+import com.pulsecare.backend.module.user.dto.UserResponseDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin
 @RestController
 @RequestMapping("/api/v1/admin")
-public class AdminControllerImpl implements AdminController {
+public class UserControllerImpl implements UserController {
 
     @Override
     @GetMapping("/{id}")
-    public ResponseEntity<ResponseBody<AdminResponseDTO>> findById(@PathVariable("id") String id) {
+    public ResponseEntity<ResponseBody<UserResponseDTO>> findById(@PathVariable("id") String id) {
         return null;
     }
 
     @Override
     @GetMapping("/")
-    public ResponseEntity<ResponseBody<AdminResponseDTO>> findAll() {
+    public ResponseEntity<ResponseBody<UserResponseDTO>> findAll() {
         return null;
     }
 
     @Override
     @PostMapping("/")
-    public ResponseEntity<ResponseBody<AdminResponseDTO>> create(AdminRequestDTO data) {
+    public ResponseEntity<ResponseBody<UserResponseDTO>> create(UserRequestDTO data) {
         return null;
     }
 
     @Override
     @PutMapping("/")
-    public ResponseEntity<ResponseBody<AdminResponseDTO>> update(AdminRequestDTO data) {
+    public ResponseEntity<ResponseBody<UserResponseDTO>> update(UserRequestDTO data) {
         return null;
     }
 
