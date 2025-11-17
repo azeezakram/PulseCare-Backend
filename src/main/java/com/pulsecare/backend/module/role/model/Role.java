@@ -18,6 +18,6 @@ public class Role {
     private Integer id;
     private String name;
 
-    @ManyToMany(mappedBy = "roles")
+    @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
     private Set<Users> users;
 }

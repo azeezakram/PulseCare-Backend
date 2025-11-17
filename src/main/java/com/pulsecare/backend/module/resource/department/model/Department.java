@@ -2,8 +2,8 @@ package com.pulsecare.backend.module.resource.department.model;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
@@ -24,10 +24,10 @@ public class Department {
     @Column(nullable = false, unique = true)
     private String name;
     @Column(nullable = false, updatable = false)
-    @CreatedDate
+    @CreationTimestamp
     private LocalDateTime createdAt;
     @Column(nullable = false)
-    @LastModifiedDate
+    @UpdateTimestamp
     private LocalDateTime updatedAt;
 
 }

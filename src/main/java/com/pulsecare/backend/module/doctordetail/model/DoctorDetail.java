@@ -1,4 +1,4 @@
-package com.pulsecare.backend.module.user.module.doctordetail.model;
+package com.pulsecare.backend.module.doctordetail.model;
 
 import com.pulsecare.backend.module.specialization.model.Specialization;
 import com.pulsecare.backend.module.user.model.Users;
@@ -15,7 +15,6 @@ import java.util.Set;
 @Setter
 @ToString
 public class DoctorDetail {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -26,7 +25,7 @@ public class DoctorDetail {
     @JoinColumn(name = "user_id")
     private Users user;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
     @JoinTable(
             name = "doctor_specializations",
             joinColumns = @JoinColumn(name = "doctor_id"),

@@ -1,11 +1,11 @@
 package com.pulsecare.backend.module.user.model;
 
 import com.pulsecare.backend.module.role.model.Role;
-import com.pulsecare.backend.module.user.module.doctordetail.model.DoctorDetail;
+import com.pulsecare.backend.module.doctordetail.model.DoctorDetail;
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 import java.util.Set;
@@ -45,17 +45,17 @@ public class Users {
     private byte[] imageData;
 
     @Column(nullable = false, updatable = false)
-    @CreatedDate
+    @CreationTimestamp
     private LocalDateTime createdAt;
     @Column(nullable = false, insertable = false)
-    @LastModifiedDate
+    @UpdateTimestamp
     private LocalDateTime updatedAt;
     @Column(nullable = false, insertable = false)
     private LocalDateTime lastLogin;
     @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
     private Boolean isActive;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "user_role",
             joinColumns = @JoinColumn(name = "user_id"),

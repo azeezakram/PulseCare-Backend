@@ -1,10 +1,9 @@
 package com.pulsecare.backend.module.specialization.model;
 
-import com.pulsecare.backend.module.user.module.doctordetail.model.DoctorDetail;
+import com.pulsecare.backend.module.doctordetail.model.DoctorDetail;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.HashSet;
 import java.util.Set;
 
 @Entity
