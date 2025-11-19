@@ -3,6 +3,7 @@ package com.pulsecare.backend.module.user.service;
 import com.pulsecare.backend.module.user.dto.LoginRequestDTO;
 import com.pulsecare.backend.module.user.dto.UserRequestDTO;
 import com.pulsecare.backend.module.user.dto.UserResponseDTO;
+import com.pulsecare.backend.module.user.exception.UserInvalidCredentialException;
 import com.pulsecare.backend.module.user.model.Users;
 import com.pulsecare.backend.module.user.repository.UserRepository;
 import com.pulsecare.backend.utils.JwtUtil;
@@ -68,10 +69,10 @@ public class UserServiceImpl implements UserService {
                 return jwtUtil.generateToken(user);
             }
 
-            return "Login failed";
+            throw new UserInvalidCredentialException("Login failed");
 
         } catch (AuthenticationException e) {
-            return "Invalid username or password";
+            throw new UserInvalidCredentialException("Invalid username or password");
         }
     }
 }

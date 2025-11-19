@@ -2,6 +2,7 @@ package com.pulsecare.backend.advisor;
 
 import com.pulsecare.backend.common.exception.ValidationException;
 import com.pulsecare.backend.common.template.response.ResponseBody;
+import com.pulsecare.backend.module.user.exception.UserInvalidCredentialException;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +31,21 @@ public class GlobalExceptionHandler {
                 )
         );
     }
+
+    @ExceptionHandler(UserInvalidCredentialException.class)
+    public ResponseEntity<ResponseBody<Object>> handleValidationError(UserInvalidCredentialException ex) {
+
+        return new ResponseEntity<>(
+                new ResponseBody<>(
+                        HttpStatus.UNAUTHORIZED.value(),
+                        "Invalid Credentials: " + ex.getMessage(),
+                        ex.getMessage()
+                ),
+                HttpStatus.UNAUTHORIZED
+        );
+
+    }
+
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ResponseBody<Object>> handleServerError(Exception ex) {
