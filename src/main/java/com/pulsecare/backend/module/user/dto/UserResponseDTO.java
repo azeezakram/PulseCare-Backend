@@ -19,6 +19,7 @@ public record UserResponseDTO(
 
         LocalDateTime createdAt,
         LocalDateTime updatedAt,
+        LocalDateTime lastLoginAt,
         Boolean isActive
 
 ) { }

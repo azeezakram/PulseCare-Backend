@@ -51,7 +51,7 @@ public class Users {
     @UpdateTimestamp
     private LocalDateTime updatedAt;
     @Column(nullable = false, insertable = false)
-    private LocalDateTime lastLogin;
+    private LocalDateTime lastLoginAt;
     @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
     private Boolean isActive;
 

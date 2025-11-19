@@ -4,17 +4,21 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
-import java.util.List;
 
 public class PrincipleUserDetails implements UserDetails {
 
-    private final Users user;
+    private final String username;
+    private final String password;
+    private final boolean isActive;
     private final Collection<? extends GrantedAuthority> authorities;
 
-    public PrincipleUserDetails(Users user, Collection<? extends GrantedAuthority> authorities) {
-        this.user = user;
+    public PrincipleUserDetails(String username, String password, boolean isActive, Collection<? extends GrantedAuthority> authorities) {
+        this.username = username;
+        this.password = password;
+        this.isActive = isActive;
         this.authorities = authorities;
     }
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -23,16 +27,16 @@ public class PrincipleUserDetails implements UserDetails {
 
     @Override
     public String getUsername() {
-        return user.getUsername();
+        return username;
     }
 
     @Override
     public String getPassword() {
-        return user.getPassword();
+        return password;
     }
 
     @Override
     public boolean isEnabled() {
-        return user.getIsActive();
+        return isActive;
     }
 }
