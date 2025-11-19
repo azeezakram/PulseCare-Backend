@@ -34,6 +34,11 @@ public class PrincipleUserDetailsServiceImpl implements UserDetailsService {
                 .map(r -> new SimpleGrantedAuthority("ROLE_" + r.getName()))
                 .collect(Collectors.toSet());
 
-        return new PrincipleUserDetails(user, authorities);
+        return new PrincipleUserDetails(
+                user.getUsername(),
+                user.getPassword(),
+                user.getIsActive(),
+                authorities
+        );
     }
 }

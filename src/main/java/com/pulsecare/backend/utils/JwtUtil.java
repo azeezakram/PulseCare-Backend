@@ -68,6 +68,6 @@ public class JwtUtil {
     }
 
     private Date extractExpiration(String jwtToken) {
-        return extractClaims(jwtToken, claims -> claims.getExpiration());
+        return extractClaims(jwtToken, Claims::getExpiration);
     }
 }
