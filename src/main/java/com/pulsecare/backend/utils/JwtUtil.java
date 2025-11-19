@@ -1,5 +1,6 @@
 package com.pulsecare.backend.utils;
 
+import com.pulsecare.backend.module.role.model.Role;
 import com.pulsecare.backend.module.user.model.Users;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -22,6 +23,12 @@ public class JwtUtil {
 
     public String generateToken(Users user) {
         Map<String, Object> claims = new HashMap<>();
+
+        claims.put("roles", user.getRoles()
+                .stream()
+                .map(Role::getName)
+                .toList());
+
 
         return Jwts.builder()
                 .claims()

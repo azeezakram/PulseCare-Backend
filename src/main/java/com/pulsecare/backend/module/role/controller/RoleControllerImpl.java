@@ -21,10 +21,10 @@ import java.util.List;
 @Validated
 public class RoleControllerImpl implements RoleController {
 
-    private final RoleService userService;
+    private final RoleService roleService;
 
     public RoleControllerImpl(RoleService userService) {
-        this.userService = userService;
+        this.roleService = userService;
     }
 
 
@@ -51,7 +51,7 @@ public class RoleControllerImpl implements RoleController {
             throw new ValidationException(result);
         }
 
-        RoleResDto created = userService.create(data);
+        RoleResDto created = roleService.create(data);
 
         return ResponseEntity
                 .ok()

@@ -2,10 +2,10 @@ package com.pulsecare.backend.module.user.controller;
 
 import com.pulsecare.backend.common.exception.ValidationException;
 import com.pulsecare.backend.common.template.response.ResponseBody;
+import com.pulsecare.backend.module.user.dto.LoginRequestDTO;
 import com.pulsecare.backend.module.user.dto.UserRequestDTO;
 import com.pulsecare.backend.module.user.dto.UserResponseDTO;
 import com.pulsecare.backend.module.user.service.UserService;
-import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -44,38 +44,27 @@ public class UserControllerImpl implements UserController {
     @Override
     @PostMapping("/")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<ResponseBody<UserResponseDTO>> create(@Valid @RequestBody UserRequestDTO data, BindingResult result) {
-        try {
+    public ResponseEntity<ResponseBody<UserResponseDTO>> create(@RequestBody UserRequestDTO data, BindingResult result) {
 
-            if (result.hasErrors()) {
-                throw new ValidationException(result);
-            }
-
-            UserResponseDTO created = userService.create(data);
-
-            return ResponseEntity
-                    .ok()
-                    .body(new ResponseBody<>(
-                            HttpStatus.OK.value(),
-                            "Department successfully created",
-                            created
-                    ));
-
-        } catch (Exception e) {
-            return ResponseEntity
-                    .internalServerError()
-                    .body(new ResponseBody<>(
-                            HttpStatus.INTERNAL_SERVER_ERROR.value(),
-                            "Internal server error: " + e.getMessage(),
-                            null
-                    ));
+        if (result.hasErrors()) {
+            throw new ValidationException(result);
         }
+
+        UserResponseDTO created = userService.create(data);
+
+        return ResponseEntity
+                .ok()
+                .body(new ResponseBody<>(
+                        HttpStatus.OK.value(),
+                        "User successfully created",
+                        created
+                ));
     }
 
     @Override
     @PutMapping("/")
     @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
-    public ResponseEntity<ResponseBody<UserResponseDTO>> update(@Valid @RequestBody UserRequestDTO data, BindingResult result) {
+    public ResponseEntity<ResponseBody<UserResponseDTO>> update(@RequestBody UserRequestDTO data, BindingResult result) {
         return null;
     }
 
@@ -86,4 +75,21 @@ public class UserControllerImpl implements UserController {
         return null;
     }
 
+    @Override
+    @PostMapping("/login")
+    public ResponseEntity<ResponseBody<String>> login(@RequestBody LoginRequestDTO data, BindingResult result) {
+        if (result.hasErrors()) {
+            throw new ValidationException(result);
+        }
+
+        String token = userService.login(data);
+
+        return ResponseEntity
+                .ok()
+                .body(new ResponseBody<>(
+                        HttpStatus.OK.value(),
+                        "success",
+                        token
+                ));
+    }
 }

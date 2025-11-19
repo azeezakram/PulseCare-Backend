@@ -1,5 +1,7 @@
 package com.pulsecare.backend.module.user.dto;
 
+import com.pulsecare.backend.module.role.model.Role;
+
 import java.time.LocalDateTime;
 import java.util.Set;
 import java.util.UUID;
@@ -13,7 +15,7 @@ public record UserResponseDTO(
         String email,
         String mobileNumber,
 
-        Set<String> roles,          // ROLE_ADMIN, ROLE_DOCTOR, ROLE_NURSE
+        Set<Role> roles,          // ROLE_ADMIN, ROLE_DOCTOR, ROLE_NURSE
 
         String imageUrl,            // "/api/v1/user/{id}/image"
 

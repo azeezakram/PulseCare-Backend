@@ -5,7 +5,6 @@ import com.pulsecare.backend.common.template.response.ResponseBody;
 import com.pulsecare.backend.module.resource.department.dto.DeptRequestDTO;
 import com.pulsecare.backend.module.resource.department.dto.DeptResponseDTO;
 import com.pulsecare.backend.module.resource.department.service.DepartmentService;
-import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -48,7 +47,7 @@ public class DepartmentControllerImpl implements DepartmentController {
 
     @Override
     @PostMapping("/")
-    public ResponseEntity<ResponseBody<DeptResponseDTO>> create(@Valid @RequestBody DeptRequestDTO data, BindingResult result) {
+    public ResponseEntity<ResponseBody<DeptResponseDTO>> create(@RequestBody DeptRequestDTO data, BindingResult result) {
 
         if (result.hasErrors()) {
             throw new ValidationException(result);
@@ -67,7 +66,7 @@ public class DepartmentControllerImpl implements DepartmentController {
 
     @Override
     @PutMapping("/")
-    public ResponseEntity<ResponseBody<DeptResponseDTO>> update(@Valid @RequestBody DeptRequestDTO data, BindingResult result) {
+    public ResponseEntity<ResponseBody<DeptResponseDTO>> update(@RequestBody DeptRequestDTO data, BindingResult result) {
         return null;
     }
 

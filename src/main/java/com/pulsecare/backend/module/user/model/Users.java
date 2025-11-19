@@ -18,6 +18,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @ToString
+@EqualsAndHashCode(exclude = "roles")
 public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -50,12 +51,12 @@ public class Users {
     @Column(nullable = false, insertable = false)
     @UpdateTimestamp
     private LocalDateTime updatedAt;
-    @Column(nullable = false, insertable = false)
+//    @Column(insertable = false)
     private LocalDateTime lastLoginAt;
     @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
     private Boolean isActive;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_role",
             joinColumns = @JoinColumn(name = "user_id"),

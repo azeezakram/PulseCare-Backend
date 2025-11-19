@@ -10,5 +10,5 @@ public interface UserService extends
         CreatableService<UserRequestDTO, UserResponseDTO>,
         UpdatableService<UserRequestDTO, UserResponseDTO>,
         DeletableService<String, Byte>,
-        LoggableService<LoginRequestDTO, UserResponseDTO> {
+        LoggableService<LoginRequestDTO, String> {
 }
