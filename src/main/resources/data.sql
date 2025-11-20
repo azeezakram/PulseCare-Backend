@@ -12,6 +12,23 @@ VALUES ('Cardiology', now(), now()),
        ('Pediatrics', now(), now()),
        ('Oncology', now(), now());
 
+INSERT INTO specialization (name, created_at, updated_at) VALUES ('Cardiology', NOW(), NOW());
+INSERT INTO specialization (name, created_at, updated_at) VALUES ('Neurology', NOW(), NOW());
+INSERT INTO specialization (name, created_at, updated_at) VALUES ('Pediatrics', NOW(), NOW());
+INSERT INTO specialization (name, created_at, updated_at) VALUES ('Dermatology', NOW(), NOW());
+INSERT INTO specialization (name, created_at, updated_at) VALUES ('Orthopedics', NOW(), NOW());
+INSERT INTO specialization (name, created_at, updated_at) VALUES ('Gynecology', NOW(), NOW());
+INSERT INTO specialization (name, created_at, updated_at) VALUES ('General Surgery', NOW(), NOW());
+INSERT INTO specialization (name, created_at, updated_at) VALUES ('Endocrinology', NOW(), NOW());
+INSERT INTO specialization (name, created_at, updated_at) VALUES ('Psychiatry', NOW(), NOW());
+INSERT INTO specialization (name, created_at, updated_at) VALUES ('Radiology', NOW(), NOW());
+INSERT INTO specialization (name, created_at, updated_at) VALUES ('Oncology', NOW(), NOW());
+INSERT INTO specialization (name, created_at, updated_at) VALUES ('ENT', NOW(), NOW());
+INSERT INTO specialization (name, created_at, updated_at) VALUES ('Urology', NOW(), NOW());
+INSERT INTO specialization (name, created_at, updated_at) VALUES ('Nephrology', NOW(), NOW());
+INSERT INTO specialization (name, created_at, updated_at) VALUES ('Gastroenterology', NOW(), NOW());
+
+
 -- Insert initial admin user with UUID
 INSERT INTO users (id,
                    first_name,
