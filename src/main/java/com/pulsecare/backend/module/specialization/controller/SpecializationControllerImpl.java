@@ -95,6 +95,13 @@ public class SpecializationControllerImpl implements SpecializationController {
     @DeleteMapping("/{id}")
     @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<ResponseBody<String>> delete(@PathVariable("id") Integer id) {
-        return null;
+        service.delete(id);
+        return ResponseEntity
+                .ok()
+                .body(new ResponseBody<>(
+                        HttpStatus.OK.value(),
+                        "Specialization deleted successfully",
+                        null
+                ));
     }
 }
