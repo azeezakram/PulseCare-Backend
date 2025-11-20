@@ -28,7 +28,7 @@ public class Specialization {
     @Column(nullable = false, updatable = false)
     @CreationTimestamp
     private LocalDateTime createdAt;
-    @Column(nullable = false, insertable = false)
+    @Column(nullable = false)
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
