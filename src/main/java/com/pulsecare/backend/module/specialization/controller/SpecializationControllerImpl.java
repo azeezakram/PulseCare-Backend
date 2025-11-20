@@ -34,7 +34,14 @@ public class SpecializationControllerImpl implements SpecializationController {
     @GetMapping("/{id}")
     @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
     public ResponseEntity<ResponseBody<SpecializationResDTO>> findById(@PathVariable("id") Integer id) {
-        return null;
+        SpecializationResDTO data = service.findById(id);
+        return ResponseEntity.ok().body(
+                new ResponseBody<>(
+                        HttpStatus.OK.value(),
+                        "Specialization fetched successfully",
+                        data
+                )
+        );
     }
 
     @Override
