@@ -1,5 +1,6 @@
 package com.pulsecare.backend.advisor;
 
+import com.pulsecare.backend.common.exception.ResourceNotFoundException;
 import com.pulsecare.backend.common.exception.ValidationException;
 import com.pulsecare.backend.common.template.response.ResponseBody;
 import com.pulsecare.backend.module.user.exception.UserInvalidCredentialException;
@@ -44,6 +45,19 @@ public class GlobalExceptionHandler {
                 HttpStatus.UNAUTHORIZED
         );
 
+    }
+
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ResponseEntity<ResponseBody<Object>> handleValidationError(ResourceNotFoundException ex) {
+        return ResponseEntity
+                .status(HttpStatus.NO_CONTENT)
+                .body(
+                new ResponseBody<>(
+                        HttpStatus.NO_CONTENT.value(),
+                        "Resource Not Found: " + ex.getMessage(),
+                        ex.getMessage()
+                )
+        );
     }
 
 

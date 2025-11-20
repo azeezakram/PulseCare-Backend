@@ -8,6 +8,7 @@ import com.pulsecare.backend.module.specialization.repository.SpecializationRepo
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SpecializationServiceImpl implements SpecializationService {
@@ -20,19 +21,15 @@ public class SpecializationServiceImpl implements SpecializationService {
         this.mapper = mapper;
     }
 
-    @Override
-    public SpecializationResDTO create(SpecializationReqDTO data) {
-        return null;
-    }
 
-    @Override
-    public Byte delete(Integer id) {
-        return 0;
-    }
 
     @Override
     public SpecializationResDTO findById(Integer id) {
-        return null;
+        Specialization data = repository.findById(id).orElse(null);
+
+        return Optional.ofNullable(data)
+                .map(mapper::toDTO)
+                .orElseThrow(() -> new RuntimeException("Specialization not found"));
     }
 
     @Override
@@ -41,10 +38,23 @@ public class SpecializationServiceImpl implements SpecializationService {
         return data.stream()
                 .map(mapper::toDTO)
                 .toList();
+
+
+    }
+
+    @Override
+    public SpecializationResDTO create(SpecializationReqDTO data) {
+        return null;
     }
 
     @Override
     public SpecializationResDTO update(SpecializationReqDTO data) {
         return null;
     }
+
+    @Override
+    public Byte delete(Integer id) {
+        return 0;
+    }
+
 }
