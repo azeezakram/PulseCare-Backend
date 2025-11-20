@@ -1,5 +1,6 @@
 package com.pulsecare.backend.advisor;
 
+import com.pulsecare.backend.common.exception.ResourceAlreadyExistsException;
 import com.pulsecare.backend.common.exception.ResourceNotFoundException;
 import com.pulsecare.backend.common.exception.ValidationException;
 import com.pulsecare.backend.common.template.response.ResponseBody;
@@ -34,7 +35,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(UserInvalidCredentialException.class)
-    public ResponseEntity<ResponseBody<Object>> handleValidationError(UserInvalidCredentialException ex) {
+    public ResponseEntity<ResponseBody<Object>> handleUserInvalidCredentialException(UserInvalidCredentialException ex) {
 
         return new ResponseEntity<>(
                 new ResponseBody<>(
@@ -48,7 +49,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(ResourceNotFoundException.class)
-    public ResponseEntity<ResponseBody<Object>> handleValidationError(ResourceNotFoundException ex) {
+    public ResponseEntity<ResponseBody<Object>> handleResourceNotFoundException(ResourceNotFoundException ex) {
         return ResponseEntity
                 .status(HttpStatus.NO_CONTENT)
                 .body(
@@ -58,6 +59,19 @@ public class GlobalExceptionHandler {
                         ex.getMessage()
                 )
         );
+    }
+
+    @ExceptionHandler(ResourceAlreadyExistsException.class)
+    public ResponseEntity<ResponseBody<Object>> handleResourceAlreadyExistsException(ResourceAlreadyExistsException ex) {
+        return ResponseEntity
+                .status(HttpStatus.CONFLICT)
+                .body(
+                        new ResponseBody<>(
+                                HttpStatus.CONFLICT.value(),
+                                "Resource Already Exist: " + ex.getMessage(),
+                                ex.getMessage()
+                        )
+                );
     }
 
 
