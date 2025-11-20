@@ -9,10 +9,10 @@ import com.pulsecare.backend.module.user.repository.UserRepository;
 import com.pulsecare.backend.utils.JwtUtil;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 
@@ -54,24 +54,28 @@ public class UserServiceImpl implements UserService {
     @Override
     public String login(LoginRequestDTO data) {
         try {
-            Authentication authentication = authenticationManager.authenticate(
+            authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
                             data.username(),
                             data.password()
                     )
             );
 
-            if (authentication.isAuthenticated()) {
-                Users user = userRepository.findByUsername(data.username());
-                return jwtUtil.generateToken(user);
+            Users user = userRepository.findByUsername(data.username());
+            if (user == null) {
+                throw new UserInvalidCredentialException("User not found");
             }
 
-            throw new UserInvalidCredentialException("Login failed");
+            user.setLastLoginAt(LocalDateTime.now());
+            userRepository.save(user);
+
+            return jwtUtil.generateToken(user);
 
         } catch (AuthenticationException e) {
             throw new UserInvalidCredentialException("Invalid username or password");
         }
     }
+
 
     @Override
     public UserResponseDTO update(String s, UserRequestDTO data) {
