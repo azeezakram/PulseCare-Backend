@@ -1,30 +1,8 @@
 package com.pulsecare.backend.module.specialization.dto;
 
-import com.pulsecare.backend.module.role.dto.RoleResDto;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-
-import java.util.Set;
 
 public record SpecializationReqDTO(
-
-        @NotBlank(message = "First name is required")
-        String firstName,
-
-        @NotBlank(message = "Last name is required")
-        String lastName,
-
-        @NotBlank(message = "Username is required")
-        String username,
-
-        String email,
-
-        @NotBlank(message = "Password is required")
-        String password,
-
-        String mobileNumber,
-
-        @NotNull(message = "Roles must be provided")
-        Set<RoleResDto> roles
-
+        @NotBlank(message = "Specialization name is required")
+        String name
 ) { }
