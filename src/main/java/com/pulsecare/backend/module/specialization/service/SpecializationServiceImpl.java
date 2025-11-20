@@ -3,6 +3,7 @@ package com.pulsecare.backend.module.specialization.service;
 import com.pulsecare.backend.module.specialization.dto.SpecializationReqDTO;
 import com.pulsecare.backend.module.specialization.dto.SpecializationResDTO;
 import com.pulsecare.backend.module.specialization.mapper.SpecializationMapper;
+import com.pulsecare.backend.module.specialization.model.Specialization;
 import com.pulsecare.backend.module.specialization.repository.SpecializationRepository;
 import org.springframework.stereotype.Service;
 
@@ -36,7 +37,10 @@ public class SpecializationServiceImpl implements SpecializationService {
 
     @Override
     public List<SpecializationResDTO> findAll() {
-        return List.of();
+        List<Specialization> data = repository.findAll();
+        return data.stream()
+                .map(mapper::toDTO)
+                .toList();
     }
 
     @Override
