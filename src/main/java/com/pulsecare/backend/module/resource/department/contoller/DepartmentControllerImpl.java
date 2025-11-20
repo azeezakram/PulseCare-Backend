@@ -16,7 +16,7 @@ import java.util.List;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/api/v1/department")
+@RequestMapping("/department")
 @Validated
 public class DepartmentControllerImpl implements DepartmentController {
 

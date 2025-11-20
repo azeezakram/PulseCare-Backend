@@ -20,7 +20,7 @@ import java.util.List;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/api/v1/specialization")
+@RequestMapping("/specialization")
 @Validated
 public class SpecializationControllerImpl implements SpecializationController {
 
