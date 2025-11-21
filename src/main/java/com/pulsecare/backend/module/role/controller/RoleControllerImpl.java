@@ -96,7 +96,14 @@ public class RoleControllerImpl implements RoleController {
     @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ResponseBody<String>> delete(@PathVariable("id") Integer id) {
-        return null;
+        service.delete(id);
+        return ResponseEntity
+                .ok()
+                .body(new ResponseBody<>(
+                        HttpStatus.OK.value(),
+                        "Role deleted successfully",
+                        null
+                ));
     }
 
 }
