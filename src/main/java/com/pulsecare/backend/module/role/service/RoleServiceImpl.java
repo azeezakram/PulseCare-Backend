@@ -7,6 +7,7 @@ import com.pulsecare.backend.module.role.dto.RoleResDto;
 import com.pulsecare.backend.module.role.mapper.RoleMapper;
 import com.pulsecare.backend.module.role.model.Role;
 import com.pulsecare.backend.module.role.repository.RoleRepository;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,7 +19,7 @@ public class RoleServiceImpl implements RoleService {
     private final RoleRepository repository;
     private final RoleMapper mapper;
 
-    public RoleServiceImpl(RoleRepository repository, RoleMapper mapper) {
+    public RoleServiceImpl(RoleRepository repository, @Qualifier("roleMapper") RoleMapper mapper) {
         this.repository = repository;
         this.mapper = mapper;
     }
@@ -59,6 +60,7 @@ public class RoleServiceImpl implements RoleService {
         Role updated = repository.save(existing);
         return mapper.toDTO(updated);
     }
+
     @Override
     public void delete(Integer id) {
         Role entity = repository.findById(id)
