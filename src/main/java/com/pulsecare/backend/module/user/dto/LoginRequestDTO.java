@@ -1,14 +1,11 @@
 package com.pulsecare.backend.module.user.dto;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotEmpty;
 
 public record LoginRequestDTO(
-        @NotBlank(message = "Username is required")
-        @NotNull(message = "Username cannot be null")
+        @NotEmpty(message = "Username is required")
         String username,
-        @NotBlank(message = "Password is required")
-        @NotNull(message = "Password cannot be null")
+        @NotEmpty(message = "Password is required")
         String password
 ) {
 }
