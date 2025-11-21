@@ -54,7 +54,7 @@ public class SpecializationServiceImpl implements SpecializationService {
     @Override
     public SpecializationResDTO update(Integer id, SpecializationReqDTO data) {
         Specialization existing = repository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Id with " + id + " Specialization Not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Specialization with id " + id + " not found"));
 
         existing.setName(data.name());
         Specialization updated = repository.save(existing);
