@@ -45,25 +45,30 @@ public class RoleControllerImpl implements RoleController {
     @GetMapping("/")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ResponseBody<List<RoleResDto>>> findAll() {
-        return null;
+        List<RoleResDto> data = service.findAll();
+
+        return ResponseEntity
+                .ok()
+                .body(new ResponseBody<>(
+                        HttpStatus.OK.value(),
+                        data.isEmpty() ? "No data to fetched" : "Role data fetched successfully",
+                        data
+                ));
     }
 
     @Override
     @PostMapping("/")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ResponseBody<RoleResDto>> create(@Valid @RequestBody RoleReqDto data, BindingResult result) {
-
         if (result.hasErrors()) {
             throw new ValidationException(result);
         }
-
         RoleResDto created = service.create(data);
-
         return ResponseEntity
                 .ok()
                 .body(new ResponseBody<>(
                         HttpStatus.OK.value(),
-                        "Department successfully created",
+                        "Role created successfully",
                         created
                 ));
 
