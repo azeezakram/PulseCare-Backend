@@ -55,8 +55,13 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public RoleResDto update(Integer integer, RoleReqDto data) {
-        return null;
+    public RoleResDto update(Integer id, RoleReqDto data) {
+        Role existing = repository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Role with id " + id + " not found"));
+
+        existing.setName(data.name());
+        Role updated = repository.save(existing);
+        return mapper.toDTO(updated);
     }
     @Override
     public void delete(Integer id) {
