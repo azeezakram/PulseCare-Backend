@@ -15,7 +15,7 @@ import java.util.List;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/specialization")
+@RequestMapping("/api/v1/specialization")
 @Validated
 public class SpecializationControllerImpl implements SpecializationController {
 

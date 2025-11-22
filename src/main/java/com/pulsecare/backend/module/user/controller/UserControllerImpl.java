@@ -16,7 +16,7 @@ import java.util.List;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/api/v1/user")
 @Validated
 public class UserControllerImpl implements UserController {
 

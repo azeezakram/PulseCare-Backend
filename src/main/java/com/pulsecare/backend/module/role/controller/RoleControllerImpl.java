@@ -15,7 +15,7 @@ import java.util.List;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/role")
+@RequestMapping("/api/v1/role")
 @Validated
 public class RoleControllerImpl implements RoleController {
 
