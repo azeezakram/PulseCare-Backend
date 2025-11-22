@@ -6,6 +6,7 @@ import com.pulsecare.backend.module.doctordetail.dto.DoctorDetailResDto;
 import com.pulsecare.backend.module.doctordetail.mapper.DoctorDetailMapper;
 import com.pulsecare.backend.module.doctordetail.model.DoctorDetail;
 import com.pulsecare.backend.module.doctordetail.repository.DoctorDetailRepository;
+import com.pulsecare.backend.module.role.model.Role;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
@@ -34,7 +35,10 @@ public class DoctorDetailServiceImpl implements DoctorDetailService {
 
     @Override
     public List<DoctorDetailResDto> findAll() {
-        return List.of();
+        List<DoctorDetail> data = repository.findAll();
+        return data.stream()
+                .map(mapper::toDTO)
+                .toList();
     }
 
     @Override
