@@ -2,8 +2,8 @@ package com.pulsecare.backend.module.doctordetail.service;
 
 import com.pulsecare.backend.module.doctordetail.dto.DoctorDetailReqDto;
 import com.pulsecare.backend.module.doctordetail.dto.DoctorDetailResDto;
+import com.pulsecare.backend.module.doctordetail.mapper.DoctorDetailMapper;
 import com.pulsecare.backend.module.doctordetail.repository.DoctorDetailRepository;
-import com.pulsecare.backend.module.role.mapper.RoleMapper;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
@@ -13,9 +13,9 @@ import java.util.List;
 public class DoctorDetailServiceImpl implements DoctorDetailService {
 
     private final DoctorDetailRepository repository;
-    private final RoleMapper mapper;
+    private final DoctorDetailMapper mapper;
 
-    public DoctorDetailServiceImpl(DoctorDetailRepository repository, @Qualifier("roleMapperImpl") RoleMapper mapper) {
+    public DoctorDetailServiceImpl(DoctorDetailRepository repository, @Qualifier("doctorDetailMapperImpl") DoctorDetailMapper mapper) {
         this.repository = repository;
         this.mapper = mapper;
     }
