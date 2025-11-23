@@ -1,6 +1,7 @@
 package com.pulsecare.backend.module.user.controller;
 
 import com.pulsecare.backend.common.template.response.ResponseBody;
+import com.pulsecare.backend.module.doctordetail.dto.DoctorDetailResDto;
 import com.pulsecare.backend.module.role.service.RoleService;
 import com.pulsecare.backend.module.user.dto.LoginRequestDTO;
 import com.pulsecare.backend.module.user.dto.UserRequestDTO;
@@ -72,9 +73,15 @@ public class UserControllerImpl implements UserController {
     @Override
     @PutMapping("/{id}")
     @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
-    public ResponseEntity<ResponseBody<UserResponseDTO>> update(
-            @Valid @PathVariable("id") String id, @RequestBody UserRequestDTO data) {
-        return null;
+    public ResponseEntity<ResponseBody<UserResponseDTO>> update(@Valid @PathVariable("id") String id,
+                                                                @RequestBody UserRequestDTO data) {
+        return ResponseEntity
+                .ok()
+                .body(new ResponseBody<>(
+                        HttpStatus.OK.value(),
+                        "User updated successfully",
+                        facade.updateUser(data, id)
+                ));
     }
 
     @Override
