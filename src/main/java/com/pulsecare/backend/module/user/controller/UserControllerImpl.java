@@ -4,6 +4,7 @@ import com.pulsecare.backend.common.template.response.ResponseBody;
 import com.pulsecare.backend.module.user.dto.LoginRequestDTO;
 import com.pulsecare.backend.module.user.dto.UserRequestDTO;
 import com.pulsecare.backend.module.user.dto.UserResponseDTO;
+import com.pulsecare.backend.module.user.facade.UserFacade;
 import com.pulsecare.backend.module.user.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -20,16 +21,19 @@ import java.util.List;
 @Validated
 public class UserControllerImpl implements UserController {
 
-    private final UserService userService;
+    private final UserService service;
+    private final UserFacade facade;
 
-    public UserControllerImpl(UserService userService) {
-        this.userService = userService;
+    public UserControllerImpl(UserService service, UserFacade facade) {
+        this.service = service;
+        this.facade = facade;
     }
 
     @Override
     @GetMapping("/{id}")
     @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
     public ResponseEntity<ResponseBody<UserResponseDTO>> findById(@PathVariable("id") String id) {
+
         return null;
     }
 
@@ -44,14 +48,12 @@ public class UserControllerImpl implements UserController {
     @PostMapping("/")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ResponseBody<UserResponseDTO>> create(@RequestBody UserRequestDTO data) {
-        UserResponseDTO created = userService.create(data);
-
         return ResponseEntity
                 .ok()
                 .body(new ResponseBody<>(
                         HttpStatus.OK.value(),
                         "User successfully created",
-                        created
+                        facade.createNewUser(data)
                 ));
     }
 
@@ -73,7 +75,7 @@ public class UserControllerImpl implements UserController {
     @Override
     @PostMapping("/login")
     public ResponseEntity<ResponseBody<String>> login(@RequestBody LoginRequestDTO data) {
-        String token = userService.login(data);
+        String token = service.login(data);
 
         return ResponseEntity
                 .ok()
