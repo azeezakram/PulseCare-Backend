@@ -2,6 +2,7 @@ package com.pulsecare.backend.module.specialization.service;
 
 import com.pulsecare.backend.common.exception.ResourceAlreadyExistsException;
 import com.pulsecare.backend.common.exception.ResourceNotFoundException;
+import com.pulsecare.backend.module.doctordetail.model.DoctorDetail;
 import com.pulsecare.backend.module.specialization.dto.SpecializationReqDTO;
 import com.pulsecare.backend.module.specialization.dto.SpecializationResDTO;
 import com.pulsecare.backend.module.specialization.mapper.SpecializationMapper;
@@ -25,40 +26,35 @@ public class SpecializationServiceImpl implements SpecializationService {
     }
 
     @Override
-    public SpecializationResDTO findById(Integer id) {
+    public Specialization findById(Integer id) {
         Specialization data = repository.findById(id).orElse(null);
-
-        return Optional.ofNullable(data)
-                .map(mapper::toDTO)
-                .orElseThrow(() -> new ResourceNotFoundException("Specialization not found"));
+        if (data == null) {
+            throw new ResourceNotFoundException("Specialization with id " + id + " not found");
+        }
+        return data;
     }
 
     @Override
-    public List<SpecializationResDTO> findAll() {
-        List<Specialization> data = repository.findAll();
-        return data.stream()
-                .map(mapper::toDTO)
-                .toList();
+    public List<Specialization> findAll() {
+        return repository.findAll();
     }
 
     @Override
-    public SpecializationResDTO create(SpecializationReqDTO data) {
-        repository.findByName(data.name())
+    public Specialization create(Specialization data) {
+        repository.findByName(data.getName())
                 .ifPresent(s -> {
                     throw new ResourceAlreadyExistsException("Specialization with this name already exists");
                 });
-        Specialization entity = repository.save(mapper.toEntity(data));
-        return mapper.toDTO(entity);
+        return repository.save(data);
     }
 
     @Override
-    public SpecializationResDTO update(Integer id, SpecializationReqDTO data) {
+    public Specialization update(Integer id, Specialization data) {
         Specialization existing = repository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Specialization with id " + id + " not found"));
 
-        existing.setName(data.name());
-        Specialization updated = repository.save(existing);
-        return mapper.toDTO(updated);
+        existing.setName(data.getName());
+        return repository.save(existing);
     }
 
     @Override
@@ -70,4 +66,8 @@ public class SpecializationServiceImpl implements SpecializationService {
     }
 
 
+    @Override
+    public List<Specialization> findAllById(List<Integer> ids) {
+        return repository.findAllById(ids);
+    }
 }

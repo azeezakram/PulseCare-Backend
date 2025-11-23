@@ -3,8 +3,10 @@ package com.pulsecare.backend.module.specialization.controller;
 import com.pulsecare.backend.common.template.response.ResponseBody;
 import com.pulsecare.backend.module.specialization.dto.SpecializationReqDTO;
 import com.pulsecare.backend.module.specialization.dto.SpecializationResDTO;
+import com.pulsecare.backend.module.specialization.mapper.SpecializationMapper;
 import com.pulsecare.backend.module.specialization.service.SpecializationService;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -20,16 +22,19 @@ import java.util.List;
 public class SpecializationControllerImpl implements SpecializationController {
 
     private final SpecializationService service;
+    private final SpecializationMapper mapper;
 
-    public SpecializationControllerImpl(SpecializationService service) {
+    public SpecializationControllerImpl(SpecializationService service,
+                                        @Qualifier("specializationMapperImpl") SpecializationMapper mapper) {
         this.service = service;
+        this.mapper = mapper;
     }
 
     @Override
     @GetMapping("/{id}")
     @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
     public ResponseEntity<ResponseBody<SpecializationResDTO>> findById(@PathVariable("id") Integer id) {
-        SpecializationResDTO data = service.findById(id);
+        SpecializationResDTO data = mapper.toDTO(service.findById(id));
         return ResponseEntity.ok().body(
                 new ResponseBody<>(
                         HttpStatus.OK.value(),
@@ -43,7 +48,9 @@ public class SpecializationControllerImpl implements SpecializationController {
     @GetMapping("/")
     @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
     public ResponseEntity<ResponseBody<List<SpecializationResDTO>>> findAll() {
-        List<SpecializationResDTO> data = service.findAll();
+        List<SpecializationResDTO> data = service.findAll().stream()
+                .map(mapper::toDTO)
+                .toList();
 
         return ResponseEntity
                 .ok()
@@ -58,7 +65,9 @@ public class SpecializationControllerImpl implements SpecializationController {
     @PostMapping("/")
     @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<ResponseBody<SpecializationResDTO>> create(@Valid @RequestBody SpecializationReqDTO data) {
-        SpecializationResDTO created = service.create(data);
+        SpecializationResDTO created = mapper.toDTO(
+                service.create(mapper.toEntity(data))
+        );
         return ResponseEntity
                 .ok()
                 .body(new ResponseBody<>(
@@ -73,7 +82,9 @@ public class SpecializationControllerImpl implements SpecializationController {
     @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<ResponseBody<SpecializationResDTO>> update(@Valid @PathVariable("id") Integer id,
                                                                      @RequestBody SpecializationReqDTO data) {
-        SpecializationResDTO updated = service.update(id, data);
+        SpecializationResDTO updated = mapper.toDTO(
+                service.update(id, mapper.toEntity(data))
+        );
         return ResponseEntity
                 .ok()
                 .body(new ResponseBody<>(
