@@ -4,9 +4,7 @@ import com.pulsecare.backend.common.template.response.ResponseBody;
 import com.pulsecare.backend.module.doctordetail.dto.DoctorDetailReqDto;
 import com.pulsecare.backend.module.doctordetail.dto.DoctorDetailResDto;
 import com.pulsecare.backend.module.doctordetail.service.DoctorDetailService;
-import com.pulsecare.backend.module.specialization.dto.SpecializationReqDTO;
-import com.pulsecare.backend.module.specialization.dto.SpecializationResDTO;
-import com.pulsecare.backend.module.specialization.service.SpecializationService;
+import com.pulsecare.backend.module.role.dto.RoleResDto;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,14 +29,21 @@ public class DoctorDetailControllerImpl implements DoctorDetailController {
 
     @Override
     @GetMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
     public ResponseEntity<ResponseBody<DoctorDetailResDto>> findById(@PathVariable("id") Long id) {
-        return null;
+        DoctorDetailResDto data = service.findById(id);
+        return ResponseEntity.ok().body(
+                new ResponseBody<>(
+                        HttpStatus.OK.value(),
+                        "Doctor details fetched successfully",
+                        data
+                )
+        );
     }
 
     @Override
     @GetMapping("/")
-    @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
     public ResponseEntity<ResponseBody<List<DoctorDetailResDto>>> findAll() {
         return null;
     }
