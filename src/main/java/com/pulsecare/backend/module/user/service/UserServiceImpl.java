@@ -2,6 +2,7 @@ package com.pulsecare.backend.module.user.service;
 
 import com.pulsecare.backend.common.exception.ResourceAlreadyExistsException;
 import com.pulsecare.backend.common.exception.ResourceNotFoundException;
+import com.pulsecare.backend.module.specialization.model.Specialization;
 import com.pulsecare.backend.module.user.dto.LoginRequestDTO;
 import com.pulsecare.backend.module.user.exception.UserInvalidCredentialException;
 import com.pulsecare.backend.module.user.model.Users;
@@ -61,7 +62,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void delete(String id) {
-        // TODO document why this method is empty
+        Users entity = repository.findById(UUID.fromString(id))
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+
+        repository.delete(entity);
     }
 
     @Override
