@@ -88,7 +88,14 @@ public class UserControllerImpl implements UserController {
     @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ResponseBody<String>> delete(@PathVariable("id") String id) {
-        return null;
+        service.delete(id);
+        return ResponseEntity
+                .ok()
+                .body(new ResponseBody<>(
+                        HttpStatus.OK.value(),
+                        "User deleted successfully",
+                        "empty"
+                ));
     }
 
     @Override
