@@ -4,7 +4,6 @@ import com.pulsecare.backend.common.template.response.ResponseBody;
 import com.pulsecare.backend.module.doctordetail.dto.DoctorDetailReqDto;
 import com.pulsecare.backend.module.doctordetail.dto.DoctorDetailResDto;
 import com.pulsecare.backend.module.doctordetail.service.DoctorDetailService;
-import com.pulsecare.backend.module.role.dto.RoleResDto;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -89,6 +88,13 @@ public class DoctorDetailControllerImpl implements DoctorDetailController {
     @DeleteMapping("/{id}")
     @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<ResponseBody<String>> delete(@PathVariable("id") Long id) {
-        return null;
+        service.delete(id);
+        return ResponseEntity
+                .ok()
+                .body(new ResponseBody<>(
+                        HttpStatus.OK.value(),
+                        "Doctor details deleted successfully",
+                        "empty"
+                ));
     }
 }
