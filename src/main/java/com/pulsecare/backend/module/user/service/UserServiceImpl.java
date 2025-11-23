@@ -30,17 +30,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserResponseDTO findById(String id) {
+    public Users findById(String id) {
         return null;
     }
 
     @Override
-    public List<UserResponseDTO> findAll() {
+    public List<Users> findAll() {
         return Collections.emptyList();
     }
 
     @Override
-    public UserResponseDTO create(UserRequestDTO data) {
+    public Users create(Users data) {
         return null;
     }
 
@@ -78,7 +78,7 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public UserResponseDTO update(String s, UserRequestDTO data) {
+    public Users update(String id, Users data) {
         return null;
     }
 }
