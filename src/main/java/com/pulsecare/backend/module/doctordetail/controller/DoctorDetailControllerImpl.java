@@ -75,7 +75,14 @@ public class DoctorDetailControllerImpl implements DoctorDetailController {
     @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR')")
     public ResponseEntity<ResponseBody<DoctorDetailResDto>> update(@Valid @PathVariable("id") Long id,
                                                                      @RequestBody DoctorDetailReqDto data) {
-        return null;
+        DoctorDetailResDto updated = service.update(id, data);
+        return ResponseEntity
+                .ok()
+                .body(new ResponseBody<>(
+                        HttpStatus.OK.value(),
+                        "Doctor details updated successfully",
+                        updated
+                ));
     }
 
     @Override
