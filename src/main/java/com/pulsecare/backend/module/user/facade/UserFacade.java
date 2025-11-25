@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Set;
+import java.util.UUID;
 
 @Service
 public class UserFacade {
@@ -63,23 +64,19 @@ public class UserFacade {
         Users userEntity = userMapper.toEntity(data);
         Set<Role> roles = roleService.findAllById(data.roles());
         userEntity.setRoles(roles);
+        userEntity.setId(UUID.fromString(id));
 
         Users updatedUser = userService.update(id, userEntity);
 
-        if (userEntity.getDoctorDetails() != null) {
-            boolean isDoctor = UserUtil.isRoleAvailable(roles, "DOCTOR");
+        boolean isDoctor = UserUtil.isRoleAvailable(roles, "DOCTOR");
 
-            if (isDoctor) {
-                DoctorDetail updatedDoctorDetail = setDoctorDetails(data, updatedUser);
-                updatedDoctorDetail = doctorDetailService.update(updatedUser.getDoctorDetails().getId(), updatedDoctorDetail);
-                updatedUser.setDoctorDetails(updatedDoctorDetail);
-                return userMapper.toDTO(updatedUser);
-            }
+        if (isDoctor) {
+            DoctorDetail updatedDoctorDetail = setDoctorDetails(data, updatedUser);
+            updatedDoctorDetail = doctorDetailService.update(id, updatedDoctorDetail);
+            updatedUser.setDoctorDetails(updatedDoctorDetail);
         }
 
         return userMapper.toDTO(updatedUser);
-
-
     }
 
     private DoctorDetail setDoctorDetails(UserRequestDTO data, Users savedOrUpdatedUser) {
@@ -87,20 +84,17 @@ public class UserFacade {
         doctorDetail.setUser(savedOrUpdatedUser);
 
         if (data.doctorDetails() != null) {
-            // Normal case: populate licenseNo and specializations
             doctorDetail.setLicenseNo(data.doctorDetails().licenseNo());
             doctorDetail.setSpecializations(
                     specializationService.findAllById(data.doctorDetails().specializationIds())
             );
         } else {
-            // Doctor details not provided, set licenseNo and specializations as null
             doctorDetail.setLicenseNo(null);
             doctorDetail.setSpecializations(null);
         }
 
         return doctorDetail;
     }
-
 
 
 }

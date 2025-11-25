@@ -47,6 +47,19 @@ public class DoctorDetailControllerImpl implements DoctorDetailController {
         );
     }
 
+    @GetMapping("/a/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
+    public ResponseEntity<ResponseBody<DoctorDetailResDto>> findById(@PathVariable("id") String id) {
+        DoctorDetailResDto data = mapper.toDTO(service.findByUserId(id));
+        return ResponseEntity.ok().body(
+                new ResponseBody<>(
+                        HttpStatus.OK.value(),
+                        "Doctor details fetched successfully",
+                        data
+                )
+        );
+    }
+
     @Override
     @GetMapping("/")
     @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
@@ -83,13 +96,13 @@ public class DoctorDetailControllerImpl implements DoctorDetailController {
     @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR')")
     public ResponseEntity<ResponseBody<DoctorDetailResDto>> update(@Valid @PathVariable("id") Long id,
                                                                      @RequestBody DoctorDetailReqDto data) {
-        DoctorDetailResDto updated = facade.update(data, id);
+//        DoctorDetailResDto updated = facade.update(data, id);
         return ResponseEntity
                 .ok()
                 .body(new ResponseBody<>(
                         HttpStatus.OK.value(),
                         "Doctor details updated successfully",
-                        updated
+                        null
                 ));
     }
 

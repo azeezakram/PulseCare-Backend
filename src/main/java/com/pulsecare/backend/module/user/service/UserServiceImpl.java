@@ -49,13 +49,22 @@ public class UserServiceImpl implements UserService {
             throw new ResourceAlreadyExistsException("User with this username already exists");
         }
 
+        if (data.getIsActive() == null) {
+            data.setIsActive(true);
+        }
+
         return repository.save(data);
     }
 
     @Override
     public Users update(String id, Users data) {
-        repository.findById(UUID.fromString(id))
+        Users existingById = repository.findById(UUID.fromString(id))
                 .orElseThrow(() -> new ResourceNotFoundException("User with id " + id + " not found"));
+
+        Users existByUsername = repository.findByUsername(data.getUsername());
+        if (existByUsername != null && !existByUsername.getId().equals(existingById.getId())) {
+            throw new ResourceAlreadyExistsException("User with this username already exists");
+        }
 
         return repository.save(data);
     }

@@ -11,4 +11,6 @@ public interface DoctorDetailService extends
         CreatableService<DoctorDetail, DoctorDetail>,
         UpdatableService<DoctorDetail, DoctorDetail, Long>,
         DeletableService<Long> {
+    DoctorDetail update(String userID, DoctorDetail data);
+    DoctorDetail findByUserId(String userId);
 }
