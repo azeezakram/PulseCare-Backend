@@ -41,8 +41,8 @@ public class DoctorDetailFacade {
         return doctorDetailMapper.toDTO(doctorDetailService.create(doctorDetail));
     }
 
-    public DoctorDetailResDto update(DoctorDetailReqDto requestDto, Long id) {
-        DoctorDetail existing = doctorDetailService.findById(id);
+    public DoctorDetailResDto update(DoctorDetailReqDto requestDto, String id) {
+        DoctorDetail existing = doctorDetailService.findByUserId(id);
         Users user = userService.findById(requestDto.userId());
         Set<Specialization> specializations = new HashSet<>(
                 specializationService.findAllById(

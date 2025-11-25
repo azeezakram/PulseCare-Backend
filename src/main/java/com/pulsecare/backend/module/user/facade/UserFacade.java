@@ -11,8 +11,6 @@ import com.pulsecare.backend.module.user.mapper.UserMapper;
 import com.pulsecare.backend.module.user.model.Users;
 import com.pulsecare.backend.module.user.service.UserService;
 import com.pulsecare.backend.module.user.util.UserUtil;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,9 +24,6 @@ public class UserFacade {
     private final SpecializationService specializationService;
     private final RoleService roleService;
     private final UserMapper userMapper;
-
-    @PersistenceContext
-    private EntityManager entityManager;
 
     public UserFacade(UserService userService, DoctorDetailService doctorDetailService,
                       SpecializationService specializationService, RoleService roleService,
@@ -84,13 +79,16 @@ public class UserFacade {
         doctorDetail.setUser(savedOrUpdatedUser);
 
         if (data.doctorDetails() != null) {
-            doctorDetail.setLicenseNo(data.doctorDetails().licenseNo());
-            doctorDetail.setSpecializations(
-                    specializationService.findAllById(data.doctorDetails().specializationIds())
-            );
-        } else {
-            doctorDetail.setLicenseNo(null);
-            doctorDetail.setSpecializations(null);
+
+            if (data.doctorDetails().licenseNo() != null) {
+                doctorDetail.setLicenseNo(data.doctorDetails().licenseNo());
+            }
+
+            if (data.doctorDetails().specializationIds() != null) {
+                doctorDetail.setSpecializations(
+                        specializationService.findAllById(data.doctorDetails().specializationIds())
+                );
+            }
         }
 
         return doctorDetail;

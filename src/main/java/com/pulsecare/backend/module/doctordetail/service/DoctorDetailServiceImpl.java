@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -59,10 +58,12 @@ public class DoctorDetailServiceImpl implements DoctorDetailService {
                                 "License number already taken by another doctor"
                         );
                     });
+            existingDetail.setLicenseNo(data.getLicenseNo());
         }
 
-        existingDetail.setLicenseNo(data.getLicenseNo());
-        existingDetail.setSpecializations(data.getSpecializations());
+        if (data.getSpecializations() != null) {
+            existingDetail.setSpecializations(data.getSpecializations());
+        }
 
         return repository.save(existingDetail);
     }
@@ -87,8 +88,13 @@ public class DoctorDetailServiceImpl implements DoctorDetailService {
                     });
         }
 
-        existingDetail.setLicenseNo(data.getLicenseNo());
-        existingDetail.setSpecializations(data.getSpecializations());
+        if (data.getLicenseNo() != null) {
+            existingDetail.setLicenseNo(data.getLicenseNo());
+        }
+
+        if (data.getSpecializations() != null) {
+            existingDetail.setSpecializations(data.getSpecializations());
+        }
 
         return repository.save(existingDetail);
 

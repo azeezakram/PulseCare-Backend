@@ -47,10 +47,10 @@ public class DoctorDetailControllerImpl implements DoctorDetailController {
         );
     }
 
-    @GetMapping("/a/{id}")
+    @GetMapping("/{userId}")
     @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
-    public ResponseEntity<ResponseBody<DoctorDetailResDto>> findById(@PathVariable("id") String id) {
-        DoctorDetailResDto data = mapper.toDTO(service.findByUserId(id));
+    public ResponseEntity<ResponseBody<DoctorDetailResDto>> findById(@PathVariable("userId") String userId) {
+        DoctorDetailResDto data = mapper.toDTO(service.findByUserId(userId));
         return ResponseEntity.ok().body(
                 new ResponseBody<>(
                         HttpStatus.OK.value(),
@@ -91,18 +91,38 @@ public class DoctorDetailControllerImpl implements DoctorDetailController {
                 ));
     }
 
+
+    // Update by Doctor detail ID
     @Override
     @PutMapping("/{id}")
     @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR')")
-    public ResponseEntity<ResponseBody<DoctorDetailResDto>> update(@Valid @PathVariable("id") Long id,
-                                                                     @RequestBody DoctorDetailReqDto data) {
-//        DoctorDetailResDto updated = facade.update(data, id);
+    public ResponseEntity<ResponseBody<DoctorDetailResDto>> update(@PathVariable("id") Long id,
+                                                                    @RequestBody DoctorDetailReqDto data) {
+        DoctorDetailResDto updated = mapper.toDTO(
+                service.update(id, mapper.toEntity(data))
+        );
         return ResponseEntity
                 .ok()
                 .body(new ResponseBody<>(
                         HttpStatus.OK.value(),
                         "Doctor details updated successfully",
-                        null
+                        updated
+                ));
+    }
+
+    // Update by User ID
+    @Override
+    @PutMapping("/u/{userId}")
+    @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR')")
+    public ResponseEntity<ResponseBody<DoctorDetailResDto>> update(@PathVariable("userId") String userId,
+                                                                    @RequestBody DoctorDetailReqDto data) {
+        DoctorDetailResDto updated = facade.update(data, userId);
+        return ResponseEntity
+                .ok()
+                .body(new ResponseBody<>(
+                        HttpStatus.OK.value(),
+                        "Doctor details updated successfully",
+                        updated
                 ));
     }
 
