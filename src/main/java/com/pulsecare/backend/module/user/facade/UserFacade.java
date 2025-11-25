@@ -1,6 +1,5 @@
 package com.pulsecare.backend.module.user.facade;
 
-import com.pulsecare.backend.module.doctordetail.model.DoctorDetail;
 import com.pulsecare.backend.module.doctordetail.service.DoctorDetailService;
 import com.pulsecare.backend.module.role.model.Role;
 import com.pulsecare.backend.module.role.service.RoleService;
@@ -10,7 +9,6 @@ import com.pulsecare.backend.module.user.dto.UserResponseDTO;
 import com.pulsecare.backend.module.user.mapper.UserMapper;
 import com.pulsecare.backend.module.user.model.Users;
 import com.pulsecare.backend.module.user.service.UserService;
-import com.pulsecare.backend.module.user.util.UserUtil;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Service;
@@ -48,12 +46,12 @@ public class UserFacade {
 
         Users savedUser = userService.create(userEntity);
 
-        boolean isDoctor = UserUtil.isRoleAvailable(roles, "DOCTOR");
-        if (isDoctor) {
-            DoctorDetail newDoctorDetail = setDoctorDetails(data, savedUser);
-            newDoctorDetail = doctorDetailService.create(newDoctorDetail);
-            savedUser.setDoctorDetails(newDoctorDetail);
-        }
+//        boolean isDoctor = UserUtil.isRoleAvailable(roles, "DOCTOR");
+//        if (isDoctor) {
+//            DoctorDetail newDoctorDetail = setDoctorDetails(data, savedUser);
+//            newDoctorDetail = doctorDetailService.create(newDoctorDetail);
+//            savedUser.setDoctorDetails(newDoctorDetail);
+//        }
 
         return userMapper.toDTO(savedUser);
     }
@@ -68,33 +66,33 @@ public class UserFacade {
 
         Users updatedUser = userService.update(id, userEntity);
 
-        boolean isDoctor = UserUtil.isRoleAvailable(roles, "DOCTOR");
-
-        if (isDoctor) {
-            DoctorDetail updatedDoctorDetail = setDoctorDetails(data, updatedUser);
-            updatedDoctorDetail = doctorDetailService.update(id, updatedDoctorDetail);
-            updatedUser.setDoctorDetails(updatedDoctorDetail);
-        }
+//        boolean isDoctor = UserUtil.isRoleAvailable(roles, "DOCTOR");
+//
+//        if (isDoctor) {
+//            DoctorDetail updatedDoctorDetail = setDoctorDetails(data, updatedUser);
+//            updatedDoctorDetail = doctorDetailService.update(id, updatedDoctorDetail);
+//            updatedUser.setDoctorDetails(updatedDoctorDetail);
+//        }
 
         return userMapper.toDTO(updatedUser);
     }
 
-    private DoctorDetail setDoctorDetails(UserRequestDTO data, Users savedOrUpdatedUser) {
-        DoctorDetail doctorDetail = new DoctorDetail();
-        doctorDetail.setUser(savedOrUpdatedUser);
-
-        if (data.doctorDetails() != null) {
-            doctorDetail.setLicenseNo(data.doctorDetails().licenseNo());
-            doctorDetail.setSpecializations(
-                    specializationService.findAllById(data.doctorDetails().specializationIds())
-            );
-        } else {
-            doctorDetail.setLicenseNo(null);
-            doctorDetail.setSpecializations(null);
-        }
-
-        return doctorDetail;
-    }
+//    private DoctorDetail setDoctorDetails(UserRequestDTO data, Users savedOrUpdatedUser) {
+//        DoctorDetail doctorDetail = new DoctorDetail();
+//        doctorDetail.setUser(savedOrUpdatedUser);
+//
+//        if (data.doctorDetails() != null) {
+//            doctorDetail.setLicenseNo(data.doctorDetails().licenseNo());
+//            doctorDetail.setSpecializations(
+//                    specializationService.findAllById(data.doctorDetails().specializationIds())
+//            );
+//        } else {
+//            doctorDetail.setLicenseNo(null);
+//            doctorDetail.setSpecializations(null);
+//        }
+//
+//        return doctorDetail;
+//    }
 
 
 }
