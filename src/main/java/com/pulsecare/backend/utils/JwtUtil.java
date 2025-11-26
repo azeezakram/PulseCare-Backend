@@ -35,7 +35,7 @@ public class JwtUtil {
                 .add(claims)
                 .subject(user.getUsername())
                 .issuedAt(new Date(System.currentTimeMillis()))
-                .expiration(new Date(System.currentTimeMillis() + 30 * 60 * 1000 ))
+                .expiration(new Date(System.currentTimeMillis() + 2 * 24 * 60 * 60 * 1000)) // 2 days expiration
                 .and()
                 .signWith(getKey())
                 .compact();
