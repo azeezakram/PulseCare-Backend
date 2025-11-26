@@ -13,6 +13,6 @@ import java.util.List;
 public interface DoctorDetailController extends
         FindableController<ResponseBody<DoctorDetailResDto>, ResponseBody<List<DoctorDetailResDto>>, Long>,
         CreatableController<DoctorDetailReqDto, ResponseBody<DoctorDetailResDto>>,
-        UpdatableController<DoctorDetailReqDto, ResponseBody<DoctorDetailResDto>, Long>,
+        UpdatableController<DoctorDetailReqDto, ResponseBody<DoctorDetailResDto>, String>,
         DeletableController<ResponseBody<String>, Long> {
 }

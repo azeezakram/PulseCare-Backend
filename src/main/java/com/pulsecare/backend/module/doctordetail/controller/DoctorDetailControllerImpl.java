@@ -81,7 +81,7 @@ public class DoctorDetailControllerImpl implements DoctorDetailController {
     @PostMapping("/")
     @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR')")
     public ResponseEntity<ResponseBody<DoctorDetailResDto>> create(@Valid @RequestBody DoctorDetailReqDto data) {
-        DoctorDetailResDto created = facade.create(data);
+        DoctorDetailResDto created = facade.createNewDoctorDetail(data);
         return ResponseEntity
                 .ok()
                 .body(new ResponseBody<>(
@@ -92,17 +92,17 @@ public class DoctorDetailControllerImpl implements DoctorDetailController {
     }
 
     @Override
-    @PutMapping("/{id}")
+    @PutMapping("/u/{userId}")
     @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR')")
-    public ResponseEntity<ResponseBody<DoctorDetailResDto>> update(@Valid @PathVariable("id") Long id,
-                                                                     @RequestBody DoctorDetailReqDto data) {
-//        DoctorDetailResDto updated = facade.update(data, id);
+    public ResponseEntity<ResponseBody<DoctorDetailResDto>> update(@PathVariable("userId") String userId,
+                                                                   @RequestBody DoctorDetailReqDto data) {
+        DoctorDetailResDto updated = facade.updateDoctorDetail(data, userId);
         return ResponseEntity
                 .ok()
                 .body(new ResponseBody<>(
                         HttpStatus.OK.value(),
                         "Doctor details updated successfully",
-                        null
+                        updated
                 ));
     }
 
