@@ -34,7 +34,7 @@ public class SpecializationServiceImpl implements SpecializationService {
     }
 
     @Override
-    public Specialization create(Specialization data) {
+    public Specialization save(Specialization data) {
         repository.findByName(data.getName())
                 .ifPresent(s -> {
                     throw new ResourceAlreadyExistsException("Specialization with this name already exists");

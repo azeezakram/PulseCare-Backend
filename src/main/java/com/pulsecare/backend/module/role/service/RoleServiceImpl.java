@@ -44,7 +44,7 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public RoleResDto create(RoleReqDto data) {
+    public RoleResDto save(RoleReqDto data) {
         repository.findByName(data.name())
                 .ifPresent(s -> {
                     throw new ResourceAlreadyExistsException("Role with this name already exists");
