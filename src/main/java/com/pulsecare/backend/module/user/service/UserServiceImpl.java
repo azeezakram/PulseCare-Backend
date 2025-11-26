@@ -31,11 +31,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Users findById(String id) {
-        Users data = repository.findById(UUID.fromString(id)).orElse(null);
-        if (data == null) {
-            throw new ResourceNotFoundException("User with id " + id + " not found");
-        }
-        return data;
+        return repository.findById(UUID.fromString(id))
+                .orElseThrow(() -> new ResourceNotFoundException("User with id " + id + " not found"));
     }
 
     @Override
@@ -44,30 +41,24 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Users create(Users data) {
-        if (repository.findByUsername(data.getUsername()) != null) {
-            throw new ResourceAlreadyExistsException("User with this username already exists");
-        }
-
-        if (data.getIsActive() == null) {
-            data.setIsActive(true);
-        }
-
-        return repository.save(data);
+    public Users save(Users user) {
+        return repository.save(user);
     }
 
-    @Override
-    public Users update(String id, Users data) {
-        Users existingById = repository.findById(UUID.fromString(id))
-                .orElseThrow(() -> new ResourceNotFoundException("User with id " + id + " not found"));
-
-        Users existByUsername = repository.findByUsername(data.getUsername());
-        if (existByUsername != null && !existByUsername.getId().equals(existingById.getId())) {
-            throw new ResourceAlreadyExistsException("User with this username already exists");
-        }
-
-        return repository.save(data);
-    }
+//    @Override
+//    public Users update(String id, Users data) {
+//        Users existingById = repository.findById(UUID.fromString(id))
+//                .orElseThrow(() -> new ResourceNotFoundException("User with id " + id + " not found"));
+//
+//        Users existByUsername = repository.findByUsername(data.getUsername());
+//        if (existByUsername != null && !existByUsername.getId().equals(existingById.getId())) {
+//            throw new ResourceAlreadyExistsException("User with this username already exists");
+//        }
+//
+//        UserUtil.addDataToEntity(data, existingById);
+//
+//        return repository.save(existingById);
+//    }
 
     @Override
     public void delete(String id) {
@@ -99,6 +90,22 @@ public class UserServiceImpl implements UserService {
 
         } catch (AuthenticationException e) {
             throw new UserInvalidCredentialException("Invalid username or password");
+        }
+    }
+
+    @Override
+    public void validateUsernameUniqueness(String newUsername, UUID currentUserId) {
+        Users existByUsername = repository.findByUsername(newUsername);
+        if (existByUsername != null && !existByUsername.getId().equals(currentUserId)) {
+            throw new ResourceAlreadyExistsException("User with this username already exists");
+        }
+    }
+
+    @Override
+    public void validateUsernameDoesNotExist(String username) {
+        Users existingUser = repository.findByUsername(username);
+        if (existingUser != null) {
+            throw new ResourceAlreadyExistsException("User with username '" + username + "' already exists");
         }
     }
 
