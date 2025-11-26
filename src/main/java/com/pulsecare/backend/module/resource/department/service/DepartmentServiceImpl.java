@@ -5,6 +5,7 @@ import com.pulsecare.backend.module.resource.department.dto.DeptResponseDTO;
 import com.pulsecare.backend.module.resource.department.mapper.DepartmentMapper;
 import com.pulsecare.backend.module.resource.department.model.Department;
 import com.pulsecare.backend.module.resource.department.repository.DepartmentRepository;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,7 +16,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     private final DepartmentMapper mapper;
     private final DepartmentRepository repository;
 
-    public DepartmentServiceImpl(DepartmentMapper mapper, DepartmentRepository repository) {
+    public DepartmentServiceImpl(@Qualifier("departmentMapperImpl") DepartmentMapper mapper, DepartmentRepository repository) {
         this.mapper = mapper;
         this.repository = repository;
     }
@@ -46,7 +47,10 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public void delete(Integer id) {
-        // TODO document why this method is empty
+        Department existing = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Department with id " + id + " not found"));
+
+        repository.delete(existing);
     }
 
     @Override
