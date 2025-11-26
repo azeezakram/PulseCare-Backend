@@ -32,7 +32,7 @@ public class Users {
     private String username;
     @Column(unique = true)
     private String email;
-//    @Column(nullable = false)
+    @Column(nullable = false)
     private String password;
     private String mobileNumber;
 
@@ -61,10 +61,8 @@ public class Users {
     @ToString.Exclude
     private Set<Role> roles;
 
-    @OneToOne(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private DoctorDetail doctorDetails;
-
-
 
 
 }

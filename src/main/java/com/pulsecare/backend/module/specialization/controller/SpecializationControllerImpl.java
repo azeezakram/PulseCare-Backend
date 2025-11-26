@@ -66,7 +66,7 @@ public class SpecializationControllerImpl implements SpecializationController {
     @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<ResponseBody<SpecializationResDTO>> create(@Valid @RequestBody SpecializationReqDTO data) {
         SpecializationResDTO created = mapper.toDTO(
-                service.create(mapper.toEntity(data))
+                service.save(mapper.toEntity(data))
         );
         return ResponseEntity
                 .ok()

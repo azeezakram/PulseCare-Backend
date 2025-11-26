@@ -47,10 +47,10 @@ public class DoctorDetailControllerImpl implements DoctorDetailController {
         );
     }
 
-    @GetMapping("/{userId}")
+    @GetMapping("/a/{id}")
     @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
-    public ResponseEntity<ResponseBody<DoctorDetailResDto>> findById(@PathVariable("userId") String userId) {
-        DoctorDetailResDto data = mapper.toDTO(service.findByUserId(userId));
+    public ResponseEntity<ResponseBody<DoctorDetailResDto>> findById(@PathVariable("id") String id) {
+        DoctorDetailResDto data = mapper.toDTO(service.findByUserId(id));
         return ResponseEntity.ok().body(
                 new ResponseBody<>(
                         HttpStatus.OK.value(),
@@ -81,7 +81,7 @@ public class DoctorDetailControllerImpl implements DoctorDetailController {
     @PostMapping("/")
     @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR')")
     public ResponseEntity<ResponseBody<DoctorDetailResDto>> create(@Valid @RequestBody DoctorDetailReqDto data) {
-        DoctorDetailResDto created = facade.create(data);
+        DoctorDetailResDto created = facade.createNewDoctorDetail(data);
         return ResponseEntity
                 .ok()
                 .body(new ResponseBody<>(
@@ -91,32 +91,12 @@ public class DoctorDetailControllerImpl implements DoctorDetailController {
                 ));
     }
 
-
-    // Update by Doctor detail ID
-    @Override
-    @PutMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR')")
-    public ResponseEntity<ResponseBody<DoctorDetailResDto>> update(@PathVariable("id") Long id,
-                                                                    @RequestBody DoctorDetailReqDto data) {
-        DoctorDetailResDto updated = mapper.toDTO(
-                service.update(id, mapper.toEntity(data))
-        );
-        return ResponseEntity
-                .ok()
-                .body(new ResponseBody<>(
-                        HttpStatus.OK.value(),
-                        "Doctor details updated successfully",
-                        updated
-                ));
-    }
-
-    // Update by User ID
     @Override
     @PutMapping("/u/{userId}")
     @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR')")
     public ResponseEntity<ResponseBody<DoctorDetailResDto>> update(@PathVariable("userId") String userId,
-                                                                    @RequestBody DoctorDetailReqDto data) {
-        DoctorDetailResDto updated = facade.update(data, userId);
+                                                                   @RequestBody DoctorDetailReqDto data) {
+        DoctorDetailResDto updated = facade.updateDoctorDetail(data, userId);
         return ResponseEntity
                 .ok()
                 .body(new ResponseBody<>(

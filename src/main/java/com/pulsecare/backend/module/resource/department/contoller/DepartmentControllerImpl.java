@@ -47,7 +47,7 @@ public class DepartmentControllerImpl implements DepartmentController {
     @Override
     @PostMapping("/")
     public ResponseEntity<ResponseBody<DeptResponseDTO>> create(@RequestBody DeptRequestDTO data) {
-        DeptResponseDTO created = service.create(data);
+        DeptResponseDTO created = service.save(data);
         return ResponseEntity
                 .ok()
                 .body(new ResponseBody<>(

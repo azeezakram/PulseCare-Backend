@@ -4,10 +4,13 @@ import com.pulsecare.backend.common.base.service.*;
 import com.pulsecare.backend.module.user.dto.LoginRequestDTO;
 import com.pulsecare.backend.module.user.model.Users;
 
+import java.util.UUID;
+
 public interface UserService extends
         FindableService<String, Users>,
-        CreatableService<Users, Users>,
-        UpdatableService<Users, Users, String>,
+        SavableService<Users, Users>,
         DeletableService<String>,
         LoggableService<LoginRequestDTO, String> {
+    void validateUsernameUniqueness(String newUsername, UUID currentUserId);
+    void validateUsernameDoesNotExist(String username);
 }

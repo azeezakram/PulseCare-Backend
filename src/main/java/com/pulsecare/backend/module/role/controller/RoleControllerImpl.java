@@ -58,7 +58,7 @@ public class RoleControllerImpl implements RoleController {
     @PostMapping("/")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ResponseBody<RoleResDto>> create(@Valid @RequestBody RoleReqDto data) {
-        RoleResDto created = service.create(data);
+        RoleResDto created = service.save(data);
         return ResponseEntity
                 .ok()
                 .body(new ResponseBody<>(

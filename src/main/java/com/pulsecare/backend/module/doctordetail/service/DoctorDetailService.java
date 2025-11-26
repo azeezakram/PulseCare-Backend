@@ -1,16 +1,17 @@
 package com.pulsecare.backend.module.doctordetail.service;
 
-import com.pulsecare.backend.common.base.service.CreatableService;
 import com.pulsecare.backend.common.base.service.DeletableService;
 import com.pulsecare.backend.common.base.service.FindableService;
-import com.pulsecare.backend.common.base.service.UpdatableService;
+import com.pulsecare.backend.common.base.service.SavableService;
 import com.pulsecare.backend.module.doctordetail.model.DoctorDetail;
+
+import java.util.UUID;
 
 public interface DoctorDetailService extends
         FindableService<Long, DoctorDetail>,
-        CreatableService<DoctorDetail, DoctorDetail>,
-        UpdatableService<DoctorDetail, DoctorDetail, Long>,
+        SavableService<DoctorDetail, DoctorDetail>,
         DeletableService<Long> {
-    DoctorDetail update(String userID, DoctorDetail data);
     DoctorDetail findByUserId(String userId);
+    void validateAlreadyHasDoctorDetail(UUID userId);
+    void validateLicenseNoUniqueness(String licenseNo, UUID userId);
 }

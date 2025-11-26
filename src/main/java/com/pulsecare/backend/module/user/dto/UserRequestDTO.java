@@ -19,7 +19,7 @@ public record UserRequestDTO(
 
         String email,
 
-//        @NotBlank(message = "Password is required")
+        @NotBlank(message = "Password is required")
         String password,
 
         String mobileNumber,
