@@ -9,6 +9,5 @@ import com.pulsecare.backend.module.resource.ward.model.Ward;
 public interface WardService extends
         FindableService<Integer, Ward>,
         SavableService<Ward, Ward>,
-        UpdatableService<Ward, Ward, Integer>,
         DeletableService<Integer> {
 }

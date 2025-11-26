@@ -29,12 +29,7 @@ public class WardServiceImpl implements WardService {
 
     @Override
     public Ward save(Ward data) {
-        return null;
-    }
-
-    @Override
-    public Ward update(Integer integer, Ward data) {
-        return null;
+        return repository.save(data);
     }
 
     @Override
