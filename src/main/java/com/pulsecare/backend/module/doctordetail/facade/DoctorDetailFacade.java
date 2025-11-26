@@ -10,9 +10,11 @@ import com.pulsecare.backend.module.specialization.service.SpecializationService
 import com.pulsecare.backend.module.user.model.Users;
 import com.pulsecare.backend.module.user.service.UserService;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 
 @Component
 public class DoctorDetailFacade {
@@ -29,31 +31,48 @@ public class DoctorDetailFacade {
         this.doctorDetailMapper = doctorDetailMapper;
     }
 
-    public DoctorDetailResDto create(DoctorDetailReqDto responseDto) {
-        Users user = userService.findById(responseDto.userId());
-        Set<Specialization> specializations = specializationService.findAllById(responseDto.specializationIds());
+    @Transactional
+    public DoctorDetailResDto createNewDoctorDetail(DoctorDetailReqDto reqDto) {
+        doctorDetailService.validateAlreadyHasDoctorDetail(UUID.fromString(reqDto.userId()));
+        doctorDetailService.validateLicenseNoUniqueness(reqDto.licenseNo(), UUID.fromString(reqDto.userId()));
 
-        DoctorDetail doctorDetail = new DoctorDetail();
-        doctorDetail.setUser(user);
-        doctorDetail.setLicenseNo(responseDto.licenseNo());
-        doctorDetail.setSpecializations(specializations);
+        DoctorDetail doctorDetailEntity = doctorDetailMapper.toEntity(reqDto);
 
-        return doctorDetailMapper.toDTO(doctorDetailService.create(doctorDetail));
+        Users user = userService.findById(reqDto.userId());
+        doctorDetailEntity.setUser(user);
+
+        if (reqDto.specializationIds() != null) {
+            Set<Specialization> specializations = new HashSet<>(
+                    specializationService.findAllById(reqDto.specializationIds())
+            );
+            doctorDetailEntity.setSpecializations(specializations);
+        }
+
+        DoctorDetail savedDoctorDetail = doctorDetailService.save(doctorDetailEntity);
+        return doctorDetailMapper.toDTO(savedDoctorDetail);
+
     }
 
-    public DoctorDetailResDto update(DoctorDetailReqDto requestDto, Long id) {
-        DoctorDetail existing = doctorDetailService.findById(id);
-        Users user = userService.findById(requestDto.userId());
-        Set<Specialization> specializations = new HashSet<>(
-                specializationService.findAllById(
-                        requestDto.specializationIds()
-                )
-        );
+    @Transactional
+    public DoctorDetailResDto updateDoctorDetail(DoctorDetailReqDto reqDto, String userId) {
+        DoctorDetail existingDetail = doctorDetailService.findByUserId(userId);
 
-        existing.setUser(user);
-        existing.setLicenseNo(requestDto.licenseNo());
-        existing.setSpecializations(specializations);
+        if (reqDto.licenseNo() != null && !reqDto.licenseNo().equals(existingDetail.getLicenseNo())) {
+            doctorDetailService.validateLicenseNoUniqueness(reqDto.licenseNo(), UUID.fromString(userId));
+        }
 
-        return doctorDetailMapper.toDTO(doctorDetailService.update(id, existing));
+        doctorDetailMapper.updateEntity(reqDto, existingDetail);
+
+        if (reqDto.specializationIds() != null && !reqDto.specializationIds().isEmpty()) {
+            Set<Specialization> specializations = new HashSet<>(
+                    specializationService.findAllById(reqDto.specializationIds())
+            );
+            existingDetail.setSpecializations(specializations);
+        }
+
+        DoctorDetail updatedDetail = doctorDetailService.save(existingDetail);
+
+        return doctorDetailMapper.toDTO(updatedDetail);
     }
+
 }
