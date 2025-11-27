@@ -9,5 +9,5 @@ public interface WardService extends
         FindableService<Integer, Ward>,
         SavableService<Ward, Ward>,
         DeletableService<Integer> {
-    void validateNameUniqueness(String wardName, Integer departmentId);
+    void validateWardNameAndDepartmentIDUniqueness(String wardName, Integer departmentId);
 }
