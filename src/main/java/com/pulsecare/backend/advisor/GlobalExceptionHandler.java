@@ -2,6 +2,7 @@ package com.pulsecare.backend.advisor;
 
 import com.pulsecare.backend.common.exception.ResourceAlreadyExistsException;
 import com.pulsecare.backend.common.exception.ResourceNotFoundException;
+import com.pulsecare.backend.common.exception.ValidationException;
 import com.pulsecare.backend.common.template.response.ErrorResponseBody;
 import com.pulsecare.backend.module.user.exception.UserInvalidCredentialException;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
@@ -30,6 +31,18 @@ public class GlobalExceptionHandler {
                         errors
                 )
         );
+    }
+
+    @ExceptionHandler(ValidationException.class)
+    public ResponseEntity<ErrorResponseBody> handleValidationException(ValidationException ex) {
+        return new ResponseEntity<>(
+                new ErrorResponseBody(
+                        HttpStatus.BAD_REQUEST.value(),
+                        ex.getMessage()
+                ),
+                HttpStatus.BAD_REQUEST
+        );
+
     }
 
     @ExceptionHandler(UserInvalidCredentialException.class)
