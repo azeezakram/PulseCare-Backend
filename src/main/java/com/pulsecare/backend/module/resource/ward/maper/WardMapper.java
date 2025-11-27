@@ -9,6 +9,8 @@ import org.mapstruct.*;
 public interface WardMapper {
     @Mapping(target = "department", ignore = true)
     Ward toEntity(WardReqDTO dto);
+
+    @Mapping(source = "department.id", target = "departmentId")
     WardResDTO toDTO(Ward obj);
 
     @Mapping(target = "id", ignore = true)
