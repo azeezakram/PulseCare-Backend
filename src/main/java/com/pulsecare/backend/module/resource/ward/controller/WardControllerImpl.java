@@ -52,8 +52,21 @@ public class WardControllerImpl implements WardController {
     }
 
     @Override
+    @GetMapping("/")
+    @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
     public ResponseEntity<ResponseBody<List<WardResDTO>>> findAll() {
-        return null;
+        List<WardResDTO> data = service.findAll()
+                .stream()
+                .map(mapper::toDTO)
+                .toList();
+
+        return ResponseEntity
+                .ok()
+                .body(new ResponseBody<>(
+                        HttpStatus.OK.value(),
+                        data.isEmpty() ? "No data to fetched" : "Ward data fetched successfully",
+                        data
+                ));
     }
 
     @Override
