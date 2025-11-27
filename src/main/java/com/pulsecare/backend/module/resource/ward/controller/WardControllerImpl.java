@@ -84,12 +84,24 @@ public class WardControllerImpl implements WardController {
     }
 
     @Override
+    @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<ResponseBody<WardResDTO>> update(
+            @PathVariable("id") Integer id, @Valid @RequestBody WardReqDTO data) {
+
+        WardResDTO created = facade.updateWard(data, id);
+        return ResponseEntity
+                .ok()
+                .body(new ResponseBody<>(
+                        HttpStatus.OK.value(),
+                        "Department updated successfully",
+                        created
+                ));
+    }
+
+    @Override
     public ResponseEntity<ResponseBody<String>> delete(Integer integer) {
         return null;
     }
 
-    @Override
-    public ResponseEntity<ResponseBody<WardResDTO>> update(Integer integer, WardReqDTO data) {
-        return null;
-    }
 }

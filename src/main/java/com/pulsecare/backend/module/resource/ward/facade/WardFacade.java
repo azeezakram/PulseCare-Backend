@@ -1,5 +1,6 @@
 package com.pulsecare.backend.module.resource.ward.facade;
 
+import com.pulsecare.backend.common.exception.ValidationException;
 import com.pulsecare.backend.module.resource.department.model.Department;
 import com.pulsecare.backend.module.resource.department.service.DepartmentService;
 import com.pulsecare.backend.module.resource.ward.dto.WardReqDTO;
@@ -41,19 +42,21 @@ public class WardFacade {
     }
 
     @Transactional
-    public WardResDTO updateWard(WardReqDTO dto, Integer departmentId, Integer wardId) {
-        Ward existingWard = wardService.findWardByWardIdAndDepartmentId(wardId, departmentId);
+    public WardResDTO updateWard(WardReqDTO dto, Integer wardId) {
+        if (dto.departmentId() == null) {
+            throw new ValidationException("Department ID must be provided for updating a ward");
+        }
+
+        Ward existingWard = wardService.findWardByWardIdAndDepartmentId(wardId, dto.departmentId());
 
         if (dto.name() != null) {
-            wardService.validateWardNameAndDepartmentIDUniqueness(dto.name(), departmentId);
+            wardService.validateWardNameAndDepartmentIDUniqueness(dto.name(), dto.departmentId());
         }
 
         mapper.updateEntity(dto, existingWard);
 
-        if (dto.departmentId() != null) {
-            Department department =  departmentService.findById(dto.departmentId());
-            existingWard.setDepartment(department);
-        }
+        Department department = departmentService.findById(dto.departmentId());
+        existingWard.setDepartment(department);
 
         Ward updatedWard = wardService.save(existingWard);
 
