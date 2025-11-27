@@ -10,4 +10,5 @@ public interface DepartmentService extends
         SavableService<Department, Department>,
         DeletableService<Integer> {
     void validateNameUniqueness(String departmentName, Integer departmentId);
+    void validateNameDoesNotExist(String departmentName);
 }
