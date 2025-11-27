@@ -94,14 +94,23 @@ public class WardControllerImpl implements WardController {
                 .ok()
                 .body(new ResponseBody<>(
                         HttpStatus.OK.value(),
-                        "Department updated successfully",
+                        "Ward updated successfully",
                         created
                 ));
     }
 
     @Override
-    public ResponseEntity<ResponseBody<String>> delete(Integer integer) {
-        return null;
+    @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<ResponseBody<String>> delete(@PathVariable("id") Integer id) {
+        service.delete(id);
+        return ResponseEntity
+                .ok()
+                .body(new ResponseBody<>(
+                        HttpStatus.OK.value(),
+                        "Ward deleted successfully",
+                        null
+                ));
     }
 
 }
