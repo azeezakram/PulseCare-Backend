@@ -27,15 +27,16 @@ public class WardFacade {
 
     @Transactional
     public WardResDTO createWard(WardReqDTO dto) {
-        wardService.validateWardNameAndDepartmentIDUniqueness(dto.name(), dto.departmentId());
+        if (dto.departmentId() == null) {
+            throw new ValidationException("Department ID must be provided for create a ward");
+        }
+        wardService.validateWardNameAndDepartmentIDUniqueness(dto.name(), dto.departmentId(), null);
 
         Ward wardEntity = mapper.toEntity(dto);
 
-        if (dto.departmentId() != null) {
-            Department department =  departmentService.findById(dto.departmentId());
-            wardEntity.setDepartment(department);
-        }
-        
+        Department department = departmentService.findById(dto.departmentId());
+        wardEntity.setDepartment(department);
+
         Ward savedWard = wardService.save(wardEntity);
 
         return mapper.toDTO(savedWard);
@@ -47,10 +48,14 @@ public class WardFacade {
             throw new ValidationException("Department ID must be provided for updating a ward");
         }
 
+        if (dto.name() != null && dto.name().isBlank()) {
+            throw new ValidationException("Ward name must not be blank");
+        }
+
         Ward existingWard = wardService.findWardByWardIdAndDepartmentId(wardId, dto.departmentId());
 
         if (dto.name() != null) {
-            wardService.validateWardNameAndDepartmentIDUniqueness(dto.name(), dto.departmentId());
+            wardService.validateWardNameAndDepartmentIDUniqueness(dto.name(), dto.departmentId(), wardId);
         }
 
         mapper.updateEntity(dto, existingWard);
