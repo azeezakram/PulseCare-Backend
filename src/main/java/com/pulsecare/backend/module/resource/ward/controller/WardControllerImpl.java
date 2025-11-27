@@ -1,11 +1,6 @@
 package com.pulsecare.backend.module.resource.ward.controller;
 
 import com.pulsecare.backend.common.template.response.ResponseBody;
-import com.pulsecare.backend.module.resource.department.dto.DeptRequestDTO;
-import com.pulsecare.backend.module.resource.department.dto.DeptResponseDTO;
-import com.pulsecare.backend.module.resource.department.facade.DepartmentFacade;
-import com.pulsecare.backend.module.resource.department.mapper.DepartmentMapper;
-import com.pulsecare.backend.module.resource.department.service.DepartmentService;
 import com.pulsecare.backend.module.resource.ward.dto.WardReqDTO;
 import com.pulsecare.backend.module.resource.ward.dto.WardResDTO;
 import com.pulsecare.backend.module.resource.ward.facade.WardFacade;
@@ -23,7 +18,7 @@ import java.util.List;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/api/v1/department")
+@RequestMapping("/api/v1/ward")
 @Validated
 public class WardControllerImpl implements WardController {
 
@@ -85,7 +80,7 @@ public class WardControllerImpl implements WardController {
 
     @Override
     @PutMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'NURSE')")
     public ResponseEntity<ResponseBody<WardResDTO>> update(
             @PathVariable("id") Integer id, @Valid @RequestBody WardReqDTO data) {
 
