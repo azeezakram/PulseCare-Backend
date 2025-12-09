@@ -27,25 +27,25 @@ public class UserFacade {
         this.passwordEncoder = passwordEncoder;
     }
 
-@Transactional
-public UserResponseDTO createNewUser(UserRequestDTO data) {
-    userService.validateUsernameDoesNotExist(data.username());
+    @Transactional
+    public UserResponseDTO createNewUser(UserRequestDTO data) {
+        userService.validateUsernameDoesNotExist(data.username());
 
-    Users userEntity = userMapper.toEntity(data);
+        Users userEntity = userMapper.toEntity(data);
 
-    if (data.roles() != null && !data.roles().isEmpty()) {
-        Set<Role> roles = roleService.findAllById(data.roles());
-        userEntity.setRoles(roles);
+        if (data.roles() != null && !data.roles().isEmpty()) {
+            Set<Role> roles = roleService.findAllById(data.roles());
+            userEntity.setRoles(roles);
+        }
+
+        if (data.password() != null && !data.password().isEmpty()) {
+            userEntity.setPassword(passwordEncoder.encode(data.password()));
+        }
+
+        Users savedUser = userService.save(userEntity);
+
+        return userMapper.toDTO(savedUser);
     }
-
-    if (data.password() != null && !data.password().isEmpty()) {
-        userEntity.setPassword(passwordEncoder.encode(data.password()));
-    }
-
-    Users savedUser = userService.save(userEntity);
-
-    return userMapper.toDTO(savedUser);
-}
 
     @Transactional
     public UserResponseDTO updateUser(UserRequestDTO data, String id) {

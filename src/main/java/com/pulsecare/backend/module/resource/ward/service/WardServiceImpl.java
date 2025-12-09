@@ -29,6 +29,11 @@ public class WardServiceImpl implements WardService {
     }
 
     @Override
+    public List<Ward> findAllByDepartmentId(Integer departmentId) {
+        return repository.findAllByDepartmentId(departmentId);
+    }
+
+    @Override
     public Ward save(Ward data) {
         return repository.save(data);
     }
@@ -52,7 +57,6 @@ public class WardServiceImpl implements WardService {
                     }
                 });
     }
-
 
     @Override
     public Ward findWardByWardIdAndDepartmentId(Integer wardId, Integer departmentId) {

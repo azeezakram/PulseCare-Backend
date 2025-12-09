@@ -41,7 +41,7 @@ public class WardControllerImpl implements WardController {
                 .ok()
                 .body(new ResponseBody<>(
                         HttpStatus.OK.value(),
-                        "Ward data fetched successfully",
+                        "Ward data with this id fetched successfully",
                         data
                 ));
     }
@@ -51,6 +51,24 @@ public class WardControllerImpl implements WardController {
     @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
     public ResponseEntity<ResponseBody<List<WardResDTO>>> findAll() {
         List<WardResDTO> data = service.findAll()
+                .stream()
+                .map(mapper::toDTO)
+                .toList();
+
+        return ResponseEntity
+                .ok()
+                .body(new ResponseBody<>(
+                        HttpStatus.OK.value(),
+                        data.isEmpty() ? "No data to fetched" : "Ward data fetched successfully",
+                        data
+                ));
+    }
+
+    @Override
+    @GetMapping("/a")
+    @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
+    public ResponseEntity<ResponseBody<List<WardResDTO>>> findAllByDepartmentId(@RequestParam("dep") Integer departmentId) {
+        List<WardResDTO> data = service.findAllByDepartmentId(departmentId)
                 .stream()
                 .map(mapper::toDTO)
                 .toList();
