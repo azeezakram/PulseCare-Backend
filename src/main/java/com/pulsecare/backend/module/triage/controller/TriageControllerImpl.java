@@ -75,7 +75,14 @@ public class TriageControllerImpl implements TriageController {
     @PutMapping("/{id}")
     @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<ResponseBody<TriageResDTO>> update(@PathVariable("id") Long id, @RequestBody TriageReqDTO data) {
-        return null;
+        TriageResDTO updated = service.update(id, data);
+        return ResponseEntity
+                .ok()
+                .body(new ResponseBody<>(
+                        HttpStatus.OK.value(),
+                        "Specialization updated successfully",
+                        updated
+                ));
     }
 
     @Override
