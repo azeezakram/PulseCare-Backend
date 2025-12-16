@@ -80,7 +80,7 @@ public class TriageControllerImpl implements TriageController {
                 .ok()
                 .body(new ResponseBody<>(
                         HttpStatus.OK.value(),
-                        "Specialization updated successfully",
+                        "Triage updated successfully",
                         updated
                 ));
     }
@@ -89,7 +89,14 @@ public class TriageControllerImpl implements TriageController {
     @DeleteMapping("/{id}")
     @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<ResponseBody<String>> delete(@PathVariable("id") Long id) {
-        return null;
+        service.delete(id);
+        return ResponseEntity
+                .ok()
+                .body(new ResponseBody<>(
+                        HttpStatus.OK.value(),
+                        "Triage deleted successfully",
+                        null
+                ));
     }
 
     @Override
