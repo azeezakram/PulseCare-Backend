@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 public record TriageResDTO(
         Long id,
+        String name,
 
         // ========== Basic Categorical Features ==========
         Integer sex, // 0=Female, 1=Male

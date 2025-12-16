@@ -22,6 +22,9 @@ public class Triage {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
+    private String name;
+
     // ========== Basic Categorical Features ==========
     @Column(nullable = false)
     private Integer sex; // 0=Female, 1=Male

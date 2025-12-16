@@ -3,6 +3,10 @@ package com.pulsecare.backend.module.triage.dto;
 import jakarta.validation.constraints.*;
 
 public record TriageReqDTO(
+
+        @NotEmpty(message = "Sex is required")
+        String name,
+
         // ========== Basic Categorical Features (Required) ==========
         @NotNull(message = "Sex is required")
         @Min(value = 0, message = "Sex must be 0 (Female) or 1 (Male)")
