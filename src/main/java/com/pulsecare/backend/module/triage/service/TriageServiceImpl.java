@@ -27,6 +27,11 @@ public class TriageServiceImpl implements TriageService {
     }
 
     @Override
+    public List<Triage> findAll() {
+        return repository.findAll();
+    }
+
+    @Override
     public Triage predict(Triage dto) {
         return null;
     }
@@ -37,10 +42,6 @@ public class TriageServiceImpl implements TriageService {
     }
 
 
-    @Override
-    public List<Triage> findAll() {
-        return List.of();
-    }
 
     @Override
     public Triage save(Triage data) {
