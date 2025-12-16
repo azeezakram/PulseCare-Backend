@@ -1,7 +1,5 @@
 package com.pulsecare.backend.module.triage.mapper;
 
-import com.pulsecare.backend.module.doctordetail.dto.DoctorDetailReqDto;
-import com.pulsecare.backend.module.doctordetail.model.DoctorDetail;
 import com.pulsecare.backend.module.triage.dto.TriagePredictionReqDTO;
 import com.pulsecare.backend.module.triage.dto.TriagePredictionResDTO;
 import com.pulsecare.backend.module.triage.dto.TriageReqDTO;
@@ -16,6 +14,8 @@ public interface TriageMapper {
 
     Triage toPredEntity(TriagePredictionResDTO dto);
     TriagePredictionReqDTO toPredDTO(Triage entity);
+
+    TriagePredictionReqDTO toPredDTOFromReq(TriageReqDTO dto);
 
     @Mapping(target = "id", ignore = true)
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
