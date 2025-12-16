@@ -24,17 +24,23 @@ import java.util.List;
 @Validated
 public class TriageControllerImpl implements TriageController {
 
-    private final TriageService triageService;
+    private final TriageService service;
 
-    public TriageControllerImpl(TriageService triageService) {
-        this.triageService = triageService;
+    public TriageControllerImpl(TriageService service) {
+        this.service = service;
     }
 
     @Override
     @GetMapping("/{id}")
     @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
     public ResponseEntity<ResponseBody<TriageResDTO>> findById(@PathVariable("id") Long id) {
-        return null;
+        return ResponseEntity.ok().body(
+                new ResponseBody<>(
+                        HttpStatus.OK.value(),
+                        "Specialization fetched successfully",
+                        service.findById(id)
+                )
+        );
     }
 
     @Override
