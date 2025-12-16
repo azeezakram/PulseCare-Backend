@@ -37,7 +37,7 @@ public class TriageControllerImpl implements TriageController {
         return ResponseEntity.ok().body(
                 new ResponseBody<>(
                         HttpStatus.OK.value(),
-                        "Specialization fetched successfully",
+                        "Triage fetched successfully",
                         service.findById(id)
                 )
         );
@@ -47,7 +47,14 @@ public class TriageControllerImpl implements TriageController {
     @GetMapping("/")
     @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
     public ResponseEntity<ResponseBody<List<TriageResDTO>>> findAll() {
-        return null;
+        List<TriageResDTO> data = service.findAll();
+        return ResponseEntity
+                .ok()
+                .body(new ResponseBody<>(
+                        HttpStatus.OK.value(),
+                        data.isEmpty() ? "No data to fetched" : "Triage data fetched successfully",
+                        data
+                ));
     }
 
     @Override
