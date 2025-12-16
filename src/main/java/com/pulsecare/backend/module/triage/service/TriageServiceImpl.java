@@ -32,6 +32,11 @@ public class TriageServiceImpl implements TriageService {
     }
 
     @Override
+    public Triage save(Triage data) {
+        return repository.save(data);
+    }
+
+    @Override
     public Triage predict(Triage dto) {
         return null;
     }
@@ -43,10 +48,6 @@ public class TriageServiceImpl implements TriageService {
 
 
 
-    @Override
-    public Triage save(Triage data) {
-        return null;
-    }
 
     @Override
     public Triage update(Long aLong, Triage data) {
