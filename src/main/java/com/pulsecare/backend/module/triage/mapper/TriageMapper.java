@@ -12,6 +12,8 @@ public interface TriageMapper {
     Triage toEntity(TriageReqDTO dto);
     TriageResDTO toDTO(Triage entity);
 
+
+    @Mapping(source = "triageLevel", target = "triageLevel")
     Triage toPredEntity(TriagePredictionResDTO dto);
     TriagePredictionReqDTO toPredDTO(Triage entity);
 
