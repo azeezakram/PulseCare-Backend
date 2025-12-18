@@ -1,6 +1,6 @@
 package com.pulsecare.backend.module.user.dto;
 
-import com.pulsecare.backend.module.doctordetail.dto.DoctorDetailReqDto;
+import com.pulsecare.backend.module.doctor_detail.dto.DoctorDetailReqDto;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 

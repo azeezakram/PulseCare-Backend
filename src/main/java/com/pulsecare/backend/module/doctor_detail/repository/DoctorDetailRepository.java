@@ -1,6 +1,6 @@
-package com.pulsecare.backend.module.doctordetail.repository;
+package com.pulsecare.backend.module.doctor_detail.repository;
 
-import com.pulsecare.backend.module.doctordetail.model.DoctorDetail;
+import com.pulsecare.backend.module.doctor_detail.model.DoctorDetail;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

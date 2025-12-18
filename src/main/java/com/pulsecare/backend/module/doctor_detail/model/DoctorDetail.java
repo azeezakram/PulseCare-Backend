@@ -1,4 +1,4 @@
-package com.pulsecare.backend.module.doctordetail.model;
+package com.pulsecare.backend.module.doctor_detail.model;
 
 import com.pulsecare.backend.module.specialization.model.Specialization;
 import com.pulsecare.backend.module.user.model.Users;

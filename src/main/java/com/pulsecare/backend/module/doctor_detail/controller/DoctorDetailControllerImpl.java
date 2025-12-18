@@ -1,11 +1,11 @@
-package com.pulsecare.backend.module.doctordetail.controller;
+package com.pulsecare.backend.module.doctor_detail.controller;
 
 import com.pulsecare.backend.common.template.response.ResponseBody;
-import com.pulsecare.backend.module.doctordetail.dto.DoctorDetailReqDto;
-import com.pulsecare.backend.module.doctordetail.dto.DoctorDetailResDto;
-import com.pulsecare.backend.module.doctordetail.facade.DoctorDetailFacade;
-import com.pulsecare.backend.module.doctordetail.mapper.DoctorDetailMapper;
-import com.pulsecare.backend.module.doctordetail.service.DoctorDetailService;
+import com.pulsecare.backend.module.doctor_detail.dto.DoctorDetailReqDto;
+import com.pulsecare.backend.module.doctor_detail.dto.DoctorDetailResDto;
+import com.pulsecare.backend.module.doctor_detail.facade.DoctorDetailFacade;
+import com.pulsecare.backend.module.doctor_detail.mapper.DoctorDetailMapper;
+import com.pulsecare.backend.module.doctor_detail.service.DoctorDetailService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;

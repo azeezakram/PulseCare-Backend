@@ -1,4 +1,4 @@
-package com.pulsecare.backend.module.doctordetail.dto;
+package com.pulsecare.backend.module.doctor_detail.dto;
 
 import java.util.Set;
 

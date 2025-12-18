@@ -1,10 +1,10 @@
-package com.pulsecare.backend.module.doctordetail.facade;
+package com.pulsecare.backend.module.doctor_detail.facade;
 
-import com.pulsecare.backend.module.doctordetail.dto.DoctorDetailReqDto;
-import com.pulsecare.backend.module.doctordetail.dto.DoctorDetailResDto;
-import com.pulsecare.backend.module.doctordetail.mapper.DoctorDetailMapper;
-import com.pulsecare.backend.module.doctordetail.model.DoctorDetail;
-import com.pulsecare.backend.module.doctordetail.service.DoctorDetailService;
+import com.pulsecare.backend.module.doctor_detail.dto.DoctorDetailReqDto;
+import com.pulsecare.backend.module.doctor_detail.dto.DoctorDetailResDto;
+import com.pulsecare.backend.module.doctor_detail.mapper.DoctorDetailMapper;
+import com.pulsecare.backend.module.doctor_detail.model.DoctorDetail;
+import com.pulsecare.backend.module.doctor_detail.service.DoctorDetailService;
 import com.pulsecare.backend.module.specialization.model.Specialization;
 import com.pulsecare.backend.module.specialization.service.SpecializationService;
 import com.pulsecare.backend.module.user.model.Users;

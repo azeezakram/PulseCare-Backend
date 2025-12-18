@@ -1,6 +1,6 @@
 package com.pulsecare.backend.module.specialization.model;
 
-import com.pulsecare.backend.module.doctordetail.model.DoctorDetail;
+import com.pulsecare.backend.module.doctor_detail.model.DoctorDetail;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;

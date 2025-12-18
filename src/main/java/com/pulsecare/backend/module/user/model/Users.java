@@ -1,6 +1,6 @@
 package com.pulsecare.backend.module.user.model;
 
-import com.pulsecare.backend.module.doctordetail.model.DoctorDetail;
+import com.pulsecare.backend.module.doctor_detail.model.DoctorDetail;
 import com.pulsecare.backend.module.role.model.Role;
 import jakarta.persistence.*;
 import lombok.*;

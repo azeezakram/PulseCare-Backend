@@ -1,9 +1,9 @@
-package com.pulsecare.backend.module.doctordetail.service;
+package com.pulsecare.backend.module.doctor_detail.service;
 
 import com.pulsecare.backend.common.exception.ResourceAlreadyExistsException;
 import com.pulsecare.backend.common.exception.ResourceNotFoundException;
-import com.pulsecare.backend.module.doctordetail.model.DoctorDetail;
-import com.pulsecare.backend.module.doctordetail.repository.DoctorDetailRepository;
+import com.pulsecare.backend.module.doctor_detail.model.DoctorDetail;
+import com.pulsecare.backend.module.doctor_detail.repository.DoctorDetailRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

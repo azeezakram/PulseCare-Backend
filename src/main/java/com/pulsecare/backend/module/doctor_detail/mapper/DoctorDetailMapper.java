@@ -1,8 +1,8 @@
-package com.pulsecare.backend.module.doctordetail.mapper;
+package com.pulsecare.backend.module.doctor_detail.mapper;
 
-import com.pulsecare.backend.module.doctordetail.dto.DoctorDetailReqDto;
-import com.pulsecare.backend.module.doctordetail.dto.DoctorDetailResDto;
-import com.pulsecare.backend.module.doctordetail.model.DoctorDetail;
+import com.pulsecare.backend.module.doctor_detail.dto.DoctorDetailReqDto;
+import com.pulsecare.backend.module.doctor_detail.dto.DoctorDetailResDto;
+import com.pulsecare.backend.module.doctor_detail.model.DoctorDetail;
 import org.mapstruct.*;
 
 @Mapper(componentModel = "spring")
