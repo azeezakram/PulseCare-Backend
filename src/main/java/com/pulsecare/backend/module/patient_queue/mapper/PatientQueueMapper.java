@@ -3,7 +3,6 @@ package com.pulsecare.backend.module.patient_queue.mapper;
 import com.pulsecare.backend.module.patient_queue.dto.PatientQueueReqDTO;
 import com.pulsecare.backend.module.patient_queue.dto.PatientQueueResDTO;
 import com.pulsecare.backend.module.patient_queue.model.PatientQueue;
-import com.pulsecare.backend.module.triage.model.Triage;
 import org.mapstruct.*;
 
 @Mapper(componentModel = "spring")
@@ -24,11 +23,15 @@ public interface PatientQueueMapper {
     @Mapping(target = "updatedAt", ignore = true)
     PatientQueue toEntity(PatientQueueReqDTO dto);
 
-    default Triage mapTriage(Long triageId) {
-        if (triageId == null) return null;
-        Triage triage = new Triage();
-        triage.setId(triageId);
-        return triage;
-    }
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "createdAt", ignore = true)
+    @Mapping(target = "status", ignore = true)
+    @Mapping(target = "admitted", ignore = true)
+    @Mapping(target = "triage", ignore = true)
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+    void updateEntity(
+            PatientQueueReqDTO dto,
+            @MappingTarget PatientQueue entity
+    );
 }
 
