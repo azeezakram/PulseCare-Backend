@@ -99,6 +99,9 @@ public class PatientQueueServiceImpl implements PatientQueueService {
 
     @Override
     public void delete(Long id) {
+        PatientQueue entity = repository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Queue not found"));
 
+        repository.delete(entity);
     }
 }
