@@ -9,6 +9,7 @@ import com.pulsecare.backend.module.specialization.model.Specialization;
 import com.pulsecare.backend.module.specialization.service.SpecializationService;
 import com.pulsecare.backend.module.user.model.Users;
 import com.pulsecare.backend.module.user.service.UserService;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,7 +25,8 @@ public class DoctorDetailFacade {
     private final SpecializationService specializationService;
     private final DoctorDetailMapper doctorDetailMapper;
 
-    public DoctorDetailFacade(DoctorDetailService doctorDetailService, UserService userService, SpecializationService specializationService, DoctorDetailMapper doctorDetailMapper) {
+    public DoctorDetailFacade(DoctorDetailService doctorDetailService, UserService userService,
+                              SpecializationService specializationService, @Qualifier("doctorDetailMapperImpl") DoctorDetailMapper doctorDetailMapper) {
         this.doctorDetailService = doctorDetailService;
         this.userService = userService;
         this.specializationService = specializationService;
