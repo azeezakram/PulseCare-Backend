@@ -13,7 +13,7 @@ public class PatientQueueUtils {
         }
 
         if (current == QueueStatus.WAITING &&
-                (next == QueueStatus.ADMITTED || next == QueueStatus.CANCELLED)) {
+                (next == QueueStatus.ADMITTED || next == QueueStatus.CANCELLED || next == QueueStatus.OUTPATIENT)) {
             return;
         }
 
