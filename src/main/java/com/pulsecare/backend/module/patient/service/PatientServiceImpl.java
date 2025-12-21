@@ -44,9 +44,16 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
+    public PatientResDTO findByNic(String nic) {
+        return mapper.toDTO(
+                repository.findByNic(nic)
+                        .orElseThrow(() ->  new ResourceNotFoundException("Patient with NIC: " + nic + " not found")));
+    }
+
+    @Override
     public PatientResDTO save(PatientReqDTO data) {
 
-        if (data.nic() != null && repository.findByNic(data.nic()) != null) {
+        if (data.nic() != null && repository.findByNic(data.nic()).isPresent()) {
             throw new ResourceAlreadyExistsException(
                     "Patient with NIC " + data.nic() + " already exists"
             );
@@ -60,16 +67,16 @@ public class PatientServiceImpl implements PatientService {
     @Override
     public PatientResDTO update(Long id, PatientReqDTO data) {
 
-        Patient existing = findEntityById(id);
-
         if (data.nic() != null) {
-            Patient byNic = repository.findByNic(data.nic());
+            Patient byNic = repository.findByNic(data.nic()).orElse(null);
             if (byNic != null && !byNic.getId().equals(id)) {
                 throw new ResourceAlreadyExistsException(
                         "Patient with NIC " + data.nic() + " already exists"
                 );
             }
         }
+
+        Patient existing = findEntityById(id);
 
         mapper.updateEntity(data, existing);
 

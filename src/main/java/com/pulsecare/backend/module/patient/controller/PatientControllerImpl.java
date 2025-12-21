@@ -38,6 +38,19 @@ public class PatientControllerImpl implements PatientController {
     }
 
     @Override
+    @GetMapping("/nic/{nic}")
+    @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
+    public ResponseEntity<ResponseBody<PatientResDTO>> findByNic(@PathVariable("nic") String nic) {
+        return ResponseEntity.ok().body(
+                new ResponseBody<>(
+                        HttpStatus.OK.value(),
+                        "Patient with NIC: %s fetched successfully".formatted(nic),
+                        service.findByNic(nic)
+                )
+        );
+    }
+
+    @Override
     @GetMapping("/")
     @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
     public ResponseEntity<ResponseBody<List<PatientResDTO>>> findAll() {
@@ -50,6 +63,7 @@ public class PatientControllerImpl implements PatientController {
                         data
                 ));
     }
+
 
     @Override
     @PostMapping("/")

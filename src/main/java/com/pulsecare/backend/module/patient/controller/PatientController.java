@@ -7,6 +7,7 @@ import com.pulsecare.backend.common.base.controller.UpdatableController;
 import com.pulsecare.backend.common.template.response.ResponseBody;
 import com.pulsecare.backend.module.patient.dto.PatientReqDTO;
 import com.pulsecare.backend.module.patient.dto.PatientResDTO;
+import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
@@ -15,4 +16,5 @@ public interface PatientController extends
         CreatableController<PatientReqDTO, ResponseBody<PatientResDTO>>,
         UpdatableController<PatientReqDTO, ResponseBody<PatientResDTO>, Long>,
         DeletableController<ResponseBody<String>, Long> {
+    ResponseEntity<ResponseBody<PatientResDTO>> findByNic(String nic);
 }

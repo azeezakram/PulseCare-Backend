@@ -14,4 +14,5 @@ public interface PatientService extends
         UpdatableService<PatientReqDTO, PatientResDTO, Long>,
         DeletableService<Long> {
     Patient findEntityById(Long id);
+    PatientResDTO findByNic(String nic);
 }
