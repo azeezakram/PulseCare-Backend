@@ -7,19 +7,8 @@ import com.pulsecare.backend.module.patient.dto.PatientResDTO;
 import com.pulsecare.backend.module.patient.mapper.PatientMapper;
 import com.pulsecare.backend.module.patient.model.Patient;
 import com.pulsecare.backend.module.patient.repository.PatientRepository;
-import com.pulsecare.backend.module.patient_queue.dto.PatientQueueReqDTO;
-import com.pulsecare.backend.module.patient_queue.dto.PatientQueueResDTO;
-import com.pulsecare.backend.module.patient_queue.enums.QueuePriority;
-import com.pulsecare.backend.module.patient_queue.enums.QueueStatus;
-import com.pulsecare.backend.module.patient_queue.mapper.PatientQueueMapper;
-import com.pulsecare.backend.module.patient_queue.model.PatientQueue;
-import com.pulsecare.backend.module.patient_queue.repository.PatientQueueRepository;
-import com.pulsecare.backend.module.patient_queue.utils.PatientQueueUtils;
-import com.pulsecare.backend.module.triage.model.Triage;
-import com.pulsecare.backend.module.triage.service.TriageService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -29,7 +18,7 @@ public class PatientServiceImpl implements PatientService {
     private final PatientRepository repository;
     private final PatientMapper mapper;
 
-    public PatientServiceImpl(PatientRepository repository, @Qualifier("patientMapper") PatientMapper mapper) {
+    public PatientServiceImpl(PatientRepository repository, @Qualifier("patientMapperImpl") PatientMapper mapper) {
         this.repository = repository;
         this.mapper = mapper;
     }

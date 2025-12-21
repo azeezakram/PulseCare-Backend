@@ -24,7 +24,7 @@ public class PatientQueueServiceImpl implements PatientQueueService {
     private final PatientQueueMapper mapper;
     private final TriageService triageService;
 
-    public PatientQueueServiceImpl(PatientQueueRepository repository, @Qualifier("patientQueueMapper") PatientQueueMapper mapper, TriageService triageService) {
+    public PatientQueueServiceImpl(PatientQueueRepository repository, @Qualifier("patientQueueMapperImpl") PatientQueueMapper mapper, TriageService triageService) {
         this.repository = repository;
         this.mapper = mapper;
         this.triageService = triageService;
