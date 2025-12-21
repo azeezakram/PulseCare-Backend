@@ -37,7 +37,9 @@ public class PatientServiceImpl implements PatientService {
 
     @Override
     public PatientResDTO findById(Long id) {
-        return null;
+        return mapper.toDTO(
+                repository.findById(id)
+                        .orElseThrow(() ->  new ResourceNotFoundException("Patient with id " + id + " not found")));
     }
 
     @Override
