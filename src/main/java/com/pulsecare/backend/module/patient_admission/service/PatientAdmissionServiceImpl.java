@@ -47,7 +47,9 @@ public class PatientAdmissionServiceImpl implements PatientAdmissionService {
 
     @Override
     public List<PatientAdmissionResDTO> findAll() {
-        return List.of();
+        return repository.findAll().stream()
+                .map(mapper::toDTO)
+                .toList();
     }
 
     @Override
