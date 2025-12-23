@@ -41,7 +41,8 @@ public class PatientAdmissionServiceImpl implements PatientAdmissionService {
 
     @Override
     public PatientAdmission findEntityById(Long id) {
-        return null;
+        return repository.findById(id)
+                        .orElseThrow(() ->  new ResourceNotFoundException("Patient admission with id " + id + " not found"));
     }
 
     @Override
