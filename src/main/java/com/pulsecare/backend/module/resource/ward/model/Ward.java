@@ -1,5 +1,6 @@
 package com.pulsecare.backend.module.resource.ward.model;
 
+import com.pulsecare.backend.module.resource.bed.model.Bed;
 import com.pulsecare.backend.module.resource.department.model.Department;
 import jakarta.persistence.*;
 import lombok.*;
@@ -8,6 +9,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "ward")
@@ -29,6 +31,13 @@ public class Ward {
     private Integer bedCount;
 
     private Integer occupiedBeds;
+
+    @OneToMany(
+            mappedBy = "ward", cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY, orphanRemoval = true
+    )
+    @ToString.Exclude
+    private List<Bed> beds;
 
     @CreatedDate
     @Column(nullable = false, updatable = false)
