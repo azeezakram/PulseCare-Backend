@@ -20,6 +20,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -108,12 +109,42 @@ public class PatientAdmissionServiceImpl implements PatientAdmissionService {
     }
 
     @Override
+    @Transactional
     public PatientAdmissionResDTO update(Long id, PatientAdmissionReqDTO data) {
-//        PatientAdmission existing = findEntityById(id);
+        PatientAdmission existing = findEntityById(id);
 
+        if (existing.getStatus() == PatientAdmissionStatus.DISCHARGED) {
+            throw new IllegalStateException("Cannot update a discharged admission");
+        }
 
+        if (data.bedId() != null &&
+                !data.bedId().equals(existing.getBed().getId())) {
 
-        return null;
+            Bed newBed = bedService.findEntityById(data.bedId());
+
+            if (Boolean.TRUE.equals(newBed.getIsTaken())) {
+                throw new IllegalStateException("Selected bed is already occupied");
+            }
+
+            Bed oldBed = existing.getBed();
+            oldBed.setIsTaken(false);
+
+            newBed.setIsTaken(true);
+            existing.setBed(newBed);
+        }
+
+        if (data.status() == PatientAdmissionStatus.DISCHARGED) {
+
+            existing.setStatus(PatientAdmissionStatus.DISCHARGED);
+            existing.setDischargedAt(LocalDateTime.now());
+            existing.setDischargeNotes(data.dischargeNotes());
+
+            existing.getBed().setIsTaken(false);
+
+        }
+
+        PatientAdmission updated = repository.save(existing);
+        return mapper.toDTO(updated);
     }
 
     @Override
