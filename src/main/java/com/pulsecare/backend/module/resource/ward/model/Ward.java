@@ -32,13 +32,6 @@ public class Ward {
 
     private Integer occupiedBeds;
 
-    @OneToMany(
-            mappedBy = "ward", cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY, orphanRemoval = true
-    )
-    @ToString.Exclude
-    private List<Bed> beds;
-
     @CreatedDate
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
