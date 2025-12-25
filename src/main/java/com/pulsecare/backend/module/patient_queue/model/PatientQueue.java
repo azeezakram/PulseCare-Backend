@@ -1,5 +1,6 @@
 package com.pulsecare.backend.module.patient_queue.model;
 
+import com.pulsecare.backend.module.patient.model.Patient;
 import com.pulsecare.backend.module.patient_queue.enums.QueuePriority;
 import com.pulsecare.backend.module.patient_queue.enums.QueueStatus;
 import com.pulsecare.backend.module.triage.model.Triage;
@@ -23,11 +24,9 @@ public class PatientQueue {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
-    private String patientName;
-
-    @Column(nullable = false)
-    private Integer age;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "patient_id")
+    private Patient patient;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "triage_id")

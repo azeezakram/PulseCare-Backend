@@ -6,7 +6,7 @@ public record PatientQueueResDTO(
         Long id,
 
         String patientName,
-        Integer age,
+        Long patientId,
 
         Long triageId,
         Integer triageLevel, // 0 / 1 (nullable)
