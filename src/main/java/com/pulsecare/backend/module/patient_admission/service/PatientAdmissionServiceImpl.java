@@ -111,12 +111,14 @@ public class PatientAdmissionServiceImpl implements PatientAdmissionService {
     @Override
     @Transactional
     public PatientAdmissionResDTO update(Long id, PatientAdmissionReqDTO data) {
+
         PatientAdmission existing = findEntityById(id);
 
         if (existing.getStatus() == PatientAdmissionStatus.DISCHARGED) {
             throw new IllegalStateException("Cannot update a discharged admission");
         }
 
+        // ---- Bed change ----
         if (data.bedId() != null &&
                 !data.bedId().equals(existing.getBed().getId())) {
 
@@ -127,25 +129,41 @@ public class PatientAdmissionServiceImpl implements PatientAdmissionService {
             }
 
             Bed oldBed = existing.getBed();
-            oldBed.setIsTaken(false);
+            Ward oldWard = oldBed.getWard();
+            Ward newWard = newBed.getWard();
 
+            oldBed.setIsTaken(false);
             newBed.setIsTaken(true);
             existing.setBed(newBed);
+
+            if (!oldWard.getId().equals(newWard.getId())) {
+                oldWard.setOccupiedBeds(oldWard.getOccupiedBeds() - 1);
+                newWard.setOccupiedBeds(
+                        (newWard.getOccupiedBeds() == null ? 0 : newWard.getOccupiedBeds()) + 1
+                );
+            }
         }
 
+        // ---- Discharge ----
         if (data.status() == PatientAdmissionStatus.DISCHARGED) {
 
             existing.setStatus(PatientAdmissionStatus.DISCHARGED);
             existing.setDischargedAt(LocalDateTime.now());
             existing.setDischargeNotes(data.dischargeNotes());
 
-            existing.getBed().setIsTaken(false);
+            Bed bed = existing.getBed();
+            bed.setIsTaken(false);
 
+            Ward ward = bed.getWard();
+            Integer occupied = ward.getOccupiedBeds();
+            ward.setOccupiedBeds(
+                    occupied != null && occupied > 0 ? occupied - 1 : 0
+            );
         }
 
-        PatientAdmission updated = repository.save(existing);
-        return mapper.toDTO(updated);
+        return mapper.toDTO(repository.save(existing));
     }
+
 
     @Override
     public void delete(Long id) {
