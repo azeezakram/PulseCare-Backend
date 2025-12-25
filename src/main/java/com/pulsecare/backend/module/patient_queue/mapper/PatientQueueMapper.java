@@ -11,6 +11,8 @@ import org.mapstruct.*;
 public interface PatientQueueMapper {
 
     @Mapping(source = "triage.id", target = "triageId")
+    @Mapping(source = "patient.id", target = "patientId")
+    @Mapping(source = "patient.fullName", target = "patientName")
     @Mapping(target = "triageLevel", source = ".", qualifiedByName = "mapTriageLevel")
     @Mapping(source = "status", target = "status")
     @Mapping(source = "priority", target = "priority")
@@ -19,6 +21,7 @@ public interface PatientQueueMapper {
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "triage", ignore = true)
+    @Mapping(target = "patient", ignore = true)
     @Mapping(target = "status", ignore = true)
     @Mapping(target = "priority", ignore = true)
     @Mapping(target = "admitted", ignore = true)
@@ -30,6 +33,7 @@ public interface PatientQueueMapper {
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "status", ignore = true)
     @Mapping(target = "admitted", ignore = true)
+    @Mapping(target = "patient", ignore = true)
     @Mapping(target = "triage", ignore = true)
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     void updateEntity(
