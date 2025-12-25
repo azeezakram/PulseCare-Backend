@@ -1,13 +1,12 @@
 package com.pulsecare.backend.module.patient.model;
 
-import com.pulsecare.backend.module.patient_admission.model.PatientAdmission;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
 @Table(
@@ -31,7 +30,7 @@ public class Patient {
     private String fullName;
 
     @Column(nullable = false)
-    private Integer age;
+    private LocalDate dob;
 
     private String bloodGroup;
 
@@ -43,11 +42,6 @@ public class Patient {
 
     @Column(nullable = false)
     private String gender;
-
-    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY, orphanRemoval = true)
-    @ToString.Exclude
-    private List<PatientAdmission> admissions;
 
     @CreationTimestamp
     @Column(nullable = false, updatable = false)

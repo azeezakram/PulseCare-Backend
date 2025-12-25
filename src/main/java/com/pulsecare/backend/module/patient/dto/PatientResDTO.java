@@ -1,11 +1,12 @@
 package com.pulsecare.backend.module.patient.dto;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public record PatientResDTO(
         Long id,
         String fullName,
-        Integer age,
+        LocalDate dob,
         String bloodGroup,
         String nic,
         String gender,
