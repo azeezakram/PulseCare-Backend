@@ -1,5 +1,6 @@
 package com.pulsecare.backend.module.prescription.service;
 
+import com.pulsecare.backend.common.exception.ResourceNotFoundException;
 import com.pulsecare.backend.module.prescription.dto.PrescriptionDetailResDTO;
 import com.pulsecare.backend.module.prescription.dto.PrescriptionReqDTO;
 import com.pulsecare.backend.module.prescription.dto.PrescriptionSummaryResDTO;
@@ -28,7 +29,10 @@ public class PrescriptionServiceImpl implements PrescriptionService {
 
     @Override
     public PrescriptionSummaryResDTO findById(Long id) {
-        return null;
+        return mapper.toSummaryDTO(
+                prescriptionRepository.findById(id)
+                        .orElseThrow(() ->  new ResourceNotFoundException("Patient admission with id " + id + " not found"))
+        );
     }
 
     @Override
