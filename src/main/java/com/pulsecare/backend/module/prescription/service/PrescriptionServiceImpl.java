@@ -45,7 +45,8 @@ public class PrescriptionServiceImpl implements PrescriptionService {
 
     @Override
     public Prescription findEntityById(Long id) {
-        return null;
+        return prescriptionRepository.findById(id)
+                .orElseThrow(() ->  new ResourceNotFoundException("Patient admission with id " + id + " not found"));
     }
 
     @Override
