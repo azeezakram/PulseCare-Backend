@@ -1,12 +1,18 @@
 package com.pulsecare.backend.module.prescription.dto;
 
+import com.pulsecare.backend.module.prescription.enums.PrescriptionType;
+
 import java.time.LocalDateTime;
 
 public record PrescriptionSummaryResDTO(
         Long id,
-        Long admissionId,
         String doctorName,
+        Long admissionId,
+        Long queueId,
+        PrescriptionType type,
+        String notes,
         String status,
-        LocalDateTime createdAt
+        LocalDateTime createdAt,
+        LocalDateTime updatedAt
 ) {
 }
