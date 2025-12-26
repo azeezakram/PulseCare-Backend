@@ -1,6 +1,7 @@
 package com.pulsecare.backend.module.prescription.service;
 
 import com.pulsecare.backend.common.exception.ResourceNotFoundException;
+import com.pulsecare.backend.module.patient_admission.model.PatientAdmission;
 import com.pulsecare.backend.module.prescription.dto.PrescriptionDetailResDTO;
 import com.pulsecare.backend.module.prescription.dto.PrescriptionReqDTO;
 import com.pulsecare.backend.module.prescription.dto.PrescriptionSummaryResDTO;
@@ -68,7 +69,8 @@ public class PrescriptionServiceImpl implements PrescriptionService {
 
     @Override
     public void delete(Long id) {
-
+        Prescription entity = findEntityById(id);
+        prescriptionRepository.delete(entity);
     }
 
 }
