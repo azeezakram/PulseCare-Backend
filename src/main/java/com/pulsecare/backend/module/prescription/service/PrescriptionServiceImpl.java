@@ -10,6 +10,7 @@ import com.pulsecare.backend.module.patient_queue.service.PatientQueueService;
 import com.pulsecare.backend.module.prescription.dto.*;
 import com.pulsecare.backend.module.prescription.enums.PrescriptionStatus;
 import com.pulsecare.backend.module.prescription.enums.PrescriptionType;
+import com.pulsecare.backend.module.prescription.mapper.PrescriptionItemMapper;
 import com.pulsecare.backend.module.prescription.mapper.PrescriptionMapper;
 import com.pulsecare.backend.module.prescription.model.Prescription;
 import com.pulsecare.backend.module.prescription.model.PrescriptionItem;
@@ -31,21 +32,23 @@ public class PrescriptionServiceImpl implements PrescriptionService {
     private final PatientQueueService patientQueueService;
     private final PatientAdmissionService patientAdmissionService;
     private final UserService userService;
-    private final PrescriptionMapper mapper;
+    private final PrescriptionMapper prescriptionMapper;
+    private final PrescriptionItemMapper prescriptionItemMapper;
 
     public PrescriptionServiceImpl(PrescriptionRepository prescriptionRepository, PrescriptionItemRepository prescriptionItemRepository, PatientQueueService patientQueueService, PatientAdmissionService patientAdmissionService, UserService userService,
-                                   @Qualifier("prescriptionMapperImpl") PrescriptionMapper mapper) {
+                                   @Qualifier("prescriptionMapperImpl") PrescriptionMapper prescriptionMapper, @Qualifier("prescriptionItemMapperImpl") PrescriptionItemMapper prescriptionItemMapper) {
         this.prescriptionRepository = prescriptionRepository;
         this.prescriptionItemRepository = prescriptionItemRepository;
         this.patientQueueService = patientQueueService;
         this.patientAdmissionService = patientAdmissionService;
         this.userService = userService;
-        this.mapper = mapper;
+        this.prescriptionMapper = prescriptionMapper;
+        this.prescriptionItemMapper = prescriptionItemMapper;
     }
 
     @Override
     public PrescriptionSummaryResDTO findById(Long id) {
-        return mapper.toSummaryDTO(
+        return prescriptionMapper.toSummaryDTO(
                 prescriptionRepository.findById(id)
                         .orElseThrow(() ->  new ResourceNotFoundException("Patient admission with id " + id + " not found"))
         );
@@ -53,10 +56,15 @@ public class PrescriptionServiceImpl implements PrescriptionService {
 
     @Override
     public PrescriptionDetailResDTO findWithDetailById(Long id) {
-        return mapper.toDetailDTO(
-                prescriptionRepository.findById(id)
-                        .orElseThrow(() ->  new ResourceNotFoundException("Patient admission with id " + id + " not found"))
-        );
+        Prescription prescription = prescriptionRepository.findById(id)
+                .orElseThrow(() ->  new ResourceNotFoundException("Patient admission with id " + id + " not found"));
+
+        List<PrescriptionItemResDTO> items = prescriptionItemRepository.findAllByPrescriptionId(prescription.getId())
+                .orElse(List.of()).stream()
+                .map(prescriptionMapper::toDTO)
+                .toList();
+
+        return prescriptionMapper.toDetailDTO(prescription, items);
     }
 
     @Override
@@ -68,7 +76,7 @@ public class PrescriptionServiceImpl implements PrescriptionService {
     @Override
     public List<PrescriptionSummaryResDTO> findAll() {
         return prescriptionRepository.findAll().stream()
-                .map(mapper::toSummaryDTO)
+                .map(prescriptionMapper::toSummaryDTO)
                 .toList();
     }
 
@@ -80,7 +88,6 @@ public class PrescriptionServiceImpl implements PrescriptionService {
         PatientAdmission admission = null;
         PrescriptionType type;
 
-        // ---------- OPD / IPD Resolution ----------
         if (data.queueId() != null) {
             queue = patientQueueService.findEntityById(data.queueId());
 
@@ -110,7 +117,6 @@ public class PrescriptionServiceImpl implements PrescriptionService {
                 ? PrescriptionStatus.FINALIZED
                 : PrescriptionStatus.DRAFT;
 
-        // ---------- Prescription ----------
         Prescription prescription = Prescription.builder()
                 .doctor(doctor)
                 .patientQueue(queue)
@@ -122,18 +128,13 @@ public class PrescriptionServiceImpl implements PrescriptionService {
 
         Prescription savedPrescription = prescriptionRepository.save(prescription);
 
-        // ---------- Items ----------
         if (hasItems) {
             List<PrescriptionItem> items = data.items().stream()
-                    .map(itemDto -> PrescriptionItem.builder()
-                            .prescription(savedPrescription)
-                            .medicineName(itemDto.medicineName())
-                            .dosage(itemDto.dosage())
-                            .frequency(itemDto.frequency())
-                            .durationDays(itemDto.durationDays())
-                            .instructions(itemDto.instructions())
-                            .build()
-                    )
+                    .map(itemDto -> {
+                        PrescriptionItem item = prescriptionItemMapper.toEntity(itemDto);
+                        item.setPrescription(savedPrescription);
+                        return item;
+                    })
                     .toList();
 
             prescriptionItemRepository.saveAll(items);
@@ -141,24 +142,13 @@ public class PrescriptionServiceImpl implements PrescriptionService {
 
         List<PrescriptionItemResDTO> resItems =
                 hasItems
-                        ? prescriptionItemRepository.findAllByPrescriptionId(savedPrescription.getId())
+                        ? prescriptionItemRepository.findAllByPrescriptionId(savedPrescription.getId()).orElse(List.of())
                         .stream()
-                        .map(mapper::toDTO)
+                        .map(prescriptionMapper::toDTO)
                         .toList()
                         : List.of();
 
-        return new PrescriptionDetailResDTO(
-                savedPrescription.getId(),
-                doctor.getFirstName() + doctor.getLastName(),
-                admission != null ? admission.getId() : null,
-                queue != null ? queue.getId() : null,
-                savedPrescription.getType(),
-                savedPrescription.getNotes(),
-                savedPrescription.getStatus().name(),
-                resItems,
-                savedPrescription.getCreatedAt(),
-                savedPrescription.getUpdatedAt()
-        );
+        return prescriptionMapper.toDetailDTO(savedPrescription, resItems);
     }
 
     @Override
