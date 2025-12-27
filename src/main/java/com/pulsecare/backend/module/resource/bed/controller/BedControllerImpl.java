@@ -38,7 +38,7 @@ public class BedControllerImpl implements BedController {
     }
 
     @Override
-    @GetMapping
+    @GetMapping("/by-bedno-wardid")
     @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
     public ResponseEntity<ResponseBody<BedResDTO>> findByBedNoAndWardId(@RequestParam("wardId") Integer wardId, @RequestParam("bedNo") String bedNo) {
         return ResponseEntity.ok().body(
