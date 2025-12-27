@@ -40,7 +40,7 @@ public class RoleControllerImpl implements RoleController {
     }
 
     @Override
-    @GetMapping("/")
+    @GetMapping
     @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
     public ResponseEntity<ResponseBody<List<RoleResDto>>> findAll() {
         List<RoleResDto> data = service.findAll();
@@ -55,7 +55,7 @@ public class RoleControllerImpl implements RoleController {
     }
 
     @Override
-    @PostMapping("/")
+    @PostMapping
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ResponseBody<RoleResDto>> create(@Valid @RequestBody RoleReqDto data) {
         RoleResDto created = service.save(data);

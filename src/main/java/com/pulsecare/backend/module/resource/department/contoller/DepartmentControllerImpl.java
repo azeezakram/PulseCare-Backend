@@ -47,7 +47,7 @@ public class DepartmentControllerImpl implements DepartmentController {
     }
 
     @Override
-    @GetMapping("/")
+    @GetMapping
     @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
     public ResponseEntity<ResponseBody<List<DeptResponseDTO>>> findAll() {
         List<DeptResponseDTO> data = service.findAll()
@@ -65,7 +65,7 @@ public class DepartmentControllerImpl implements DepartmentController {
     }
 
     @Override
-    @PostMapping("/")
+    @PostMapping
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ResponseBody<DeptResponseDTO>> create(@Valid @RequestBody DeptRequestDTO data) {
         DeptResponseDTO created = facade.createDepartment(data);

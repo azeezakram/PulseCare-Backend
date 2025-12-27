@@ -47,7 +47,7 @@ public class WardControllerImpl implements WardController {
     }
 
     @Override
-    @GetMapping("/")
+    @GetMapping
     @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
     public ResponseEntity<ResponseBody<List<WardResDTO>>> findAll() {
         List<WardResDTO> data = service.findAll()
@@ -65,7 +65,7 @@ public class WardControllerImpl implements WardController {
     }
 
     @Override
-    @GetMapping("/a")
+    @GetMapping("/by-department")
     @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
     public ResponseEntity<ResponseBody<List<WardResDTO>>> findAllByDepartmentId(@RequestParam("dep") Integer departmentId) {
         List<WardResDTO> data = service.findAllByDepartmentId(departmentId)
@@ -83,7 +83,7 @@ public class WardControllerImpl implements WardController {
     }
 
     @Override
-    @PostMapping("/")
+    @PostMapping
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ResponseBody<WardResDTO>> create(@Valid @RequestBody WardReqDTO data) {
         WardResDTO created = facade.createWard(data);

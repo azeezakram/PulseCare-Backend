@@ -38,7 +38,7 @@ public class TriageControllerImpl implements TriageController {
     }
 
     @Override
-    @GetMapping("/")
+    @GetMapping
     @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
     public ResponseEntity<ResponseBody<List<TriageResDTO>>> findAll() {
         List<TriageResDTO> data = service.findAll();
@@ -52,7 +52,7 @@ public class TriageControllerImpl implements TriageController {
     }
 
     @Override
-    @PostMapping("/")
+    @PostMapping
     @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
     public ResponseEntity<ResponseBody<TriageResDTO>> create(@RequestBody TriageReqDTO data) {
         return ResponseEntity

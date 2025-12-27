@@ -45,7 +45,7 @@ public class SpecializationControllerImpl implements SpecializationController {
     }
 
     @Override
-    @GetMapping("/")
+    @GetMapping
     @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
     public ResponseEntity<ResponseBody<List<SpecializationResDTO>>> findAll() {
         List<SpecializationResDTO> data = service.findAll().stream()
@@ -62,7 +62,7 @@ public class SpecializationControllerImpl implements SpecializationController {
     }
 
     @Override
-    @PostMapping("/")
+    @PostMapping
     @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<ResponseBody<SpecializationResDTO>> create(@Valid @RequestBody SpecializationReqDTO data) {
         SpecializationResDTO created = mapper.toDTO(

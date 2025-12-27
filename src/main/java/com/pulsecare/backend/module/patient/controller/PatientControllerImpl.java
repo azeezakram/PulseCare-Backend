@@ -51,7 +51,7 @@ public class PatientControllerImpl implements PatientController {
     }
 
     @Override
-    @GetMapping("/")
+    @GetMapping
     @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
     public ResponseEntity<ResponseBody<List<PatientResDTO>>> findAll() {
         List<PatientResDTO> data = service.findAll();
@@ -66,7 +66,7 @@ public class PatientControllerImpl implements PatientController {
 
 
     @Override
-    @PostMapping("/")
+    @PostMapping
     @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
     public ResponseEntity<ResponseBody<PatientResDTO>> create(@RequestBody PatientReqDTO data) {
         return ResponseEntity

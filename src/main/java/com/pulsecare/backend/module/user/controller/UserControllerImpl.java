@@ -48,7 +48,7 @@ public class UserControllerImpl implements UserController {
     }
 
     @Override
-    @GetMapping("/")
+    @GetMapping
     @PreAuthorize("hasAnyRole('ADMIN', 'NURSE')")
     public ResponseEntity<ResponseBody<List<UserResponseDTO>>> findAll() {
         List<UserResponseDTO> data = service.findAll().stream()
@@ -65,7 +65,7 @@ public class UserControllerImpl implements UserController {
     }
 
     @Override
-    @PostMapping("/")
+    @PostMapping
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ResponseBody<UserResponseDTO>> create(@RequestBody UserRequestDTO data) {
         return ResponseEntity

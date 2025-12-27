@@ -52,7 +52,7 @@ public class PrescriptionControllerImpl implements PrescriptionController {
     }
 
     @Override
-    @GetMapping("/")
+    @GetMapping
     @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
     public ResponseEntity<ResponseBody<List<PrescriptionSummaryResDTO>>> findAll() {
         List<PrescriptionSummaryResDTO> data = service.findAll();
@@ -66,7 +66,7 @@ public class PrescriptionControllerImpl implements PrescriptionController {
     }
 
     @Override
-    @PostMapping("/")
+    @PostMapping
     @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
     public ResponseEntity<ResponseBody<PrescriptionDetailResDTO>> create(@RequestBody PrescriptionReqDTO data) {
         return ResponseEntity

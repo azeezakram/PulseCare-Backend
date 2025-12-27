@@ -47,9 +47,10 @@ public class DoctorDetailControllerImpl implements DoctorDetailController {
         );
     }
 
-    @GetMapping("/a/{id}")
+    @Override
+    @GetMapping("/by-user/{id}")
     @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
-    public ResponseEntity<ResponseBody<DoctorDetailResDto>> findById(@PathVariable("id") String id) {
+    public ResponseEntity<ResponseBody<DoctorDetailResDto>> findByUserId(@PathVariable("id") String id) {
         DoctorDetailResDto data = mapper.toDTO(service.findByUserId(id));
         return ResponseEntity.ok().body(
                 new ResponseBody<>(
@@ -61,7 +62,7 @@ public class DoctorDetailControllerImpl implements DoctorDetailController {
     }
 
     @Override
-    @GetMapping("/")
+    @GetMapping
     @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
     public ResponseEntity<ResponseBody<List<DoctorDetailResDto>>> findAll() {
         List<DoctorDetailResDto> data = service.findAll().stream()
@@ -78,7 +79,7 @@ public class DoctorDetailControllerImpl implements DoctorDetailController {
     }
 
     @Override
-    @PostMapping("/")
+    @PostMapping
     @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<ResponseBody<DoctorDetailResDto>> create(@Valid @RequestBody DoctorDetailReqDto data) {
         DoctorDetailResDto created = facade.createNewDoctorDetail(data);
