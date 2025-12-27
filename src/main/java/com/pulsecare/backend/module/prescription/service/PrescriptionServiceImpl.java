@@ -22,7 +22,12 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Service
 public class PrescriptionServiceImpl implements PrescriptionService {
@@ -152,11 +157,80 @@ public class PrescriptionServiceImpl implements PrescriptionService {
     }
 
     @Override
-    public PrescriptionDetailResDTO update(Long aLong, PrescriptionReqDTO data) {
-        return null;
+    @Transactional
+    public PrescriptionDetailResDTO update(Long id, PrescriptionReqDTO data) {
+
+        Prescription prescription = findEntityById(id);
+
+        if (prescription.getStatus() == PrescriptionStatus.DISPENSED) {
+            throw new IllegalStateException("Cannot update dispensed prescription");
+        }
+
+        if (data.notes() != null) {
+            prescription.setNotes(data.notes());
+        }
+
+        updateItems(prescription, data);
+
+        Prescription saved = prescriptionRepository.save(prescription);
+
+        List<PrescriptionItemResDTO> resItems =
+                prescriptionItemRepository.findAllByPrescriptionId(saved.getId()).orElse(List.of())
+                        .stream()
+                        .map(prescriptionMapper::toDTO)
+                        .toList();
+
+        return prescriptionMapper.toDetailDTO(saved, resItems);
+    }
+
+    private void updateItems(Prescription prescription, PrescriptionReqDTO data) {
+        if (data.items() == null) return;
+
+        List<PrescriptionItem> existingItems =
+                prescriptionItemRepository.findAllByPrescriptionId(prescription.getId()).orElse(List.of());
+
+        Map<Long, PrescriptionItem> existingMap = existingItems.stream()
+                .collect(Collectors.toMap(PrescriptionItem::getId, Function.identity()));
+
+        Set<Long> incomingIds = new HashSet<>();
+
+        for (PrescriptionItemReqDTO itemDto : data.items()) {
+            if (itemDto.id() != null && existingMap.containsKey(itemDto.id())) {
+                prescriptionItemMapper.updateEntity(itemDto, existingMap.get(itemDto.id()));
+                incomingIds.add(itemDto.id());
+            } else {
+                createNewItem(prescription, itemDto, incomingIds);
+            }
+        }
+
+        deleteRemovedItems(existingItems, incomingIds);
+
+        prescription.setStatus(data.items().isEmpty() ? PrescriptionStatus.DRAFT : PrescriptionStatus.FINALIZED);
+    }
+
+    private void createNewItem(Prescription prescription, PrescriptionItemReqDTO dto, Set<Long> incomingIds) {
+        PrescriptionItem newItem = PrescriptionItem.builder()
+                .prescription(prescription)
+                .medicineName(dto.medicineName())
+                .dosage(dto.dosage())
+                .frequency(dto.frequency())
+                .durationDays(dto.durationDays())
+                .instructions(dto.instructions())
+                .build();
+        prescriptionItemRepository.save(newItem);
+        incomingIds.add(newItem.getId());
+    }
+
+    private void deleteRemovedItems(List<PrescriptionItem> existingItems, Set<Long> incomingIds) {
+        for (PrescriptionItem oldItem : existingItems) {
+            if (!incomingIds.contains(oldItem.getId())) {
+                prescriptionItemRepository.delete(oldItem);
+            }
+        }
     }
 
     @Override
+    @Transactional
     public void delete(Long id) {
         Prescription entity = findEntityById(id);
         prescriptionRepository.delete(entity);
