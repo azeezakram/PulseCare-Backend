@@ -36,10 +36,10 @@ public class Users {
     private String password;
     private String mobileNumber;
 
-    //Profile picture attributes
     private String imageName;
     private String contentType;
     @Lob
+    @Basic(fetch = FetchType.LAZY)
     private byte[] imageData;
 
     @CreatedDate
