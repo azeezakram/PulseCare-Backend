@@ -36,10 +36,13 @@ public class Users {
     private String password;
     private String mobileNumber;
 
+    @Basic(fetch = FetchType.LAZY)
     private String imageName;
+    @Basic(fetch = FetchType.LAZY)
     private String contentType;
     @Lob
     @Basic(fetch = FetchType.LAZY)
+    @ToString.Exclude
     private byte[] imageData;
 
     @CreatedDate

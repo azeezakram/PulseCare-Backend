@@ -50,13 +50,26 @@ public class UserControllerImpl implements UserController {
     }
 
     @Override
+    @GetMapping("/username/{username}")
+    @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
+    public ResponseEntity<ResponseBody<UserResponseDTO>> findByUsername(@PathVariable("username") String username) {
+        return ResponseEntity
+                .ok()
+                .body(new ResponseBody<>(
+                        HttpStatus.OK.value(),
+                        "User fetched successfully",
+                        service.findByUsername(username)
+                ));
+    }
+
+    @Override
     @GetMapping
     @PreAuthorize("hasAnyRole('ADMIN', 'NURSE')")
     public ResponseEntity<ResponseBody<List<UserResponseDTO>>> findAll() {
         List<UserResponseDTO> data = service.findAll().stream()
                 .map(mapper::toDTO)
                 .toList();
-        
+
         return ResponseEntity
                 .ok()
                 .body(new ResponseBody<>(
@@ -106,6 +119,7 @@ public class UserControllerImpl implements UserController {
                         "empty"
                 ));
     }
+
 
     @Override
     @GetMapping("/{id}/image")

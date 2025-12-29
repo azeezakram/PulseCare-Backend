@@ -15,5 +15,6 @@ public interface UserController extends
         CreatableController<UserRequestDTO, ResponseBody<UserResponseDTO>>,
         UpdatableController<UserRequestDTO, ResponseBody<UserResponseDTO>, String>,
         DeletableController<ResponseBody<String>, String> {
+    ResponseEntity<ResponseBody<UserResponseDTO>> findByUsername(@PathVariable String username);
     ResponseEntity<byte[]> fetchProfileImage(@PathVariable UUID id);
 }
