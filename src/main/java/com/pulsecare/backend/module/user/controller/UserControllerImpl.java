@@ -1,6 +1,7 @@
 package com.pulsecare.backend.module.user.controller;
 
 import com.pulsecare.backend.common.template.response.ResponseBody;
+import com.pulsecare.backend.module.user.dto.UserImageProjection;
 import com.pulsecare.backend.module.user.dto.UserRequestDTO;
 import com.pulsecare.backend.module.user.dto.UserResponseDTO;
 import com.pulsecare.backend.module.user.facade.UserFacade;
@@ -8,12 +9,14 @@ import com.pulsecare.backend.module.user.mapper.UserMapper;
 import com.pulsecare.backend.module.user.service.UserService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @CrossOrigin
 @RestController
@@ -102,5 +105,17 @@ public class UserControllerImpl implements UserController {
                         "User deleted successfully",
                         "empty"
                 ));
+    }
+
+    @Override
+    @GetMapping("/{id}/image")
+    @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
+    public ResponseEntity<byte[]> fetchProfileImage(@PathVariable UUID id) {
+
+        UserImageProjection image = service.getUserProfileImage(id);
+
+        return ResponseEntity.ok()
+                .contentType(MediaType.parseMediaType(image.getContentType()))
+                .body(image.getImageData());
     }
 }

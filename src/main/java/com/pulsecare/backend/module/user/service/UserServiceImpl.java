@@ -2,6 +2,7 @@ package com.pulsecare.backend.module.user.service;
 
 import com.pulsecare.backend.common.exception.ResourceAlreadyExistsException;
 import com.pulsecare.backend.common.exception.ResourceNotFoundException;
+import com.pulsecare.backend.module.user.dto.UserImageProjection;
 import com.pulsecare.backend.module.user.model.Users;
 import com.pulsecare.backend.module.user.repository.UserRepository;
 import org.springframework.stereotype.Service;
@@ -40,6 +41,11 @@ public class UserServiceImpl implements UserService {
                 .orElseThrow(() -> new ResourceNotFoundException("User not found"));
 
         repository.delete(entity);
+    }
+
+    public UserImageProjection getUserProfileImage(UUID userId) {
+        return repository.findUserImageById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("Profile image not found"));
     }
 
     @Override
