@@ -27,7 +27,7 @@ public class WebSecurityConfig {
             .formLogin(AbstractHttpConfigurer::disable)
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(request -> request
-                    .requestMatchers("/api/v1/user/login").permitAll()
+                    .requestMatchers("/api/v1/auth/login").permitAll()
 
                     .requestMatchers(HttpMethod.POST, "/api/v1/user/**").hasRole(Roles.ADMIN.name())
                     .requestMatchers(HttpMethod.DELETE, "/api/v1/user/**").hasRole(Roles.ADMIN.name())

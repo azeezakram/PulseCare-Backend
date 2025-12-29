@@ -1,7 +1,6 @@
 package com.pulsecare.backend.module.user.controller;
 
 import com.pulsecare.backend.common.template.response.ResponseBody;
-import com.pulsecare.backend.module.user.dto.LoginRequestDTO;
 import com.pulsecare.backend.module.user.dto.UserRequestDTO;
 import com.pulsecare.backend.module.user.dto.UserResponseDTO;
 import com.pulsecare.backend.module.user.facade.UserFacade;
@@ -102,18 +101,6 @@ public class UserControllerImpl implements UserController {
                         HttpStatus.OK.value(),
                         "User deleted successfully",
                         "empty"
-                ));
-    }
-
-    @Override
-    @PostMapping("/login")
-    public ResponseEntity<ResponseBody<String>> login(@RequestBody LoginRequestDTO data) {
-        return ResponseEntity
-                .ok()
-                .body(new ResponseBody<>(
-                        HttpStatus.OK.value(),
-                        "success",
-                        service.login(data)
                 ));
     }
 }

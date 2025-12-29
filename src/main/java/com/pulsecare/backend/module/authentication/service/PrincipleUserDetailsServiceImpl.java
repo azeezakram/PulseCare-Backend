@@ -1,4 +1,4 @@
-package com.pulsecare.backend.module.user.service;
+package com.pulsecare.backend.module.authentication.service;
 
 import com.pulsecare.backend.module.user.model.PrincipleUserDetails;
 import com.pulsecare.backend.module.user.model.Users;

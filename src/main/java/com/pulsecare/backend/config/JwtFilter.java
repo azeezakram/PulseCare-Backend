@@ -1,7 +1,7 @@
 package com.pulsecare.backend.config;
 
-import com.pulsecare.backend.module.user.service.PrincipleUserDetailsServiceImpl;
-import com.pulsecare.backend.utils.JwtUtil;
+import com.pulsecare.backend.module.authentication.service.PrincipleUserDetailsServiceImpl;
+import com.pulsecare.backend.module.authentication.utils.JwtUtil;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
