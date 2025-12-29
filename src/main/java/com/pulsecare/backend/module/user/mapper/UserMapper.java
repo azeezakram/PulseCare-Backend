@@ -9,7 +9,6 @@ import org.mapstruct.*;
 public interface UserMapper {
 
     @Mapping(target = "roles", ignore = true)
-//    @Mapping(target = "doctorDetails", ignore = true)
     Users toEntity(UserRequestDTO dto);
 
     @Mapping(target = "imageUrl", expression = "java(\"/api/v1/user/\" + entity.getId() + \"/image\")")

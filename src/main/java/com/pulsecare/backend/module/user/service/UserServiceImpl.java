@@ -50,7 +50,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void validateUsernameUniqueness(String newUsername, UUID currentUserId) {
-        Users existByUsername = repository.findByUsername(newUsername);
+        Users existByUsername = repository.findByUsername(newUsername).orElse(null);
         if (existByUsername != null && !existByUsername.getId().equals(currentUserId)) {
             throw new ResourceAlreadyExistsException("User with this username already exists");
         }
@@ -58,10 +58,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void validateUsernameDoesNotExist(String username) {
-        Users existingUser = repository.findByUsername(username);
-        if (existingUser != null) {
-            throw new ResourceAlreadyExistsException("User with username '" + username + "' already exists");
-        }
+        repository.findByUsername(username)
+                .orElseThrow(
+                        () -> new ResourceAlreadyExistsException("User with username '" + username + "' already exists")
+                );
     }
 
 

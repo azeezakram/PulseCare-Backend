@@ -11,7 +11,7 @@ import java.util.UUID;
 
 @Repository
 public interface UserRepository extends JpaRepository<Users, UUID> {
-    Users findByUsername(String username);
+    Optional<Users> findByUsername(String username);
     @Query("""
         SELECT u.imageData AS imageData,
                u.contentType AS contentType

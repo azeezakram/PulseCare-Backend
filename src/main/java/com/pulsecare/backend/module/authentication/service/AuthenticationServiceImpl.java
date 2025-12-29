@@ -38,10 +38,10 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                     )
             );
 
-            Users user = userRepository.findByUsername(data.username());
-            if (user == null) {
-                throw new UserInvalidCredentialException("User not found");
-            }
+            Users user = userRepository.findByUsername(data.username())
+                    .orElseThrow(
+                            () -> new UserInvalidCredentialException("User not found")
+                    );
 
             user.setLastLoginAt(LocalDateTime.now());
             userRepository.save(user);
