@@ -38,7 +38,6 @@ public class PrincipleUserDetails implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return this.isActive;
+        return Boolean.TRUE.equals(this.isActive);
     }
-
 }

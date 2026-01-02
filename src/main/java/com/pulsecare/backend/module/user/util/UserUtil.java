@@ -39,8 +39,8 @@ public class UserUtil {
         if (data.getIsActive() != null) {
             existingById.setIsActive(data.getIsActive());
         }
-        if (data.getRoles() != null) {
-            existingById.setRoles(data.getRoles());
+        if (data.getRole() != null) {
+            existingById.setRole(data.getRole());
         }
         if (data.getDoctorDetails() != null) {
             existingById.setDoctorDetails(data.getDoctorDetails());

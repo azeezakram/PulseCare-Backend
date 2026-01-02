@@ -1,48 +1,60 @@
--- Enable UUID extension
+-- =========================================================
+-- Enable UUID support
+-- =========================================================
 CREATE EXTENSION IF NOT EXISTS "pgcrypto";
 
----------------------------------------------------------
--- INSERT ROLES
----------------------------------------------------------
+-- =========================================================
+-- ROLES
+-- =========================================================
 INSERT INTO role (name, created_at, updated_at)
-VALUES ('ADMIN', now(), now()),
-       ('DOCTOR', now(), now()),
-       ('NURSE',  now(), now());
+VALUES
+    ('ADMIN',  NOW(), NOW()),
+    ('DOCTOR', NOW(), NOW()),
+    ('NURSE',  NOW(), NOW())
+ON CONFLICT (name) DO NOTHING;
 
----------------------------------------------------------
--- INSERT DEPARTMENTS
----------------------------------------------------------
+-- =========================================================
+-- DEPARTMENTS
+-- =========================================================
 INSERT INTO department (name, created_at, updated_at)
-VALUES ('Cardiology',  now(), now()),
-       ('Neurology',   now(), now()),
-       ('Pediatrics',  now(), now()),
-       ('Oncology',    now(), now());
+VALUES
+    ('Cardiology', NOW(), NOW()),
+    ('Neurology', NOW(), NOW()),
+    ('Pediatrics', NOW(), NOW()),
+    ('Oncology', NOW(), NOW())
+ON CONFLICT (name) DO NOTHING;
 
----------------------------------------------------------
--- INSERT SPECIALIZATIONS
----------------------------------------------------------
+-- =========================================================
+-- SPECIALIZATIONS
+-- =========================================================
 INSERT INTO specialization (name, created_at, updated_at)
-VALUES ('Cardiology', NOW(), NOW()),
-       ('Neurology', NOW(), NOW()),
-       ('Pediatrics', NOW(), NOW()),
-       ('Dermatology', NOW(), NOW()),
-       ('Orthopedics', NOW(), NOW()),
-       ('Gynecology', NOW(), NOW()),
-       ('General Surgery', NOW(), NOW()),
-       ('Endocrinology', NOW(), NOW()),
-       ('Psychiatry', NOW(), NOW()),
-       ('Radiology', NOW(), NOW()),
-       ('Oncology', NOW(), NOW()),
-       ('ENT', NOW(), NOW()),
-       ('Urology', NOW(), NOW()),
-       ('Nephrology', NOW(), NOW()),
-       ('Gastroenterology', NOW(), NOW());
+VALUES
+    ('Cardiology', NOW(), NOW()),
+    ('Neurology', NOW(), NOW()),
+    ('Pediatrics', NOW(), NOW()),
+    ('Dermatology', NOW(), NOW()),
+    ('Orthopedics', NOW(), NOW()),
+    ('Gynecology', NOW(), NOW()),
+    ('General Surgery', NOW(), NOW()),
+    ('Endocrinology', NOW(), NOW()),
+    ('Psychiatry', NOW(), NOW()),
+    ('Radiology', NOW(), NOW()),
+    ('Oncology', NOW(), NOW()),
+    ('ENT', NOW(), NOW()),
+    ('Urology', NOW(), NOW()),
+    ('Nephrology', NOW(), NOW()),
+    ('Gastroenterology', NOW(), NOW())
+ON CONFLICT (name) DO NOTHING;
 
----------------------------------------------------------
--- INSERT ADMIN USER
----------------------------------------------------------
-INSERT INTO users (id, first_name, last_name, username, email, password,
-                   is_active, created_at, updated_at)
+-- =========================================================
+-- USERS (ROLE STORED DIRECTLY IN users.role_id)
+-- =========================================================
+
+-- ADMIN USER
+INSERT INTO users (
+    id, first_name, last_name, username, email, password,
+    is_active, role_id, created_at, updated_at
+)
 VALUES (
            gen_random_uuid(),
            'Super',
@@ -51,24 +63,17 @@ VALUES (
            'admin@pulsecare.com',
            '$2a$12$3YTLMPGicXFsFcK4o3/AJu9tPP8SYcVlr7CHayZak7EfueH8HfzHS', -- admin123
            TRUE,
+           (SELECT id FROM role WHERE name = 'ADMIN'),
            NOW(),
            NOW()
-       );
+       )
+ON CONFLICT (username) DO NOTHING;
 
----------------------------------------------------------
--- ASSIGN ADMIN ROLE TO ADMIN USER
----------------------------------------------------------
-INSERT INTO user_role (user_id, role_id)
-VALUES (
-           (SELECT id FROM users WHERE username = 'admin'),
-           (SELECT id FROM role  WHERE name = 'ADMIN')
-       );
-
----------------------------------------------------------
--- INSERT DOCTOR USER
----------------------------------------------------------
-INSERT INTO users (id, first_name, last_name, username, email, password,
-                   is_active, created_at, updated_at)
+-- DOCTOR USER
+INSERT INTO users (
+    id, first_name, last_name, username, email, password,
+    is_active, role_id, created_at, updated_at
+)
 VALUES (
            gen_random_uuid(),
            'Super',
@@ -77,42 +82,27 @@ VALUES (
            'doctor@pulsecare.com',
            '$2a$12$1IyROik02OCOoPVR7q1bEedEAzPybu38KKssC88a15M7dPZ5b73my', -- doctor123
            TRUE,
+           (SELECT id FROM role WHERE name = 'DOCTOR'),
            NOW(),
            NOW()
-       );
+       )
+ON CONFLICT (username) DO NOTHING;
 
----------------------------------------------------------
--- ASSIGN DOCTOR ROLE TO DOCTOR USER
----------------------------------------------------------
-INSERT INTO user_role (user_id, role_id)
-VALUES (
-           (SELECT id FROM users WHERE username = 'doctor'),
-           (SELECT id FROM role  WHERE name = 'DOCTOR')
-       );
-
-
----------------------------------------------------------
--- INSERT NURSE USER
----------------------------------------------------------
-INSERT INTO users (id, first_name, last_name, username, email, password,
-                   is_active, created_at, updated_at)
+-- NURSE USER
+INSERT INTO users (
+    id, first_name, last_name, username, email, password,
+    is_active, role_id, created_at, updated_at
+)
 VALUES (
            gen_random_uuid(),
            'Super',
            'Nurse',
            'nurse',
            'nurse@pulsecare.com',
-           '$2a$12$9DR.a6thEGLbOClaujtEV.k/mAjeGXT0bGuZtjLV6kkTO/zZsLmNu', -- bcrypt: nurse123
+           '$2a$12$9DR.a6thEGLbOClaujtEV.k/mAjeGXT0bGuZtjLV6kkTO/zZsLmNu', -- nurse123
            TRUE,
+           (SELECT id FROM role WHERE name = 'NURSE'),
            NOW(),
            NOW()
-       );
-
----------------------------------------------------------
--- ASSIGN NURSE ROLE TO NURSE USER
----------------------------------------------------------
-INSERT INTO user_role (user_id, role_id)
-VALUES (
-           (SELECT id FROM users WHERE username = 'nurse'),
-           (SELECT id FROM role  WHERE name = 'NURSE')
-       );
+       )
+ON CONFLICT (username) DO NOTHING;
