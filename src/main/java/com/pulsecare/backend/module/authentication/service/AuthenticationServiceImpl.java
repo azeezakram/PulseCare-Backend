@@ -3,7 +3,6 @@ package com.pulsecare.backend.module.authentication.service;
 import com.pulsecare.backend.module.authentication.dto.LoginRequestDTO;
 import com.pulsecare.backend.module.authentication.dto.LoginResponseDTO;
 import com.pulsecare.backend.module.authentication.utils.JwtUtil;
-import com.pulsecare.backend.module.role.model.Role;
 import com.pulsecare.backend.module.user.exception.UserInvalidCredentialException;
 import com.pulsecare.backend.module.user.model.Users;
 import com.pulsecare.backend.module.user.repository.UserRepository;
@@ -13,7 +12,6 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.stream.Collectors;
 
 @Service
 public class AuthenticationServiceImpl implements AuthenticationService {
@@ -51,7 +49,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
             return new LoginResponseDTO(
                     token,
                     user.getUsername(),
-                    user.getRoles().stream().map(Role::getName).collect(Collectors.toSet())
+                    user.getRole().getName()
             );
 
         } catch (AuthenticationException e) {

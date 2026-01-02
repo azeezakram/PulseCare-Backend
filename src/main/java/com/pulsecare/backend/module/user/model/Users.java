@@ -9,7 +9,6 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
-import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -37,8 +36,10 @@ public class Users {
     private String mobileNumber;
 
     @Basic(fetch = FetchType.LAZY)
+    @ToString.Exclude
     private String imageName;
     @Basic(fetch = FetchType.LAZY)
+    @ToString.Exclude
     private String contentType;
     @Lob
     @Basic(fetch = FetchType.LAZY)
@@ -55,14 +56,10 @@ public class Users {
     @Column(columnDefinition = "BOOLEAN DEFAULT TRUE")
     private Boolean isActive;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "user_role",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id")
-    )
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "role_id", referencedColumnName = "id")
     @ToString.Exclude
-    private Set<Role> roles;
+    private Role role;
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private DoctorDetail doctorDetails;

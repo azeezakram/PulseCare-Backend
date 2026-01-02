@@ -7,6 +7,7 @@ import com.pulsecare.backend.module.user.dto.UserResponseDTO;
 import com.pulsecare.backend.module.user.mapper.UserMapper;
 import com.pulsecare.backend.module.user.model.Users;
 import com.pulsecare.backend.module.user.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,7 +19,7 @@ public class UserServiceImpl implements UserService {
     private final UserRepository repository;
     private final UserMapper mapper;
 
-    public UserServiceImpl(UserRepository repository, UserMapper mapper) {
+    public UserServiceImpl(UserRepository repository, @Qualifier("userMapperImpl") UserMapper mapper) {
         this.repository = repository;
         this.mapper = mapper;
     }

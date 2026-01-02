@@ -16,4 +16,5 @@ public interface RoleService extends
         UpdatableService<RoleReqDto, RoleResDto, Integer>,
         DeletableService<Integer> {
     Set<Role> findAllById(Set<Integer> ids);
+    Role findEntityById(Integer id);
 }

@@ -1,7 +1,5 @@
 package com.pulsecare.backend.module.user.dto;
 
-import java.util.Set;
-
 public record UserRequestDTO(
 
         String firstName,
@@ -16,7 +14,7 @@ public record UserRequestDTO(
 
         String mobileNumber,
 
-        Set<Integer> roles,
+        Integer roleId,
 
         Boolean isActive
 //

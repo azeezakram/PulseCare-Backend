@@ -10,9 +10,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.Set;
-import java.util.stream.Collectors;
-
 @Service
 public class PrincipleUserDetailsServiceImpl implements UserDetailsService {
 
@@ -28,17 +25,14 @@ public class PrincipleUserDetailsServiceImpl implements UserDetailsService {
                 () -> new UsernameNotFoundException("User not found")
         );
 
-        Set<GrantedAuthority> authorities = user.getRoles()
-                .stream()
-                .map(r -> new SimpleGrantedAuthority("ROLE_" + r.getName()))
-                .collect(Collectors.toSet());
-
+        GrantedAuthority role =
+                new SimpleGrantedAuthority("ROLE_" + user.getRole().getName());
 
         return new PrincipleUserDetails(
                 user.getUsername(),
                 user.getPassword(),
                 user.getIsActive(),
-                authorities
+                role
         );
     }
 }
