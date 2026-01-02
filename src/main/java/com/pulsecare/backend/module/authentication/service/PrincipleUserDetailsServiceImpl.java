@@ -1,6 +1,6 @@
 package com.pulsecare.backend.module.authentication.service;
 
-import com.pulsecare.backend.module.user.model.PrincipleUserDetails;
+import com.pulsecare.backend.module.authentication.model.PrincipleUserDetails;
 import com.pulsecare.backend.module.user.model.Users;
 import com.pulsecare.backend.module.user.repository.UserRepository;
 import org.springframework.security.core.GrantedAuthority;
@@ -10,7 +10,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
