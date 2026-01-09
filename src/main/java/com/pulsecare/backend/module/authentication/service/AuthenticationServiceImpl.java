@@ -41,6 +41,10 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                             () -> new UserInvalidCredentialException("User not found")
                     );
 
+            if (Boolean.FALSE.equals(user.getIsActive())) {
+                throw new UserInvalidCredentialException("User is not active");
+            }
+
             user.setLastLoginAt(LocalDateTime.now());
             userRepository.save(user);
 
