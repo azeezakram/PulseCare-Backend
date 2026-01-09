@@ -9,7 +9,9 @@ import com.pulsecare.backend.module.user.model.Users;
 import com.pulsecare.backend.module.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
@@ -59,6 +61,18 @@ public class UserServiceImpl implements UserService {
     public UserImageProjection getUserProfileImage(UUID userId) {
         return repository.findUserImageById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("Profile image not found"));
+    }
+
+    @Override
+    public void saveUserProfileImage(UUID userId, MultipartFile image) throws IOException {
+        if (image == null || image.isEmpty()) {
+            throw new IllegalArgumentException("Image is empty");
+        }
+
+        repository.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+
+        repository.updateProfileImage(userId, image.getBytes(), image.getOriginalFilename(), image.getContentType());
     }
 
     @Override

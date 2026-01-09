@@ -41,8 +41,7 @@ public class Users {
     @Basic(fetch = FetchType.LAZY)
     @ToString.Exclude
     private String contentType;
-    @Lob
-    @Basic(fetch = FetchType.LAZY)
+    @Column(columnDefinition = "BYTEA")
     @ToString.Exclude
     private byte[] imageData;
 

@@ -14,8 +14,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 @CrossOrigin
@@ -131,5 +134,22 @@ public class UserControllerImpl implements UserController {
         return ResponseEntity.ok()
                 .contentType(MediaType.parseMediaType(image.getContentType()))
                 .body(image.getImageData());
+    }
+
+    @Override
+    @PutMapping(
+            value = "/{id}/image",
+            consumes = MediaType.MULTIPART_FORM_DATA_VALUE
+    )
+    @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
+    public ResponseEntity<String> saveProfileImage(@PathVariable UUID id, @RequestPart("image") MultipartFile image) {
+        try {
+            service.saveUserProfileImage(id, image);
+            return ResponseEntity.ok()
+                    .contentType(MediaType.parseMediaType(Objects.requireNonNull(image.getContentType())))
+                    .body("Profile image updated successfully");
+        } catch (IOException e) {
+            throw new IllegalArgumentException("Failed to store profile image");
+        }
     }
 }

@@ -1,7 +1,7 @@
 package com.pulsecare.backend.module.authentication.service;
 
 import com.pulsecare.backend.module.authentication.model.PrincipleUserDetails;
-import com.pulsecare.backend.module.user.model.Users;
+import com.pulsecare.backend.module.user.dto.UserLoginView;
 import com.pulsecare.backend.module.user.repository.UserRepository;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -21,17 +21,17 @@ public class PrincipleUserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Users user = userRepository.findByUsername(username).orElseThrow(
+        UserLoginView user = userRepository.findLoginUser(username).orElseThrow(
                 () -> new UsernameNotFoundException("User not found")
         );
 
         GrantedAuthority role =
-                new SimpleGrantedAuthority("ROLE_" + user.getRole().getName());
+                new SimpleGrantedAuthority("ROLE_" + user.role().getName());
 
         return new PrincipleUserDetails(
-                user.getUsername(),
-                user.getPassword(),
-                user.getIsActive(),
+                user.username(),
+                user.password(),
+                user.isActive(),
                 role
         );
     }
