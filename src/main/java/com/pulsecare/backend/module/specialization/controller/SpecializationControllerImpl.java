@@ -80,8 +80,8 @@ public class SpecializationControllerImpl implements SpecializationController {
     @Override
     @PutMapping("/{id}")
     @PreAuthorize("hasAnyRole('ADMIN')")
-    public ResponseEntity<ResponseBody<SpecializationResDTO>> update(@Valid @PathVariable("id") Integer id,
-                                                                     @RequestBody SpecializationReqDTO data) {
+    public ResponseEntity<ResponseBody<SpecializationResDTO>> update(@PathVariable("id") Integer id,
+                                                                     @Valid @RequestBody SpecializationReqDTO data) {
         SpecializationResDTO updated = mapper.toDTO(
                 service.update(id, mapper.toEntity(data))
         );

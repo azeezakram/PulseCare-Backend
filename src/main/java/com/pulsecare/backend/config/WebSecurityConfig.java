@@ -41,11 +41,9 @@ public class WebSecurityConfig {
                             Roles.NURSE.name()
                     )
 
-                    .requestMatchers(HttpMethod.POST, "/api/v1/doctor-detail/**").hasRole(Roles.ADMIN.name())
-                    .requestMatchers(HttpMethod.DELETE, "/api/v1/doctor-detail/**").hasAnyRole(
-                            Roles.ADMIN.name(),
-                            Roles.DOCTOR.name()
-                    )
+                    .requestMatchers(HttpMethod.POST, "/api/v1/doctor-detail/**").hasAnyRole(Roles.ADMIN.name(), Roles.DOCTOR.name())
+                    .requestMatchers(HttpMethod.PUT, "/api/v1/doctor-detail/**").hasAnyRole(Roles.ADMIN.name(), Roles.DOCTOR.name())
+                    .requestMatchers(HttpMethod.DELETE, "/api/v1/doctor-detail/**").hasRole(Roles.ADMIN.name())
                     .requestMatchers("/api/v1/doctor-detail/**").hasAnyRole(
                             Roles.ADMIN.name(),
                             Roles.DOCTOR.name(),
