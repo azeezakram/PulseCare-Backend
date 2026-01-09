@@ -123,6 +123,15 @@ public class UserControllerImpl implements UserController {
                 ));
     }
 
+    @Override
+    @GetMapping("/username/validate/{username}")
+    @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
+    public ResponseEntity<Boolean> isUsernameAlreadyTaken(@PathVariable("username") String username) {
+        return ResponseEntity
+                .ok()
+                .body(service.isUsernameExist(username));
+    }
+
 
     @Override
     @GetMapping("/{id}/image")

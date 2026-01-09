@@ -15,6 +15,7 @@ public interface UserService extends
         DeletableService<String> {
     UserResponseDTO findByUsername(String username);
     UserImageProjection getUserProfileImage(UUID userId);
+    Boolean isUsernameExist(String username);
     void saveUserProfileImage(UUID userId, MultipartFile image) throws IOException;
     void validateUsernameUniqueness(String newUsername, UUID currentUserId);
     void validateUsernameDoesNotExist(String username);

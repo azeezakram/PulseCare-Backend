@@ -23,4 +23,5 @@ public interface UserController extends
     ResponseEntity<ResponseBody<UserResponseDTO>> findByUsername(@PathVariable String username);
     ResponseEntity<byte[]> fetchProfileImage(@PathVariable UUID id);
     ResponseEntity<String> saveProfileImage(@PathVariable UUID id, @RequestPart("image") MultipartFile image);
+    ResponseEntity<Boolean> isUsernameAlreadyTaken(@PathVariable("username") String username);
 }

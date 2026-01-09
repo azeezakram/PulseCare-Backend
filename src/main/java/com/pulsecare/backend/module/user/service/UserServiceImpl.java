@@ -54,7 +54,7 @@ public class UserServiceImpl implements UserService {
     public UserResponseDTO findByUsername(String username) {
         return mapper.toDTO(
                 repository.findByUsername(username)
-                        .orElseThrow(() -> new ResourceNotFoundException("User with id " + username + " not found"))
+                        .orElseThrow(() -> new ResourceNotFoundException("User with username " + username + " not found"))
         );
     }
 
@@ -73,6 +73,11 @@ public class UserServiceImpl implements UserService {
                 .orElseThrow(() -> new ResourceNotFoundException("User not found"));
 
         repository.updateProfileImage(userId, image.getBytes(), image.getOriginalFilename(), image.getContentType());
+    }
+
+    @Override
+    public Boolean isUsernameExist(String username) {
+        return repository.findByUsername(username).isPresent();
     }
 
     @Override
