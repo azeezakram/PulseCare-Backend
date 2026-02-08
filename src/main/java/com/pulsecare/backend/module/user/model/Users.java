@@ -29,7 +29,6 @@ public class Users {
     private String lastName;
     @Column(nullable = false, unique = true)
     private String username;
-    @Column(unique = true)
     private String email;
     @Column(nullable = false)
     private String password;
@@ -55,8 +54,8 @@ public class Users {
     @Column(columnDefinition = "BOOLEAN DEFAULT TRUE")
     private Boolean isActive;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "role_id", referencedColumnName = "id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "role_id", referencedColumnName = "id", nullable = false)
     @ToString.Exclude
     private Role role;
 

@@ -35,6 +35,7 @@ public class WebSecurityConfig {
 
                     .requestMatchers(HttpMethod.POST, "/api/v1/user/**").hasRole(Roles.ADMIN.name())
                     .requestMatchers(HttpMethod.DELETE, "/api/v1/user/**").hasRole(Roles.ADMIN.name())
+                    .requestMatchers(HttpMethod.PUT, "/api/v1/user/**").hasAnyRole(Roles.ADMIN.name(), Roles.DOCTOR.name(), Roles.NURSE.name())
                     .requestMatchers("/api/v1/user/**").hasAnyRole(
                             Roles.ADMIN.name(),
                             Roles.DOCTOR.name(),

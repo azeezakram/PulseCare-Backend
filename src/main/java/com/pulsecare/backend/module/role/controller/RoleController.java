@@ -7,8 +7,6 @@ import com.pulsecare.backend.common.base.controller.UpdatableController;
 import com.pulsecare.backend.common.template.response.ResponseBody;
 import com.pulsecare.backend.module.role.dto.RoleReqDto;
 import com.pulsecare.backend.module.role.dto.RoleResDto;
-import com.pulsecare.backend.module.user.dto.UserRequestDTO;
-import com.pulsecare.backend.module.user.dto.UserResponseDTO;
 
 import java.util.List;
 

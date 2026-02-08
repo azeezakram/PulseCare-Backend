@@ -72,7 +72,7 @@ public class RoleControllerImpl implements RoleController {
     @Override
     @PutMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<ResponseBody<RoleResDto>> update(@Valid @PathVariable("id") Integer id,
+    public ResponseEntity<ResponseBody<RoleResDto>> update(@PathVariable("id") Integer id,
                                                            @RequestBody RoleReqDto data) {
         RoleResDto updated = service.update(id, data);
         return ResponseEntity

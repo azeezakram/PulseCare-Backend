@@ -59,9 +59,21 @@ public class UserServiceImpl implements UserService {
     }
 
     public UserImageProjection getUserProfileImage(UUID userId) {
-        return repository.findUserImageById(userId)
+
+        UserImageProjection image = repository.findUserImageById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("Profile image not found"));
+
+        if (image.getImageData() == null || image.getImageData().length == 0) {
+            throw new ResourceNotFoundException("Profile image not found");
+        }
+
+        if (image.getContentType() == null || image.getContentType().isBlank()) {
+            throw new ResourceNotFoundException("Profile image not found");
+        }
+
+        return image;
     }
+
 
     @Override
     public void saveUserProfileImage(UUID userId, MultipartFile image) throws IOException {
@@ -91,8 +103,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public void validateUsernameDoesNotExist(String username) {
         repository.findByUsername(username)
-                .orElseThrow(
-                        () -> new ResourceAlreadyExistsException("User with username '" + username + "' already exists")
+                .ifPresent(
+                        s -> {
+                            throw new ResourceAlreadyExistsException("User with username '" + username + "' already exists");
+                        }
                 );
     }
 
