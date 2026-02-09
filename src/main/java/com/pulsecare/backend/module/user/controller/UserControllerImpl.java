@@ -39,7 +39,7 @@ public class UserControllerImpl implements UserController {
 
     @Override
     @GetMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN', 'DOCTOR', 'SUPER_DOCTOR', 'NURSE', 'SUPER_NURSE')")
     public ResponseEntity<ResponseBody<UserResponseDTO>> findById(@PathVariable("id") String id) {
         UserResponseDTO data = mapper.toDTO(service.findById(id));
 
@@ -54,7 +54,7 @@ public class UserControllerImpl implements UserController {
 
     @Override
     @GetMapping("/username/{username}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN', 'DOCTOR', 'SUPER_DOCTOR', 'NURSE', 'SUPER_NURSE')")
     public ResponseEntity<ResponseBody<UserResponseDTO>> findByUsername(@PathVariable("username") String username) {
         return ResponseEntity
                 .ok()
@@ -67,7 +67,7 @@ public class UserControllerImpl implements UserController {
 
     @Override
     @GetMapping
-    @PreAuthorize("hasAnyRole('ADMIN', 'NURSE')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN', 'DOCTOR', 'SUPER_DOCTOR', 'NURSE', 'SUPER_NURSE')")
     public ResponseEntity<ResponseBody<List<UserResponseDTO>>> findAll() {
         List<UserResponseDTO> data = service.findAll().stream()
                 .map(mapper::toDTO)
@@ -84,7 +84,7 @@ public class UserControllerImpl implements UserController {
 
     @Override
     @PostMapping
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN')")
     public ResponseEntity<ResponseBody<UserResponseDTO>> create(@RequestBody UserRequestDTO data) {
         return ResponseEntity
                 .ok()
@@ -97,7 +97,7 @@ public class UserControllerImpl implements UserController {
 
     @Override
     @PutMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN', 'DOCTOR', 'SUPER_DOCTOR', 'NURSE', 'SUPER_NURSE')")
     public ResponseEntity<ResponseBody<UserResponseDTO>> update(@PathVariable("id") String id,
                                                                 @RequestBody UserRequestDTO data) {
         return ResponseEntity
@@ -111,7 +111,7 @@ public class UserControllerImpl implements UserController {
 
     @Override
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN')")
     public ResponseEntity<ResponseBody<String>> delete(@PathVariable("id") String id) {
         service.delete(id);
         return ResponseEntity
@@ -125,7 +125,7 @@ public class UserControllerImpl implements UserController {
 
     @Override
     @GetMapping("/username/validate/{username}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN', 'DOCTOR', 'SUPER_DOCTOR', 'NURSE', 'SUPER_NURSE')")
     public ResponseEntity<Boolean> isUsernameAlreadyTaken(@PathVariable("username") String username) {
         return ResponseEntity
                 .ok()
@@ -135,7 +135,7 @@ public class UserControllerImpl implements UserController {
 
     @Override
     @GetMapping("/{id}/image")
-    @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN', 'DOCTOR', 'SUPER_DOCTOR', 'NURSE', 'SUPER_NURSE')")
     public ResponseEntity<byte[]> fetchProfileImage(@PathVariable UUID id) {
 
         UserImageProjection image = service.getUserProfileImage(id);
@@ -150,7 +150,7 @@ public class UserControllerImpl implements UserController {
             value = "/{id}/image",
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE
     )
-    @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN', 'DOCTOR', 'SUPER_DOCTOR', 'NURSE', 'SUPER_NURSE')")
     public ResponseEntity<String> saveProfileImage(@PathVariable UUID id, @RequestPart("image") MultipartFile image) {
         try {
             service.saveUserProfileImage(id, image);

@@ -32,7 +32,7 @@ public class SpecializationControllerImpl implements SpecializationController {
 
     @Override
     @GetMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN', 'DOCTOR', 'SUPER_DOCTOR', 'NURSE', 'SUPER_NURSE')")
     public ResponseEntity<ResponseBody<SpecializationResDTO>> findById(@PathVariable("id") Integer id) {
         SpecializationResDTO data = mapper.toDTO(service.findById(id));
         return ResponseEntity.ok().body(
@@ -46,7 +46,7 @@ public class SpecializationControllerImpl implements SpecializationController {
 
     @Override
     @GetMapping
-    @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN', 'DOCTOR', 'SUPER_DOCTOR', 'NURSE', 'SUPER_NURSE')")
     public ResponseEntity<ResponseBody<List<SpecializationResDTO>>> findAll() {
         List<SpecializationResDTO> data = service.findAll().stream()
                 .map(mapper::toDTO)
@@ -63,7 +63,7 @@ public class SpecializationControllerImpl implements SpecializationController {
 
     @Override
     @PostMapping
-    @PreAuthorize("hasAnyRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN')")
     public ResponseEntity<ResponseBody<SpecializationResDTO>> create(@Valid @RequestBody SpecializationReqDTO data) {
         SpecializationResDTO created = mapper.toDTO(
                 service.save(mapper.toEntity(data))
@@ -79,7 +79,7 @@ public class SpecializationControllerImpl implements SpecializationController {
 
     @Override
     @PutMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN')")
     public ResponseEntity<ResponseBody<SpecializationResDTO>> update(@PathVariable("id") Integer id,
                                                                      @Valid @RequestBody SpecializationReqDTO data) {
         SpecializationResDTO updated = mapper.toDTO(
@@ -96,7 +96,7 @@ public class SpecializationControllerImpl implements SpecializationController {
 
     @Override
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN')")
     public ResponseEntity<ResponseBody<String>> delete(@PathVariable("id") Integer id) {
         service.delete(id);
         return ResponseEntity

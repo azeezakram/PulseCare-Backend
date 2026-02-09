@@ -35,7 +35,7 @@ public class DoctorDetailControllerImpl implements DoctorDetailController {
 
     @Override
     @GetMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN', 'DOCTOR', 'SUPER_DOCTOR', 'NURSE', 'SUPER_NURSE')")
     public ResponseEntity<ResponseBody<DoctorDetailResDto>> findById(@PathVariable("id") Long id) {
         DoctorDetailResDto data = mapper.toDTO(service.findById(id));
         return ResponseEntity.ok().body(
@@ -49,7 +49,7 @@ public class DoctorDetailControllerImpl implements DoctorDetailController {
 
     @Override
     @GetMapping("/by-user/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN', 'DOCTOR', 'SUPER_DOCTOR', 'NURSE', 'SUPER_NURSE')")
     public ResponseEntity<ResponseBody<DoctorDetailResDto>> findByUserId(@PathVariable("id") String id) {
         DoctorDetailResDto data = mapper.toDTO(service.findByUserId(id));
         return ResponseEntity.ok().body(
@@ -63,7 +63,7 @@ public class DoctorDetailControllerImpl implements DoctorDetailController {
 
     @Override
     @GetMapping
-    @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN', 'DOCTOR', 'SUPER_DOCTOR', 'NURSE', 'SUPER_NURSE')")
     public ResponseEntity<ResponseBody<List<DoctorDetailResDto>>> findAll() {
         List<DoctorDetailResDto> data = service.findAll().stream()
                 .map(mapper::toDTO)
@@ -80,7 +80,7 @@ public class DoctorDetailControllerImpl implements DoctorDetailController {
 
     @Override
     @PostMapping
-    @PreAuthorize("hasAnyRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN')")
     public ResponseEntity<ResponseBody<DoctorDetailResDto>> create(@Valid @RequestBody DoctorDetailReqDto data) {
         DoctorDetailResDto created = facade.createNewDoctorDetail(data);
         return ResponseEntity
@@ -94,7 +94,7 @@ public class DoctorDetailControllerImpl implements DoctorDetailController {
 
     @Override
     @PutMapping("/{userId}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN', 'DOCTOR', 'SUPER_DOCTOR')")
     public ResponseEntity<ResponseBody<DoctorDetailResDto>> update(@PathVariable("userId") String userId,
                                                                    @RequestBody DoctorDetailReqDto data) {
         DoctorDetailResDto updated = facade.updateDoctorDetail(data, userId);
@@ -109,7 +109,7 @@ public class DoctorDetailControllerImpl implements DoctorDetailController {
 
     @Override
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN')")
     public ResponseEntity<ResponseBody<String>> delete(@PathVariable("id") Long id) {
         service.delete(id);
         return ResponseEntity

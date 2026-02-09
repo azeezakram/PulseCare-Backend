@@ -8,6 +8,9 @@ CREATE EXTENSION IF NOT EXISTS "pgcrypto";
 -- =========================================================
 INSERT INTO role (name, created_at, updated_at)
 VALUES
+    ('SUPER_ADMIN',  NOW(), NOW()),
+    ('SUPER_DOCTOR', NOW(), NOW()),
+    ('SUPER_NURSE',  NOW(), NOW()),
     ('ADMIN',  NOW(), NOW()),
     ('DOCTOR', NOW(), NOW()),
     ('NURSE',  NOW(), NOW())
@@ -63,7 +66,7 @@ VALUES (
            'admin@pulsecare.com',
            '$2a$12$3YTLMPGicXFsFcK4o3/AJu9tPP8SYcVlr7CHayZak7EfueH8HfzHS', -- admin123
            TRUE,
-           (SELECT id FROM role WHERE name = 'ADMIN'),
+           (SELECT id FROM role WHERE name = 'SUPER_ADMIN'),
            NOW(),
            NOW()
        )
@@ -82,7 +85,7 @@ VALUES (
            'doctor@pulsecare.com',
            '$2a$12$1IyROik02OCOoPVR7q1bEedEAzPybu38KKssC88a15M7dPZ5b73my', -- doctor123
            TRUE,
-           (SELECT id FROM role WHERE name = 'DOCTOR'),
+           (SELECT id FROM role WHERE name = 'SUPER_DOCTOR'),
            NOW(),
            NOW()
        )
@@ -101,7 +104,7 @@ VALUES (
            'nurse@pulsecare.com',
            '$2a$12$9DR.a6thEGLbOClaujtEV.k/mAjeGXT0bGuZtjLV6kkTO/zZsLmNu', -- nurse123
            TRUE,
-           (SELECT id FROM role WHERE name = 'NURSE'),
+           (SELECT id FROM role WHERE name = 'SUPER_NURSE'),
            NOW(),
            NOW()
        )

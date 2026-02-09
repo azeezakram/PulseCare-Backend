@@ -34,7 +34,7 @@ public class DepartmentControllerImpl implements DepartmentController {
 
     @Override
     @GetMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN', 'DOCTOR', 'SUPER_DOCTOR', 'NURSE', 'SUPER_NURSE')")
     public ResponseEntity<ResponseBody<DeptResponseDTO>> findById(@PathVariable("id") Integer id) {
         DeptResponseDTO data = mapper.toDTO(service.findById(id));
         return ResponseEntity
@@ -48,7 +48,7 @@ public class DepartmentControllerImpl implements DepartmentController {
 
     @Override
     @GetMapping
-    @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN', 'DOCTOR', 'SUPER_DOCTOR', 'NURSE', 'SUPER_NURSE')")
     public ResponseEntity<ResponseBody<List<DeptResponseDTO>>> findAll() {
         List<DeptResponseDTO> data = service.findAll()
                 .stream()
@@ -66,7 +66,7 @@ public class DepartmentControllerImpl implements DepartmentController {
 
     @Override
     @PostMapping
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN')")
     public ResponseEntity<ResponseBody<DeptResponseDTO>> create(@Valid @RequestBody DeptRequestDTO data) {
         DeptResponseDTO created = facade.createDepartment(data);
         return ResponseEntity
@@ -80,7 +80,7 @@ public class DepartmentControllerImpl implements DepartmentController {
 
     @Override
     @PutMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN')")
     public ResponseEntity<ResponseBody<DeptResponseDTO>> update(
             @PathVariable("id") Integer id, @Valid @RequestBody DeptRequestDTO data) {
 
@@ -96,7 +96,7 @@ public class DepartmentControllerImpl implements DepartmentController {
 
     @Override
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN')")
     public ResponseEntity<ResponseBody<String>> delete(@PathVariable("id") Integer id) {
         service.delete(id);
         return ResponseEntity

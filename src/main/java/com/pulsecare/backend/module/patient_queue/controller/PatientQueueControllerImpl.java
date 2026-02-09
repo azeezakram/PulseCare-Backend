@@ -26,7 +26,7 @@ public class PatientQueueControllerImpl implements PatientQueueController {
 
     @Override
     @GetMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN', 'DOCTOR', 'SUPER_DOCTOR', 'NURSE', 'SUPER_NURSE')")
     public ResponseEntity<ResponseBody<PatientQueueResDTO>> findById(@PathVariable("id") Long id) {
         return ResponseEntity.ok().body(
                 new ResponseBody<>(
@@ -39,7 +39,7 @@ public class PatientQueueControllerImpl implements PatientQueueController {
 
     @Override
     @GetMapping
-    @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN', 'DOCTOR', 'SUPER_DOCTOR', 'NURSE', 'SUPER_NURSE')")
     public ResponseEntity<ResponseBody<List<PatientQueueResDTO>>> findAll() {
         List<PatientQueueResDTO> data = service.findAll();
         return ResponseEntity
@@ -53,7 +53,7 @@ public class PatientQueueControllerImpl implements PatientQueueController {
 
     @Override
     @PostMapping
-    @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN', 'DOCTOR', 'SUPER_DOCTOR', 'NURSE', 'SUPER_NURSE')")
     public ResponseEntity<ResponseBody<PatientQueueResDTO>> create(@RequestBody PatientQueueReqDTO data) {
         return ResponseEntity
                 .ok()
@@ -66,7 +66,7 @@ public class PatientQueueControllerImpl implements PatientQueueController {
 
     @Override
     @PutMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN', 'DOCTOR', 'SUPER_DOCTOR', 'NURSE', 'SUPER_NURSE')")
     public ResponseEntity<ResponseBody<PatientQueueResDTO>> update(@PathVariable("id") Long id, @RequestBody PatientQueueReqDTO data) {
         return ResponseEntity
                 .ok()

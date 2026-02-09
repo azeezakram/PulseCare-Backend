@@ -26,7 +26,7 @@ public class PatientControllerImpl implements PatientController {
 
     @Override
     @GetMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN', 'DOCTOR', 'SUPER_DOCTOR', 'NURSE', 'SUPER_NURSE')")
     public ResponseEntity<ResponseBody<PatientResDTO>> findById(@PathVariable("id") Long id) {
         return ResponseEntity.ok().body(
                 new ResponseBody<>(
@@ -39,7 +39,7 @@ public class PatientControllerImpl implements PatientController {
 
     @Override
     @GetMapping("/nic/{nic}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN', 'DOCTOR', 'SUPER_DOCTOR', 'NURSE', 'SUPER_NURSE')")
     public ResponseEntity<ResponseBody<PatientResDTO>> findByNic(@PathVariable("nic") String nic) {
         return ResponseEntity.ok().body(
                 new ResponseBody<>(
@@ -52,7 +52,7 @@ public class PatientControllerImpl implements PatientController {
 
     @Override
     @GetMapping
-    @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN', 'DOCTOR', 'SUPER_DOCTOR', 'NURSE', 'SUPER_NURSE')")
     public ResponseEntity<ResponseBody<List<PatientResDTO>>> findAll() {
         List<PatientResDTO> data = service.findAll();
         return ResponseEntity
@@ -67,7 +67,7 @@ public class PatientControllerImpl implements PatientController {
 
     @Override
     @PostMapping
-    @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN', 'DOCTOR', 'SUPER_DOCTOR', 'NURSE', 'SUPER_NURSE')")
     public ResponseEntity<ResponseBody<PatientResDTO>> create(@RequestBody PatientReqDTO data) {
         return ResponseEntity
                 .ok()
@@ -80,7 +80,7 @@ public class PatientControllerImpl implements PatientController {
 
     @Override
     @PutMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN', 'DOCTOR', 'SUPER_DOCTOR', 'NURSE', 'SUPER_NURSE')")
     public ResponseEntity<ResponseBody<PatientResDTO>> update(@PathVariable("id") Long id, @RequestBody PatientReqDTO data) {
         return ResponseEntity
                 .ok()
@@ -93,7 +93,7 @@ public class PatientControllerImpl implements PatientController {
 
     @Override
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN')")
     public ResponseEntity<ResponseBody<String>> delete(@PathVariable("id") Long id) {
         service.delete(id);
         return ResponseEntity
