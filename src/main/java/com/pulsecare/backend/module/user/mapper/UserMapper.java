@@ -11,7 +11,8 @@ public interface UserMapper {
     @Mapping(target = "role", ignore = true)
     Users toEntity(UserRequestDTO dto);
 
-    @Mapping(target = "imageUrl", expression = "java(\"/user/\" + entity.getId() + \"/image\")")
+    @Mapping(target = "imageUrl",
+            expression = "java( (entity.getImageData() != null && entity.getImageData().length > 0) ? \"/user/\" + entity.getId() + \"/image\" : null )")
     UserResponseDTO toDTO(Users entity);
 
     @Mapping(target = "id", ignore = true)

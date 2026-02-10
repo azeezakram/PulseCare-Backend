@@ -6,4 +6,5 @@ import com.pulsecare.backend.module.authentication.dto.LoginResponseDTO;
 
 public interface AuthenticationService extends
         LoggableService<LoginRequestDTO, LoginResponseDTO> {
+    Boolean verifyByPassword(LoginRequestDTO loginRequestDTO);
 }

@@ -55,7 +55,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     public void validateNameDoesNotExist(String departmentName) {
         repository.findByName(departmentName)
                 .ifPresent(department -> {
-                    throw new ResourceAlreadyExistsException("Department with name" + departmentName + " already exists");
+                    throw new ResourceAlreadyExistsException("Department with name " + departmentName + " already exists");
                 });
     }
 

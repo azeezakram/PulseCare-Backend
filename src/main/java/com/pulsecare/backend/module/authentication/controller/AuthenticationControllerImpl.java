@@ -32,4 +32,12 @@ public class AuthenticationControllerImpl implements AuthenticationController {
                         service.login(data)
                 ));
     }
+
+    @Override
+    @PostMapping("/verify-password")
+    public ResponseEntity<Boolean> verifyByPassword(@RequestBody LoginRequestDTO data) {
+        return ResponseEntity
+                .ok()
+                .body(service.verifyByPassword(data));
+    }
 }

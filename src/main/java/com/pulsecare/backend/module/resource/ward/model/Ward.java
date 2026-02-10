@@ -40,6 +40,9 @@ public class Ward {
     @Column(nullable = false)
     private LocalDateTime updatedAt;
 
+    @OneToMany(mappedBy = "ward", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Bed> beds;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "department_id", nullable = false)
     @ToString.Exclude
