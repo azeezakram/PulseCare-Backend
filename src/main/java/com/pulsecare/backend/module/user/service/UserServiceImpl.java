@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public Users findById(String id) {
         return repository.findById(UUID.fromString(id))
-                .orElseThrow(() -> new ResourceNotFoundException("User with id " + id + " not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
     }
 
     @Override

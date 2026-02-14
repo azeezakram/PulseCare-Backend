@@ -10,6 +10,8 @@ import org.mapstruct.*;
 @Mapper(componentModel = "spring")
 public interface TriageMapper {
     Triage toEntity(TriageReqDTO dto);
+
+    @Mapping(target = "patientId", expression = "java(entity.getPatient().getId())")
     TriageResDTO toDTO(Triage entity);
 
 

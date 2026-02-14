@@ -1,5 +1,6 @@
 package com.pulsecare.backend.module.triage.model;
 
+import com.pulsecare.backend.module.patient.model.Patient;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -22,9 +23,11 @@ public class Triage {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "patient_id", nullable = false)
+    private Patient patient;
 
-    // ========== Basic Categorical Features ==========
+    //Basic Categorical Features
     @Column(nullable = false)
     private Integer sex; // 0=Female, 1=Male
 
@@ -40,7 +43,7 @@ public class Triage {
     @Column(nullable = false)
     private Integer pain; // 1=Yes, 0=No
 
-    // ========== Basic Numerical Features ==========
+    // Basic Numerical Features
     @Column(nullable = false)
     private Integer age;
 
@@ -59,7 +62,7 @@ public class Triage {
     @Column(nullable = false)
     private Double bt; // Body Temperature
 
-    // ========== Derived Numerical Features (Nullable) ==========
+    // Derived Numerical Features
     @Column(name = "shock_index")
     private Double shockIndex;
 
@@ -75,7 +78,7 @@ public class Triage {
     @Column(name = "rr_hr_ratio")
     private Double rrHrRatio;
 
-    // ========== Derived Categorical Features (Nullable) ==========
+    // Derived Categorical Features (Nullable)
     @Column(name = "is_fever")
     private Boolean isFever;
 
@@ -91,14 +94,13 @@ public class Triage {
     @Column(name = "is_tachypnea")
     private Boolean isTachypnea;
 
-    // ========== Target Label (0 = Critical, 1 = Non-Critical) ==========
+    // Target Label (0 = Critical, 1 = Non-Critical)
     @Column(name = "triage_level")
     private Integer triageLevel;
 
     @Column(name = "severity")
     private String severity;
 
-    // ========== Audit Fields ==========
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
