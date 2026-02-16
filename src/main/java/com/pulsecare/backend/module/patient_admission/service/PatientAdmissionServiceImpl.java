@@ -81,7 +81,7 @@ public class PatientAdmissionServiceImpl implements PatientAdmissionService {
                 throw new IllegalStateException("Queue does not belong to this patient");
             }
 
-            if (queue.getStatus() != QueueStatus.WAITING) {
+            if (queue.getStatus() != QueueStatus.WAITING && queue.getAdmitted().equals(true)) {
                 throw new IllegalStateException("Patient is not in WAITING queue status");
             }
 

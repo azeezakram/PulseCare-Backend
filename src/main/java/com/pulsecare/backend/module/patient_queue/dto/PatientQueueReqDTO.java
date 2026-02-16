@@ -8,6 +8,7 @@ public record PatientQueueReqDTO(
         Long triageId,
         // optional manual priority; defaults handled in service
         QueuePriority priority,  // CRITICAL | NON_CRITICAL | NORMAL
+        Boolean admitted,
 
         QueueStatus status
 ) {}

@@ -10,16 +10,15 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface PrescriptionMapper {
 
-    // Prescription mappings
-
     @Mapping(source = "admission.id", target = "admissionId")
     @Mapping(source = "patientQueue.id", target = "queueId")
-    @Mapping(target = "doctorName", expression = "java(entity.getDoctor().getFirstName() + \" \" + entity.getDoctor().getLastName())")
+    @Mapping(target = "doctorName", expression = "java(buildDoctorName(entity))")
     PrescriptionSummaryResDTO toSummaryDTO(Prescription entity);
 
     @Mapping(source = "entity.admission.id", target = "admissionId")
     @Mapping(source = "entity.patientQueue.id", target = "queueId")
-    @Mapping(target = "entity.doctorName", expression = "java(entity.getDoctor().getFirstName() + \" \" + entity.getDoctor().getLastName())")
+    @Mapping(target = "doctorName", expression = "java(buildDoctorName(entity))")
+    @Mapping(target = "items", source = "items")
     PrescriptionDetailResDTO toDetailDTO(Prescription entity, List<PrescriptionItemResDTO> items);
 
     @Mapping(target = "id", ignore = true)
@@ -32,6 +31,7 @@ public interface PrescriptionMapper {
     @Mapping(target = "items", ignore = true)
     Prescription toEntity(PrescriptionReqDTO dto);
 
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "doctor", ignore = true)
     @Mapping(target = "patientQueue", ignore = true)
@@ -40,11 +40,7 @@ public interface PrescriptionMapper {
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
     @Mapping(target = "items", ignore = true)
-    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     void updateEntity(PrescriptionReqDTO dto, @MappingTarget Prescription entity);
-
-
-    // PrescriptionItem mappings
 
     @Mapping(source = "prescription.id", target = "prescriptionId")
     PrescriptionItemResDTO toDTO(PrescriptionItem entity);
@@ -53,14 +49,20 @@ public interface PrescriptionMapper {
     @Mapping(target = "prescription", ignore = true)
     PrescriptionItem toEntity(PrescriptionItemReqDTO dto);
 
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "prescription", ignore = true)
-    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     void updateEntity(PrescriptionItemReqDTO dto, @MappingTarget PrescriptionItem entity);
-
-    // Prescription item list mappings
 
     List<PrescriptionItemResDTO> toItemDTOList(List<PrescriptionItem> items);
 
     List<PrescriptionItem> toItemEntityList(List<PrescriptionItemReqDTO> items);
+
+    default String buildDoctorName(Prescription entity) {
+        if (entity == null || entity.getDoctor() == null) return "—";
+        String fn = entity.getDoctor().getFirstName();
+        String ln = entity.getDoctor().getLastName();
+        String name = ((fn == null ? "" : fn.trim()) + " " + (ln == null ? "" : ln.trim())).trim();
+        return name.isEmpty() ? "—" : name;
+    }
 }

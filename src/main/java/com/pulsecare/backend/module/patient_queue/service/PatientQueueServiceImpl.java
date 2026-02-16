@@ -1,6 +1,7 @@
 package com.pulsecare.backend.module.patient_queue.service;
 
 import com.pulsecare.backend.common.exception.ResourceNotFoundException;
+import com.pulsecare.backend.common.exception.ValidationException;
 import com.pulsecare.backend.module.patient.model.Patient;
 import com.pulsecare.backend.module.patient.service.PatientService;
 import com.pulsecare.backend.module.patient_queue.dto.PatientQueueReqDTO;
@@ -11,6 +12,8 @@ import com.pulsecare.backend.module.patient_queue.mapper.PatientQueueMapper;
 import com.pulsecare.backend.module.patient_queue.model.PatientQueue;
 import com.pulsecare.backend.module.patient_queue.repository.PatientQueueRepository;
 import com.pulsecare.backend.module.patient_queue.utils.PatientQueueUtils;
+import com.pulsecare.backend.module.patient_queue.ws.PatientQueueEvent;
+import com.pulsecare.backend.module.patient_queue.ws.PatientQueueEventPublisher;
 import com.pulsecare.backend.module.triage.model.Triage;
 import com.pulsecare.backend.module.triage.service.TriageService;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -26,12 +29,15 @@ public class PatientQueueServiceImpl implements PatientQueueService {
     private final PatientQueueMapper mapper;
     private final TriageService triageService;
     private final PatientService patientService;
+    private final PatientQueueEventPublisher publisher;
 
-    public PatientQueueServiceImpl(PatientQueueRepository repository, @Qualifier("patientQueueMapperImpl") PatientQueueMapper mapper, TriageService triageService, PatientService patientService) {
+    public PatientQueueServiceImpl(PatientQueueRepository repository, @Qualifier("patientQueueMapperImpl") PatientQueueMapper mapper,
+                                   TriageService triageService, PatientService patientService, PatientQueueEventPublisher publisher) {
         this.repository = repository;
         this.mapper = mapper;
         this.triageService = triageService;
         this.patientService = patientService;
+        this.publisher = publisher;
     }
 
     
@@ -62,24 +68,26 @@ public class PatientQueueServiceImpl implements PatientQueueService {
 
         if (data.triageId() != null) {
             Triage exist = triageService.findEntityById(data.triageId());
-
             entity.setTriage(exist);
-
-            entity.setPriority(
-                    exist.getTriageLevel() == 0
-                            ? QueuePriority.CRITICAL
-                            : QueuePriority.NON_CRITICAL
-            );
+            entity.setPriority(exist.getTriageLevel() == 0 ? QueuePriority.CRITICAL : QueuePriority.NON_CRITICAL);
         } else {
-            entity.setPriority(QueuePriority.NORMAL);
+            entity.setPriority(QueuePriority.valueOf(data.priority().name()));
         }
 
-        Patient patient = patientService.findEntityById(entity.getId());
+        if (data.patientId() == null) {
+            throw new ValidationException("Patient is required to create a queue record");
+        }
+        Patient patient = patientService.findEntityById(data.patientId());
         entity.setPatient(patient);
 
         entity.setStatus(QueueStatus.WAITING);
 
-        return mapper.toDTO(repository.save(entity));
+        PatientQueue saved = repository.save(entity);
+        PatientQueueResDTO dto = mapper.toDTO(saved);
+
+        publisher.publish(PatientQueueEvent.created(dto));
+
+        return dto;
     }
 
     @Override
@@ -93,10 +101,7 @@ public class PatientQueueServiceImpl implements PatientQueueService {
         if (data.triageId() != null) {
             Triage triage = triageService.findEntityById(data.triageId());
             existing.setTriage(triage);
-
-            existing.setPriority(
-                    triage.getTriageLevel() == 0 ? QueuePriority.CRITICAL : QueuePriority.NON_CRITICAL
-            );
+            existing.setPriority(triage.getTriageLevel() == 0 ? QueuePriority.CRITICAL : QueuePriority.NON_CRITICAL);
         } else if (data.priority() != null) {
             existing.setPriority(data.priority());
         }
@@ -111,16 +116,23 @@ public class PatientQueueServiceImpl implements PatientQueueService {
             existing.setPatient(patient);
         }
 
-        return mapper.toDTO(repository.save(existing));
+        PatientQueue saved = repository.save(existing);
+        PatientQueueResDTO dto = mapper.toDTO(saved);
+
+        publisher.publish(PatientQueueEvent.updated(dto));
+
+        return dto;
     }
 
-
     @Override
+    @Transactional
     public void delete(Long id) {
         PatientQueue entity = repository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Queue not found"));
 
         repository.delete(entity);
+
+        publisher.publish(PatientQueueEvent.deleted(id));
     }
 
 }

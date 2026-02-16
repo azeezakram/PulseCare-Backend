@@ -3,7 +3,6 @@ package com.pulsecare.backend.module.patient_queue.mapper;
 import com.pulsecare.backend.module.patient_queue.dto.PatientQueueReqDTO;
 import com.pulsecare.backend.module.patient_queue.dto.PatientQueueResDTO;
 import com.pulsecare.backend.module.patient_queue.enums.QueuePriority;
-import com.pulsecare.backend.module.patient_queue.enums.QueueStatus;
 import com.pulsecare.backend.module.patient_queue.model.PatientQueue;
 import org.mapstruct.*;
 
@@ -14,9 +13,6 @@ public interface PatientQueueMapper {
     @Mapping(source = "patient.id", target = "patientId")
     @Mapping(source = "patient.fullName", target = "patientName")
     @Mapping(target = "triageLevel", source = ".", qualifiedByName = "mapTriageLevel")
-    @Mapping(source = "status", target = "status")
-    @Mapping(source = "priority", target = "priority")
-    @Mapping(target = "admitted", source = "status", qualifiedByName = "mapAdmitted")
     PatientQueueResDTO toDTO(PatientQueue entity);
 
     @Mapping(target = "id", ignore = true)
@@ -24,7 +20,6 @@ public interface PatientQueueMapper {
     @Mapping(target = "patient", ignore = true)
     @Mapping(target = "status", ignore = true)
     @Mapping(target = "priority", ignore = true)
-    @Mapping(target = "admitted", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
     PatientQueue toEntity(PatientQueueReqDTO dto);
@@ -32,7 +27,6 @@ public interface PatientQueueMapper {
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "status", ignore = true)
-    @Mapping(target = "admitted", ignore = true)
     @Mapping(target = "patient", ignore = true)
     @Mapping(target = "triage", ignore = true)
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
@@ -53,13 +47,6 @@ public interface PatientQueueMapper {
             }
         }
         return 2;
-    }
-
-    @Named("mapAdmitted")
-    default Boolean mapAdmitted(QueueStatus status) {
-        if (status == QueueStatus.ADMITTED) return true;
-        if (status == QueueStatus.OUTPATIENT || status == QueueStatus.CANCELLED) return false;
-        return null;
     }
 
 }

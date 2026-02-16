@@ -55,14 +55,14 @@ public class PrescriptionServiceImpl implements PrescriptionService {
     public PrescriptionSummaryResDTO findById(Long id) {
         return prescriptionMapper.toSummaryDTO(
                 prescriptionRepository.findById(id)
-                        .orElseThrow(() ->  new ResourceNotFoundException("Patient admission with id " + id + " not found"))
+                        .orElseThrow(() ->  new ResourceNotFoundException("Patient admission not found"))
         );
     }
 
     @Override
     public PrescriptionDetailResDTO findWithDetailById(Long id) {
         Prescription prescription = prescriptionRepository.findById(id)
-                .orElseThrow(() ->  new ResourceNotFoundException("Patient admission with id " + id + " not found"));
+                .orElseThrow(() ->  new ResourceNotFoundException("Patient admission not found"));
 
         List<PrescriptionItemResDTO> items = prescriptionItemRepository.findAllByPrescriptionId(prescription.getId())
                 .orElse(List.of()).stream()
@@ -75,7 +75,7 @@ public class PrescriptionServiceImpl implements PrescriptionService {
     @Override
     public Prescription findEntityById(Long id) {
         return prescriptionRepository.findById(id)
-                .orElseThrow(() ->  new ResourceNotFoundException("Patient admission with id " + id + " not found"));
+                .orElseThrow(() ->  new ResourceNotFoundException("Patient admission not found"));
     }
 
     @Override
@@ -100,7 +100,7 @@ public class PrescriptionServiceImpl implements PrescriptionService {
                 throw new IllegalStateException("Patient is not in WAITING queue status");
             }
 
-            type = PrescriptionType.OPD;
+            type = PrescriptionType.valueOf(data.type().name());
 
         } else if (data.admissionId() != null) {
             admission = patientAdmissionService.findEntityById(data.admissionId());
