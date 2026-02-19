@@ -51,6 +51,46 @@ public class PatientControllerImpl implements PatientController {
     }
 
     @Override
+    @GetMapping("/active")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN', 'DOCTOR', 'SUPER_DOCTOR', 'NURSE', 'SUPER_NURSE')")
+    public ResponseEntity<ResponseBody<List<PatientResDTO>>> findAllAndActive() {
+        List<PatientResDTO> data = service.findAllAndActive();
+        return ResponseEntity
+                .ok()
+                .body(new ResponseBody<>(
+                        HttpStatus.OK.value(),
+                        data.isEmpty() ? "No data to fetched" : "Patient data fetched successfully",
+                        data
+                ));
+    }
+
+    @Override
+    @GetMapping("/active/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN', 'DOCTOR', 'SUPER_DOCTOR', 'NURSE', 'SUPER_NURSE')")
+    public ResponseEntity<ResponseBody<PatientResDTO>> findByIdAndActive(@PathVariable("id") Long id) {
+        return ResponseEntity.ok().body(
+                new ResponseBody<>(
+                        HttpStatus.OK.value(),
+                        "Patient with id %d fetched successfully".formatted(id),
+                        service.findByIdAndActive(id)
+                )
+        );
+    }
+
+    @Override
+    @GetMapping("/nic/active/{nic}")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN', 'DOCTOR', 'SUPER_DOCTOR', 'NURSE', 'SUPER_NURSE')")
+    public ResponseEntity<ResponseBody<PatientResDTO>> findByNicAndActive(@PathVariable("nic") String nic) {
+        return ResponseEntity.ok().body(
+                new ResponseBody<>(
+                        HttpStatus.OK.value(),
+                        "Patient with NIC: %s fetched successfully".formatted(nic),
+                        service.findByNicAndActive(nic)
+                )
+        );
+    }
+
+    @Override
     @GetMapping
     @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN', 'DOCTOR', 'SUPER_DOCTOR', 'NURSE', 'SUPER_NURSE')")
     public ResponseEntity<ResponseBody<List<PatientResDTO>>> findAll() {

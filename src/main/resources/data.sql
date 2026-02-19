@@ -160,17 +160,16 @@ VALUES (
 ON CONFLICT (username) DO NOTHING;
 
 INSERT INTO patient (
-    full_name, dob, blood_group, nic, phone, gender, created_at, updated_at
+    full_name, dob, blood_group, nic, phone, gender, is_active, created_at, updated_at
 )
 VALUES
-    ('Nimal Perera',        DATE '1991-03-14', 'O+',  '911234567V',  '0771234567', 'MALE',   NOW(), NOW()),
-    ('Kavindi Silva',       DATE '1998-11-02', 'A+',  '987654321V',  '0712345678', 'FEMALE', NOW(), NOW()),
-    ('Sahan Fernando',      DATE '1987-07-25', 'B+',  '871112223V',  '0769876543', 'MALE',   NOW(), NOW()),
-    ('Dinithi Jayasinghe',  DATE '2000-01-19', 'AB+', '200012345678','0751122334', 'FEMALE', NOW(), NOW()),
-    ('Tharindu Wijesinghe', DATE '1995-09-08', 'O-',  '951234567V',  '0784455667', 'MALE',   NOW(), NOW()),
-    ('Ishara Gunasekara',   DATE '1993-05-30', 'A-',  '931998877V',  '0703344556', 'FEMALE', NOW(), NOW()),
-    ('Chamika Ranasinghe',  DATE '1983-12-12', 'B-',  '831234567V',  '0722233445', 'MALE',   NOW(), NOW()),
-    ('Sanduni Abeysekara',  DATE '1999-04-21', 'O+',  '991234567V',  '0778899001', 'FEMALE', NOW(), NOW()),
-    ('Malith Karunaratne',  DATE '1990-08-16', 'AB-', '901234567V',  '0745566778', 'MALE',   NOW(), NOW()),
-    ('Thilini Samarasinghe',DATE '1996-02-05', 'A+',  '961234567V',  '0719988776', 'FEMALE', NOW(), NOW())
-ON CONFLICT (nic) DO NOTHING;
+    ('Nimal Perera',        DATE '1991-03-14', 'O+',  '911234567V',  '0771234567', 'MALE', true,  NOW(), NOW()),
+    ('Kavindi Silva',       DATE '1998-11-02', 'A+',  '987654321V',  '0712345678', 'FEMALE', true,  NOW(), NOW()),
+    ('Sahan Fernando',      DATE '1987-07-25', 'B+',  '871112223V',  '0769876543', 'MALE', true,   NOW(), NOW()),
+    ('Dinithi Jayasinghe',  DATE '2000-01-19', 'AB+', '200012345678','0751122334', 'FEMALE', true, NOW(), NOW()),
+    ('Tharindu Wijesinghe', DATE '1995-09-08', 'O-',  '951234567V',  '0784455667', 'MALE', true,   NOW(), NOW()),
+    ('Ishara Gunasekara',   DATE '1993-05-30', 'A-',  '931998877V',  '0703344556', 'FEMALE', true, NOW(), NOW()),
+    ('Chamika Ranasinghe',  DATE '1983-12-12', 'B-',  '831234567V',  '0722233445', 'MALE',   true,NOW(), NOW()),
+    ('Sanduni Abeysekara',  DATE '1999-04-21', 'O+',  '991234567V',  '0778899001', 'FEMALE', true,NOW(), NOW()),
+    ('Malith Karunaratne',  DATE '1990-08-16', 'AB-', '901234567V',  '0745566778', 'MALE',   true, NOW(), NOW()),
+    ('Thilini Samarasinghe',DATE '1996-02-05', 'A+',  '961234567V',  '0719988776', 'FEMALE', true, NOW(), NOW());

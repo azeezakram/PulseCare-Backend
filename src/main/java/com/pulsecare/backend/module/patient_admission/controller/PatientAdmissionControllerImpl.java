@@ -90,4 +90,21 @@ public class PatientAdmissionControllerImpl implements PatientAdmissionControlle
                         null
                 ));
     }
+
+    @Override
+    @GetMapping("/hasActive/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN','SUPER_ADMIN','DOCTOR','SUPER_DOCTOR','NURSE','SUPER_NURSE')")
+    public ResponseEntity<ResponseBody<Boolean>> hasActiveAdmission(@PathVariable("id") Long id) {
+
+        boolean hasActive = service.hasActiveAdmission(id);
+
+        return ResponseEntity.ok().body(
+                new ResponseBody<>(
+                        HttpStatus.OK.value(),
+                        hasActive ? "Patient has an active admission" : "No active admission",
+                        hasActive
+                )
+        );
+    }
+
 }

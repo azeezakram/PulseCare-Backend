@@ -14,4 +14,5 @@ public interface PatientAdmissionService extends
         UpdatableService<PatientAdmissionReqDTO, PatientAdmissionResDTO, Long>,
         DeletableService<Long> {
     PatientAdmission findEntityById(Long id);
+    Boolean hasActiveAdmission(Long id);
 }

@@ -8,6 +8,7 @@ public record PatientReqDTO(
         String bloodGroup,
         String nic,
         String gender,
-        String phone
+        String phone,
+        Boolean isActive
 ) {}
 

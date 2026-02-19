@@ -1,9 +1,11 @@
 package com.pulsecare.backend.module.patient_queue.service;
 
+import com.pulsecare.backend.common.exception.ResourceAlreadyExistsException;
 import com.pulsecare.backend.common.exception.ResourceNotFoundException;
 import com.pulsecare.backend.common.exception.ValidationException;
 import com.pulsecare.backend.module.patient.model.Patient;
 import com.pulsecare.backend.module.patient.service.PatientService;
+import com.pulsecare.backend.module.patient_admission.service.PatientAdmissionService;
 import com.pulsecare.backend.module.patient_queue.dto.PatientQueueReqDTO;
 import com.pulsecare.backend.module.patient_queue.dto.PatientQueueResDTO;
 import com.pulsecare.backend.module.patient_queue.enums.QueuePriority;
@@ -17,6 +19,7 @@ import com.pulsecare.backend.module.patient_queue.ws.PatientQueueEventPublisher;
 import com.pulsecare.backend.module.triage.model.Triage;
 import com.pulsecare.backend.module.triage.service.TriageService;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,14 +32,16 @@ public class PatientQueueServiceImpl implements PatientQueueService {
     private final PatientQueueMapper mapper;
     private final TriageService triageService;
     private final PatientService patientService;
+    private final PatientAdmissionService patientAdmissionService;
     private final PatientQueueEventPublisher publisher;
 
     public PatientQueueServiceImpl(PatientQueueRepository repository, @Qualifier("patientQueueMapperImpl") PatientQueueMapper mapper,
-                                   TriageService triageService, PatientService patientService, PatientQueueEventPublisher publisher) {
+                                   TriageService triageService, PatientService patientService, @Lazy PatientAdmissionService patientAdmissionService, PatientQueueEventPublisher publisher) {
         this.repository = repository;
         this.mapper = mapper;
         this.triageService = triageService;
         this.patientService = patientService;
+        this.patientAdmissionService = patientAdmissionService;
         this.publisher = publisher;
     }
 
@@ -64,6 +69,12 @@ public class PatientQueueServiceImpl implements PatientQueueService {
     @Override
     @Transactional
     public PatientQueueResDTO save(PatientQueueReqDTO data) {
+        if (data.patientId() == null) {
+            throw new ValidationException("Patient is required to create a queue record");
+        }
+        if (patientAdmissionService.hasActiveAdmission(data.patientId())) {
+            throw new ResourceAlreadyExistsException("Patient already has an active admission");
+        }
         PatientQueue entity = mapper.toEntity(data);
 
         if (data.triageId() != null) {
@@ -74,9 +85,6 @@ public class PatientQueueServiceImpl implements PatientQueueService {
             entity.setPriority(QueuePriority.valueOf(data.priority().name()));
         }
 
-        if (data.patientId() == null) {
-            throw new ValidationException("Patient is required to create a queue record");
-        }
         Patient patient = patientService.findEntityById(data.patientId());
         entity.setPatient(patient);
 

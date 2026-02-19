@@ -13,6 +13,7 @@ public interface PatientMapper {
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
+    @Mapping(target = "isActive", expression = "java(dto.isActive() == null ? true : dto.isActive())")
     Patient toEntity(PatientReqDTO dto);
 
     @Mapping(target = "id", ignore = true)

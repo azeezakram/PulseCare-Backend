@@ -1,5 +1,6 @@
 package com.pulsecare.backend.module.patient_admission.service;
 
+import com.pulsecare.backend.common.exception.ResourceAlreadyExistsException;
 import com.pulsecare.backend.common.exception.ResourceNotFoundException;
 import com.pulsecare.backend.module.patient.model.Patient;
 import com.pulsecare.backend.module.patient.service.PatientService;
@@ -70,7 +71,7 @@ public class PatientAdmissionServiceImpl implements PatientAdmissionService {
 
         if (repository.existsByPatientIdAndStatus(
                 data.patientId(), PatientAdmissionStatus.ACTIVE)) {
-            throw new IllegalStateException("Patient already has an active admission");
+            throw new ResourceAlreadyExistsException("Patient already has an active admission");
         }
 
         PatientQueue queue = null;
@@ -166,11 +167,19 @@ public class PatientAdmissionServiceImpl implements PatientAdmissionService {
 
 
     @Override
+    @Transactional
     public void delete(Long id) {
         PatientAdmission entity = repository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Patient admission not found"));
 
         repository.delete(entity);
+    }
+
+    @Override
+    public Boolean hasActiveAdmission(Long id) {
+        patientService.findById(id);
+        return repository.existsByPatientIdAndStatus(
+                id, PatientAdmissionStatus.ACTIVE);
     }
 
 }
