@@ -204,7 +204,7 @@ VALUES (
            (SELECT id FROM bed WHERE bed_no='N-01' LIMIT 1),
            'DISCHARGED',
            NOW() - INTERVAL '5 days',
-           NULL,
+           NOW(),
            'Doctor discharged. Waiting nurse confirm.',
            NOW()
        );

@@ -161,23 +161,19 @@ public class PatientAdmissionServiceImpl implements PatientAdmissionService {
             }
         }
 
-        // Discharge
         if (data.status() == PatientAdmissionStatus.DISCHARGED) {
-
             existing.setStatus(PatientAdmissionStatus.DISCHARGED);
-            if (data.dischargeNotes() != null) {
-                existing.setDischargedAt(LocalDateTime.now());
-            }
             existing.setDischargeNotes(data.dischargeNotes());
+
+            LocalDateTime dt = data.dischargedAt() != null ? data.dischargedAt() : LocalDateTime.now();
+            existing.setDischargedAt(dt);
 
             Bed bed = existing.getBed();
             bed.setIsTaken(false);
 
             Ward ward = bed.getWard();
             Integer occupied = ward.getOccupiedBeds();
-            ward.setOccupiedBeds(
-                    occupied != null && occupied > 0 ? occupied - 1 : 0
-            );
+            ward.setOccupiedBeds(occupied != null && occupied > 0 ? occupied - 1 : 0);
         }
 
         return mapper.toDTO(repository.save(existing));
@@ -189,6 +185,27 @@ public class PatientAdmissionServiceImpl implements PatientAdmissionService {
     public void delete(Long id) {
         PatientAdmission entity = repository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Patient admission not found"));
+
+        Bed bed = entity.getBed();
+        if (bed != null) {
+            bed.setIsTaken(false);
+
+            Ward ward = bed.getWard();
+            if (ward != null) {
+                Integer occupied = ward.getOccupiedBeds();
+                ward.setOccupiedBeds(occupied != null && occupied > 0 ? occupied - 1 : 0);
+            }
+        }
+
+        // if you want to delete prescriptions under this admission:
+        // prescriptionRepository.deleteAllByAdmission_Id(id);
+
+        // OR if you want to keep prescriptions but detach:
+        List<Prescription> prescs = prescriptionRepository.findAllByAdmissionId(id);
+        for (Prescription p : prescs) {
+            p.setAdmission(null);
+        }
+        prescriptionRepository.saveAll(prescs);
 
         repository.delete(entity);
     }
