@@ -1,4 +1,4 @@
-package com.pulsecare.backend.module.user.dto;
+package com.pulsecare.backend.module.authentication.dto;
 
 import jakarta.validation.constraints.NotEmpty;
 

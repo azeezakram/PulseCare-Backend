@@ -4,16 +4,15 @@ import com.pulsecare.backend.module.patient_admission.model.PatientAdmission;
 import com.pulsecare.backend.module.patient_queue.model.PatientQueue;
 import com.pulsecare.backend.module.prescription.enums.PrescriptionStatus;
 import com.pulsecare.backend.module.prescription.enums.PrescriptionType;
-import com.pulsecare.backend.module.resource.ward.model.Ward;
 import com.pulsecare.backend.module.user.model.Users;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "prescription")
@@ -22,6 +21,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@EntityListeners(AuditingEntityListener.class)
 public class Prescription {
 
     @Id
@@ -56,12 +56,12 @@ public class Prescription {
     @ToString.Exclude
     private List<PrescriptionItem> items;
 
-    @CreationTimestamp
+    @CreatedDate
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
-    @UpdateTimestamp
-    @Column(nullable = false, insertable = false)
+    @LastModifiedDate
+    @Column(nullable = false)
     private LocalDateTime updatedAt;
 
 }

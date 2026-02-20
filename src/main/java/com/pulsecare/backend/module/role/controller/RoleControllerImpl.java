@@ -27,7 +27,7 @@ public class RoleControllerImpl implements RoleController {
 
     @Override
     @GetMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN', 'DOCTOR', 'SUPER_DOCTOR', 'NURSE', 'SUPER_NURSE')")
     public ResponseEntity<ResponseBody<RoleResDto>> findById(@PathVariable("id") Integer id) {
         RoleResDto data = service.findById(id);
         return ResponseEntity.ok().body(
@@ -40,8 +40,8 @@ public class RoleControllerImpl implements RoleController {
     }
 
     @Override
-    @GetMapping("/")
-    @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
+    @GetMapping
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN', 'DOCTOR', 'SUPER_DOCTOR', 'NURSE', 'SUPER_NURSE')")
     public ResponseEntity<ResponseBody<List<RoleResDto>>> findAll() {
         List<RoleResDto> data = service.findAll();
 
@@ -55,8 +55,8 @@ public class RoleControllerImpl implements RoleController {
     }
 
     @Override
-    @PostMapping("/")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PostMapping
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN')")
     public ResponseEntity<ResponseBody<RoleResDto>> create(@Valid @RequestBody RoleReqDto data) {
         RoleResDto created = service.save(data);
         return ResponseEntity
@@ -71,8 +71,8 @@ public class RoleControllerImpl implements RoleController {
 
     @Override
     @PutMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<ResponseBody<RoleResDto>> update(@Valid @PathVariable("id") Integer id,
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN')")
+    public ResponseEntity<ResponseBody<RoleResDto>> update(@PathVariable("id") Integer id,
                                                            @RequestBody RoleReqDto data) {
         RoleResDto updated = service.update(id, data);
         return ResponseEntity
@@ -86,7 +86,7 @@ public class RoleControllerImpl implements RoleController {
 
     @Override
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN')")
     public ResponseEntity<ResponseBody<String>> delete(@PathVariable("id") Integer id) {
         service.delete(id);
         return ResponseEntity

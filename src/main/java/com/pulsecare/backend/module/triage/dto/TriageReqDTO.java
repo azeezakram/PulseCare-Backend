@@ -3,11 +3,9 @@ package com.pulsecare.backend.module.triage.dto;
 import jakarta.validation.constraints.*;
 
 public record TriageReqDTO(
+//        @NotEmpty(message = "Patient id is required")
+        Long patientId,
 
-        @NotEmpty(message = "Name is required")
-        String name,
-
-        // ========== Basic Categorical Features (Required) ==========
         @NotNull(message = "Sex is required")
         @Min(value = 0, message = "Sex must be 0 (Female) or 1 (Male)")
         @Max(value = 1, message = "Sex must be 0 (Female) or 1 (Male)")
@@ -33,7 +31,6 @@ public record TriageReqDTO(
         @Max(value = 1, message = "Pain must be 0 (No) or 1 (Yes)")
         Integer pain, // 0=No, 1=Yes
 
-        // ========== Basic Numerical Features (Required) ==========
         @NotNull(message = "Age is required")
         @Min(value = 0, message = "Age must be positive")
         @Max(value = 150, message = "Age must be realistic")
@@ -63,5 +60,4 @@ public record TriageReqDTO(
         @DecimalMin(value = "35.0", message = "BT must be at least 35.0")
         @DecimalMax(value = "42.0", message = "BT must not exceed 42.0")
         Double bt
-
 ) {}

@@ -55,17 +55,38 @@ public class PrescriptionServiceImpl implements PrescriptionService {
     public PrescriptionSummaryResDTO findById(Long id) {
         return prescriptionMapper.toSummaryDTO(
                 prescriptionRepository.findById(id)
-                        .orElseThrow(() ->  new ResourceNotFoundException("Patient admission with id " + id + " not found"))
+                        .orElseThrow(() -> new ResourceNotFoundException("Patient admission not found"))
         );
+    }
+
+    @Override
+    public List<PrescriptionDetailResDTO> findAllByAdmissionsId(Long admissionId) {
+
+        List<Prescription> prescriptions =
+                prescriptionRepository.findAllByAdmissionId(admissionId);
+
+        return prescriptions.stream()
+                .map(p -> prescriptionMapper.toDetailDTO(p, mapItemsToDto(p.getId())))
+                .toList();
+    }
+
+    private List<PrescriptionItemResDTO> mapItemsToDto(Long prescriptionId) {
+        if (prescriptionId == null) return List.of();
+
+        List<PrescriptionItem> items =
+                prescriptionItemRepository.findAllByPrescriptionId(prescriptionId);
+
+        return items.stream()
+                .map(prescriptionItemMapper::toDTO)
+                .toList();
     }
 
     @Override
     public PrescriptionDetailResDTO findWithDetailById(Long id) {
         Prescription prescription = prescriptionRepository.findById(id)
-                .orElseThrow(() ->  new ResourceNotFoundException("Patient admission with id " + id + " not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Patient admission not found"));
 
-        List<PrescriptionItemResDTO> items = prescriptionItemRepository.findAllByPrescriptionId(prescription.getId())
-                .orElse(List.of()).stream()
+        List<PrescriptionItemResDTO> items = prescriptionItemRepository.findAllByPrescriptionId(prescription.getId()).stream()
                 .map(prescriptionMapper::toDTO)
                 .toList();
 
@@ -75,7 +96,7 @@ public class PrescriptionServiceImpl implements PrescriptionService {
     @Override
     public Prescription findEntityById(Long id) {
         return prescriptionRepository.findById(id)
-                .orElseThrow(() ->  new ResourceNotFoundException("Patient admission with id " + id + " not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Patient admission not found"));
     }
 
     @Override
@@ -100,7 +121,7 @@ public class PrescriptionServiceImpl implements PrescriptionService {
                 throw new IllegalStateException("Patient is not in WAITING queue status");
             }
 
-            type = PrescriptionType.OPD;
+            type = PrescriptionType.valueOf(data.type().name());
 
         } else if (data.admissionId() != null) {
             admission = patientAdmissionService.findEntityById(data.admissionId());
@@ -147,7 +168,7 @@ public class PrescriptionServiceImpl implements PrescriptionService {
 
         List<PrescriptionItemResDTO> resItems =
                 hasItems
-                        ? prescriptionItemRepository.findAllByPrescriptionId(savedPrescription.getId()).orElse(List.of())
+                        ? prescriptionItemRepository.findAllByPrescriptionId(savedPrescription.getId())
                         .stream()
                         .map(prescriptionMapper::toDTO)
                         .toList()
@@ -175,7 +196,7 @@ public class PrescriptionServiceImpl implements PrescriptionService {
         Prescription saved = prescriptionRepository.save(prescription);
 
         List<PrescriptionItemResDTO> resItems =
-                prescriptionItemRepository.findAllByPrescriptionId(saved.getId()).orElse(List.of())
+                prescriptionItemRepository.findAllByPrescriptionId(saved.getId())
                         .stream()
                         .map(prescriptionMapper::toDTO)
                         .toList();
@@ -187,7 +208,7 @@ public class PrescriptionServiceImpl implements PrescriptionService {
         if (data.items() == null) return;
 
         List<PrescriptionItem> existingItems =
-                prescriptionItemRepository.findAllByPrescriptionId(prescription.getId()).orElse(List.of());
+                prescriptionItemRepository.findAllByPrescriptionId(prescription.getId());
 
         Map<Long, PrescriptionItem> existingMap = existingItems.stream()
                 .collect(Collectors.toMap(PrescriptionItem::getId, Function.identity()));

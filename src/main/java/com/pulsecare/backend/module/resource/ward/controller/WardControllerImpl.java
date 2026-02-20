@@ -34,7 +34,7 @@ public class WardControllerImpl implements WardController {
 
     @Override
     @GetMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN', 'DOCTOR', 'SUPER_DOCTOR', 'NURSE', 'SUPER_NURSE')")
     public ResponseEntity<ResponseBody<WardResDTO>> findById(@PathVariable("id") Integer id) {
         WardResDTO data = mapper.toDTO(service.findById(id));
         return ResponseEntity
@@ -47,8 +47,8 @@ public class WardControllerImpl implements WardController {
     }
 
     @Override
-    @GetMapping("/")
-    @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
+    @GetMapping
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN', 'DOCTOR', 'SUPER_DOCTOR', 'NURSE', 'SUPER_NURSE')")
     public ResponseEntity<ResponseBody<List<WardResDTO>>> findAll() {
         List<WardResDTO> data = service.findAll()
                 .stream()
@@ -65,8 +65,8 @@ public class WardControllerImpl implements WardController {
     }
 
     @Override
-    @GetMapping("/a")
-    @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
+    @GetMapping("/by-department")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN', 'DOCTOR', 'SUPER_DOCTOR', 'NURSE', 'SUPER_NURSE')")
     public ResponseEntity<ResponseBody<List<WardResDTO>>> findAllByDepartmentId(@RequestParam("dep") Integer departmentId) {
         List<WardResDTO> data = service.findAllByDepartmentId(departmentId)
                 .stream()
@@ -83,8 +83,8 @@ public class WardControllerImpl implements WardController {
     }
 
     @Override
-    @PostMapping("/")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PostMapping
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN')")
     public ResponseEntity<ResponseBody<WardResDTO>> create(@Valid @RequestBody WardReqDTO data) {
         WardResDTO created = facade.createWard(data);
         return ResponseEntity
@@ -98,7 +98,7 @@ public class WardControllerImpl implements WardController {
 
     @Override
     @PutMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'NURSE')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN')")
     public ResponseEntity<ResponseBody<WardResDTO>> update(
             @PathVariable("id") Integer id, @Valid @RequestBody WardReqDTO data) {
 
@@ -114,7 +114,7 @@ public class WardControllerImpl implements WardController {
 
     @Override
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN')")
     public ResponseEntity<ResponseBody<String>> delete(@PathVariable("id") Integer id) {
         service.delete(id);
         return ResponseEntity

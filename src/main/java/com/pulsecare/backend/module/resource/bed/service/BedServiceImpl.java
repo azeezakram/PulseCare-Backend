@@ -66,16 +66,32 @@ public class BedServiceImpl implements BedService {
         Bed bed = mapper.toEntity(data);
         bed.setWard(ward);
 
-        Bed saved = repository.save(bed);
-
-        if (data.bedNo() != null) {
-            saved.setBedNo(data.bedNo());
-        } else {
-            saved.setBedNo(ward.getName().substring(0, 2).toUpperCase()+ "-" + saved.getId());
+        if (bed.getIsTaken() == null) {
+            bed.setIsTaken(false);
         }
 
-        return mapper.toDTO(repository.save(saved));
+        Bed saved = repository.save(bed);
+
+        if (data.bedNo() != null && !data.bedNo().isBlank()) {
+            saved.setBedNo(data.bedNo());
+        } else {
+            saved.setBedNo(ward.getName().substring(0, 2).toUpperCase() + "-" + saved.getId());
+        }
+        saved = repository.save(saved);
+
+        int bedCount = ward.getBedCount() == null ? 0 : ward.getBedCount();
+        int occupied = ward.getOccupiedBeds() == null ? 0 : ward.getOccupiedBeds();
+
+        ward.setBedCount(bedCount + 1);
+        if (Boolean.TRUE.equals(saved.getIsTaken())) {
+            ward.setOccupiedBeds(occupied + 1);
+        }
+
+        wardService.save(ward);
+
+        return mapper.toDTO(saved);
     }
+
 
     @Override
     @Transactional
@@ -85,6 +101,10 @@ public class BedServiceImpl implements BedService {
         List<Bed> bedEntities = data.stream().map(bedDto -> {
             Bed bed = mapper.toEntity(bedDto);
             bed.setWard(ward);
+
+            if (bed.getIsTaken() == null) {
+                bed.setIsTaken(false);
+            }
 
             if (bedDto.bedNo() != null) {
                 validateBedNoUniqueness(bedDto.bedNo(), wardId, null, "new");
@@ -112,25 +132,58 @@ public class BedServiceImpl implements BedService {
     @Override
     @Transactional
     public BedResDTO update(Long id, BedReqDTO data) {
-        validateBedNoUniqueness(data.bedNo(), data.wardId(), id, "existing");
-
         Bed existing = findEntityById(id);
+
+        boolean oldTaken = Boolean.TRUE.equals(existing.getIsTaken());
+
+        if (data.bedNo() != null && !data.bedNo().isBlank()) {
+            validateBedNoUniqueness(data.bedNo(), data.wardId(), id, "existing");
+        }
+
+        Ward ward = wardService.findById(data.wardId());
+
         mapper.updateEntity(data, existing);
-        existing.setWard(wardService.findById(data.wardId()));
+
+        if (existing.getIsTaken() == null) {
+            existing.setIsTaken(false);
+        }
+
+        boolean newTaken = Boolean.TRUE.equals(existing.getIsTaken());
+
+        int occupied = ward.getOccupiedBeds() == null ? 0 : ward.getOccupiedBeds();
+
+        if (!oldTaken && newTaken) {
+            ward.setOccupiedBeds(occupied + 1);
+        } else if (oldTaken && !newTaken) {
+            ward.setOccupiedBeds(Math.max(0, occupied - 1));
+        }
+
+        existing.setWard(ward);
 
         Bed updated = repository.save(existing);
-
         return mapper.toDTO(updated);
     }
 
+
     @Override
     @Transactional
-    public void delete(Long id) {
-        Bed entity = repository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Bed not found"));
+    public void delete(Long bedId) {
+        Bed bed = findEntityById(bedId);
+        Ward ward = bed.getWard();
 
-        repository.delete(entity);
+        int bedCount = ward.getBedCount() == null ? 0 : ward.getBedCount();
+        int occupied = ward.getOccupiedBeds() == null ? 0 : ward.getOccupiedBeds();
+
+        boolean isTaken = Boolean.TRUE.equals(bed.getIsTaken());
+        ward.setBedCount(Math.max(0, bedCount - 1));
+
+        if (isTaken) {
+            ward.setOccupiedBeds(Math.max(0, occupied - 1));
+        }
+        repository.delete(bed);
+        wardService.save(ward);
     }
+
 
     private void validateBedNoUniqueness(String bedNo, Integer wardId, Long bedId, String type) {
         if (bedNo != null) {

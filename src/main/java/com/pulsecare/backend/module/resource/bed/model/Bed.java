@@ -23,8 +23,8 @@ public class Bed {
 
     private String bedNo;
 
-    @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
-    private Boolean isTaken;
+    @Column(nullable = false)
+    private Boolean isTaken = false;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ward_id", nullable = false)

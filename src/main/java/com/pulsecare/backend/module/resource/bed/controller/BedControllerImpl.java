@@ -26,7 +26,7 @@ public class BedControllerImpl implements BedController {
 
     @Override
     @GetMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN', 'DOCTOR', 'SUPER_DOCTOR', 'NURSE', 'SUPER_NURSE')")
     public ResponseEntity<ResponseBody<BedResDTO>> findById(@PathVariable("id") Long id) {
         return ResponseEntity.ok().body(
                 new ResponseBody<>(
@@ -39,7 +39,7 @@ public class BedControllerImpl implements BedController {
 
     @Override
     @GetMapping("/by-bedno-wardid")
-    @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN', 'DOCTOR', 'SUPER_DOCTOR', 'NURSE', 'SUPER_NURSE')")
     public ResponseEntity<ResponseBody<BedResDTO>> findByBedNoAndWardId(@RequestParam("wardId") Integer wardId, @RequestParam("bedNo") String bedNo) {
         return ResponseEntity.ok().body(
                 new ResponseBody<>(
@@ -52,7 +52,7 @@ public class BedControllerImpl implements BedController {
 
     @Override
     @GetMapping
-    @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN', 'DOCTOR', 'SUPER_DOCTOR', 'NURSE', 'SUPER_NURSE')")
     public ResponseEntity<ResponseBody<List<BedResDTO>>> findAll() {
         List<BedResDTO> data = service.findAll();
         return ResponseEntity
@@ -66,7 +66,7 @@ public class BedControllerImpl implements BedController {
 
     @Override
     @PostMapping
-    @PreAuthorize("hasAnyRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN')")
     public ResponseEntity<ResponseBody<BedResDTO>> create(@RequestBody BedReqDTO data) {
         return ResponseEntity
                 .ok()
@@ -79,7 +79,7 @@ public class BedControllerImpl implements BedController {
 
     @Override
     @PostMapping("/batch/{wardId}")
-    @PreAuthorize("hasAnyRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN')")
     public ResponseEntity<ResponseBody<List<BedResDTO>>> batchCreate(@PathVariable("wardId") Integer wardId, @RequestBody List<BedReqDTO> data) {
         return ResponseEntity
                 .ok()
@@ -92,7 +92,7 @@ public class BedControllerImpl implements BedController {
 
     @Override
     @PutMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN', 'DOCTOR', 'SUPER_DOCTOR', 'NURSE', 'SUPER_NURSE')")
     public ResponseEntity<ResponseBody<BedResDTO>> update(@PathVariable("id") Long id, @RequestBody BedReqDTO data) {
         return ResponseEntity
                 .ok()
@@ -105,7 +105,7 @@ public class BedControllerImpl implements BedController {
 
     @Override
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN')")
     public ResponseEntity<ResponseBody<String>> delete(@PathVariable("id") Long id) {
         service.delete(id);
         return ResponseEntity

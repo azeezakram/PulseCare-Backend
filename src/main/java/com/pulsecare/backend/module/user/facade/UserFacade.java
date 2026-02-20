@@ -11,8 +11,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Set;
-
 @Service
 public class UserFacade {
     private final UserService userService;
@@ -33,9 +31,9 @@ public class UserFacade {
 
         Users userEntity = userMapper.toEntity(data);
 
-        if (data.roles() != null && !data.roles().isEmpty()) {
-            Set<Role> roles = roleService.findAllById(data.roles());
-            userEntity.setRoles(roles);
+        if (data.roleId() != null) {
+            Role role = roleService.findEntityById(data.roleId());
+            userEntity.setRole(role);
         }
 
         if (data.password() != null && !data.password().isEmpty()) {
@@ -57,9 +55,9 @@ public class UserFacade {
 
         userMapper.updateEntity(data, existingUser);
 
-        if (data.roles() != null && !data.roles().isEmpty()) {
-            Set<Role> roles = roleService.findAllById(data.roles());
-            existingUser.setRoles(roles);
+        if (data.roleId() != null) {
+            Role role = roleService.findEntityById(data.roleId());
+            existingUser.setRole(role);
         }
 
         if (data.password() != null && !data.password().isEmpty()) {

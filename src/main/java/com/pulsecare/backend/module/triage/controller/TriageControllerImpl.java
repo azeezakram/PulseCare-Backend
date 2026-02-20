@@ -26,7 +26,7 @@ public class TriageControllerImpl implements TriageController {
 
     @Override
     @GetMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN', 'DOCTOR', 'SUPER_DOCTOR', 'NURSE', 'SUPER_NURSE')")
     public ResponseEntity<ResponseBody<TriageResDTO>> findById(@PathVariable("id") Long id) {
         return ResponseEntity.ok().body(
                 new ResponseBody<>(
@@ -38,8 +38,8 @@ public class TriageControllerImpl implements TriageController {
     }
 
     @Override
-    @GetMapping("/")
-    @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
+    @GetMapping
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN', 'DOCTOR', 'SUPER_DOCTOR', 'NURSE', 'SUPER_NURSE')")
     public ResponseEntity<ResponseBody<List<TriageResDTO>>> findAll() {
         List<TriageResDTO> data = service.findAll();
         return ResponseEntity
@@ -52,8 +52,8 @@ public class TriageControllerImpl implements TriageController {
     }
 
     @Override
-    @PostMapping("/")
-    @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
+    @PostMapping
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN', 'DOCTOR', 'SUPER_DOCTOR', 'NURSE', 'SUPER_NURSE')")
     public ResponseEntity<ResponseBody<TriageResDTO>> create(@RequestBody TriageReqDTO data) {
         return ResponseEntity
                 .ok()
@@ -66,7 +66,7 @@ public class TriageControllerImpl implements TriageController {
 
     @Override
     @PutMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN')")
     public ResponseEntity<ResponseBody<TriageResDTO>> update(@PathVariable("id") Long id, @RequestBody TriageReqDTO data) {
         return ResponseEntity
                 .ok()
@@ -79,7 +79,7 @@ public class TriageControllerImpl implements TriageController {
 
     @Override
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN')")
     public ResponseEntity<ResponseBody<String>> delete(@PathVariable("id") Long id) {
         service.delete(id);
         return ResponseEntity
@@ -93,7 +93,7 @@ public class TriageControllerImpl implements TriageController {
 
     @Override
     @PostMapping("/predict")
-    @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN', 'DOCTOR', 'SUPER_DOCTOR', 'NURSE', 'SUPER_NURSE')")
     public ResponseEntity<ResponseBody<TriageResDTO>> predict(@RequestBody TriageReqDTO dto) {
         return ResponseEntity
                 .ok()

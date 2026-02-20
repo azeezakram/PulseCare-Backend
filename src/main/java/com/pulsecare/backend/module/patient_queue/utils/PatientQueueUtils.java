@@ -1,5 +1,6 @@
 package com.pulsecare.backend.module.patient_queue.utils;
 
+import com.pulsecare.backend.common.exception.ValidationException;
 import com.pulsecare.backend.module.patient_queue.enums.QueueStatus;
 import lombok.experimental.UtilityClass;
 
@@ -17,7 +18,7 @@ public class PatientQueueUtils {
             return;
         }
 
-        throw new IllegalStateException(
+        throw new ValidationException(
                 "Invalid queue status transition: " + current + " -> " + next
         );
     }

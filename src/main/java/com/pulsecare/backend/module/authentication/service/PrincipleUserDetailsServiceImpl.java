@@ -1,7 +1,7 @@
-package com.pulsecare.backend.module.user.service;
+package com.pulsecare.backend.module.authentication.service;
 
-import com.pulsecare.backend.module.user.model.PrincipleUserDetails;
-import com.pulsecare.backend.module.user.model.Users;
+import com.pulsecare.backend.module.authentication.model.PrincipleUserDetails;
+import com.pulsecare.backend.module.user.dto.UserLoginView;
 import com.pulsecare.backend.module.user.repository.UserRepository;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -9,10 +9,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
-import java.util.Objects;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @Service
 public class PrincipleUserDetailsServiceImpl implements UserDetailsService {
@@ -25,23 +21,18 @@ public class PrincipleUserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Users user = userRepository.findByUsername(username);
+        UserLoginView user = userRepository.findLoginUser(username).orElseThrow(
+                () -> new UsernameNotFoundException("User not found")
+        );
 
-        if (Objects.isNull(user)) {
-            throw new UsernameNotFoundException("User not found");
-        }
-
-        Set<GrantedAuthority> authorities = user.getRoles()
-                .stream()
-                .map(r -> new SimpleGrantedAuthority("ROLE_" + r.getName()))
-                .collect(Collectors.toSet());
-
+        GrantedAuthority role =
+                new SimpleGrantedAuthority("ROLE_" + user.role().getName());
 
         return new PrincipleUserDetails(
-                user.getUsername(),
-                user.getPassword(),
-                user.getIsActive(),
-                authorities
+                user.username(),
+                user.password(),
+                user.isActive(),
+                role
         );
     }
 }

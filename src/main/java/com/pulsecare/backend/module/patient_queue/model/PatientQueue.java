@@ -18,16 +18,19 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@ToString
 public class PatientQueue {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "patient_id")
     private Patient patient;
 
+    @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "triage_id")
     private Triage triage;
@@ -40,6 +43,7 @@ public class PatientQueue {
     @Column(nullable = false)
     private QueuePriority priority;
 
+    @Column(nullable = false)
     private Boolean admitted;
 
     @CreationTimestamp

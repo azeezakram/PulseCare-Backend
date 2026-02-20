@@ -1,6 +1,8 @@
 package com.pulsecare.backend.module.triage.service;
 
 import com.pulsecare.backend.common.exception.ResourceNotFoundException;
+import com.pulsecare.backend.module.patient.model.Patient;
+import com.pulsecare.backend.module.patient.service.PatientService;
 import com.pulsecare.backend.module.triage.config.MLClientConfig;
 import com.pulsecare.backend.module.triage.dto.TriagePredictionReqDTO;
 import com.pulsecare.backend.module.triage.dto.TriagePredictionResDTO;
@@ -20,12 +22,14 @@ import java.util.List;
 public class TriageServiceImpl implements TriageService {
 
     private final TriageRepository repository;
+    private final PatientService patientService;
     private final TriageMapper mapper;
     private final MLClientConfig mlClientConfig;
     private final RestTemplate restTemplate;
 
-    public TriageServiceImpl(TriageRepository repository, @Qualifier("triageMapperImpl") TriageMapper mapper, MLClientConfig mlClientConfig, RestTemplate restTemplate) {
+    public TriageServiceImpl(TriageRepository repository, PatientService patientService, @Qualifier("triageMapperImpl") TriageMapper mapper, MLClientConfig mlClientConfig, RestTemplate restTemplate) {
         this.repository = repository;
+        this.patientService = patientService;
         this.mapper = mapper;
         this.mlClientConfig = mlClientConfig;
         this.restTemplate = restTemplate;
@@ -34,7 +38,7 @@ public class TriageServiceImpl implements TriageService {
     @Override
     public TriageResDTO findById(Long id) {
         Triage data = repository.findById(id).orElseThrow(() ->
-                new ResourceNotFoundException("Triage with id " + id + " not found")
+                new ResourceNotFoundException("Triage not found")
         );
 
         return mapper.toDTO(data);
@@ -44,7 +48,7 @@ public class TriageServiceImpl implements TriageService {
     public Triage findEntityById(Long id) {
         return repository.findById(id)
                 .orElseThrow(() ->
-                        new ResourceNotFoundException("Triage with id " + id + " not found")
+                        new ResourceNotFoundException("Triage not found")
                 );
     }
 
@@ -64,7 +68,7 @@ public class TriageServiceImpl implements TriageService {
     @Override
     public TriageResDTO update(Long id, TriageReqDTO data) {
         Triage existing = repository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Triage with id " + id + " not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Triage not found"));
 
         mapper.updateEntity(data, existing);
 
@@ -82,6 +86,8 @@ public class TriageServiceImpl implements TriageService {
 
     @Override
     public TriageResDTO predict(TriageReqDTO data) {
+        Patient patient = patientService.findEntityById(data.patientId());
+
         TriagePredictionReqDTO dto = mapper.toPredDTOFromReq(data);
 
         HttpHeaders headers = new HttpHeaders();
@@ -99,7 +105,7 @@ public class TriageServiceImpl implements TriageService {
                         TriagePredictionResDTO.class
                 );
         Triage predicted = mapper.toPredEntity(response.getBody());
-        predicted.setName(data.name());
+        predicted.setPatient(patient);
         return mapper.toDTO(repository.save(predicted));
     }
 

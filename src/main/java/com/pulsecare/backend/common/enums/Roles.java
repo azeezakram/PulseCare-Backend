@@ -2,6 +2,9 @@ package com.pulsecare.backend.common.enums;
 
 public enum Roles {
     ADMIN,
+    SUPER_ADMIN,
     DOCTOR,
-    NURSE
+    SUPER_DOCTOR,
+    NURSE,
+    SUPER_NURSE,
 }

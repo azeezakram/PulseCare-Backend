@@ -7,6 +7,7 @@ import com.pulsecare.backend.common.base.controller.UpdatableController;
 import com.pulsecare.backend.common.template.response.ResponseBody;
 import com.pulsecare.backend.module.doctor_detail.dto.DoctorDetailReqDto;
 import com.pulsecare.backend.module.doctor_detail.dto.DoctorDetailResDto;
+import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
@@ -15,4 +16,5 @@ public interface DoctorDetailController extends
         CreatableController<DoctorDetailReqDto, ResponseBody<DoctorDetailResDto>>,
         UpdatableController<DoctorDetailReqDto, ResponseBody<DoctorDetailResDto>, String>,
         DeletableController<ResponseBody<String>, Long> {
+    ResponseEntity<ResponseBody<DoctorDetailResDto>> findByUserId(String id);
 }

@@ -36,6 +36,11 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
+    public Role findEntityById(Integer id) {
+        return repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Role not found"));
+    }
+
+    @Override
     public List<RoleResDto> findAll() {
         List<Role> data = repository.findAll();
         return data.stream()

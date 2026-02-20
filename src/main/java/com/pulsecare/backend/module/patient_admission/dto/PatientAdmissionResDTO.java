@@ -11,9 +11,6 @@ public record PatientAdmissionResDTO(
 
         Long queueId,
 
-        Integer wardId,
-        String wardName,
-
         Integer bedId,
 
         String status,

@@ -11,5 +11,6 @@ public record PatientResDTO(
         String nic,
         String gender,
         String phone,
+        Boolean isActive,
         LocalDateTime createdAt
 ) {}

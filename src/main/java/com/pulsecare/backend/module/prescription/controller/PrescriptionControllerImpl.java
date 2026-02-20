@@ -27,7 +27,7 @@ public class PrescriptionControllerImpl implements PrescriptionController {
 
     @Override
     @GetMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN', 'DOCTOR', 'SUPER_DOCTOR', 'NURSE', 'SUPER_NURSE')")
     public ResponseEntity<ResponseBody<PrescriptionSummaryResDTO>> findById(@PathVariable("id") Long id) {
         return ResponseEntity.ok().body(
                 new ResponseBody<>(
@@ -40,7 +40,7 @@ public class PrescriptionControllerImpl implements PrescriptionController {
 
     @Override
     @GetMapping("/d/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN', 'DOCTOR', 'SUPER_DOCTOR', 'NURSE', 'SUPER_NURSE')")
     public ResponseEntity<ResponseBody<PrescriptionDetailResDTO>> findWithDetailById(@PathVariable("id") Long id) {
         return ResponseEntity.ok().body(
                 new ResponseBody<>(
@@ -52,8 +52,21 @@ public class PrescriptionControllerImpl implements PrescriptionController {
     }
 
     @Override
-    @GetMapping("/")
-    @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
+    @GetMapping("/by-admission/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN', 'DOCTOR', 'SUPER_DOCTOR', 'NURSE', 'SUPER_NURSE')")
+    public ResponseEntity<ResponseBody<List<PrescriptionDetailResDTO>>> findAllByAdmissionsId(@PathVariable("id") Long id) {
+        return ResponseEntity.ok().body(
+                new ResponseBody<>(
+                        HttpStatus.OK.value(),
+                        "Prescriptions with admission id %d fetched successfully".formatted(id),
+                        service.findAllByAdmissionsId(id)
+                )
+        );
+    }
+
+    @Override
+    @GetMapping
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN', 'DOCTOR', 'SUPER_DOCTOR', 'NURSE', 'SUPER_NURSE')")
     public ResponseEntity<ResponseBody<List<PrescriptionSummaryResDTO>>> findAll() {
         List<PrescriptionSummaryResDTO> data = service.findAll();
         return ResponseEntity
@@ -66,8 +79,8 @@ public class PrescriptionControllerImpl implements PrescriptionController {
     }
 
     @Override
-    @PostMapping("/")
-    @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
+    @PostMapping
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN', 'DOCTOR', 'SUPER_DOCTOR', 'NURSE', 'SUPER_NURSE')")
     public ResponseEntity<ResponseBody<PrescriptionDetailResDTO>> create(@RequestBody PrescriptionReqDTO data) {
         return ResponseEntity
                 .ok()
@@ -80,7 +93,7 @@ public class PrescriptionControllerImpl implements PrescriptionController {
 
     @Override
     @PutMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN', 'DOCTOR', 'SUPER_DOCTOR', 'NURSE', 'SUPER_NURSE')")
     public ResponseEntity<ResponseBody<PrescriptionDetailResDTO>> update(@PathVariable("id") Long id, @RequestBody PrescriptionReqDTO data) {
         return ResponseEntity
                 .ok()
@@ -93,7 +106,7 @@ public class PrescriptionControllerImpl implements PrescriptionController {
 
     @Override
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN')")
     public ResponseEntity<ResponseBody<String>> delete(@PathVariable("id") Long id) {
         service.delete(id);
         return ResponseEntity

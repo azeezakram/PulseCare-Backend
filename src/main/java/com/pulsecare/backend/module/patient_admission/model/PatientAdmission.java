@@ -29,8 +29,8 @@ public class PatientAdmission {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "patient_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "patient_id")
     private Patient patient;
 
     @OneToOne(fetch = FetchType.LAZY)
@@ -38,7 +38,7 @@ public class PatientAdmission {
     private PatientQueue patientQueue;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "bed_id", nullable = false)
+    @JoinColumn(name = "bed_id")
     private Bed bed;
 
     @Enumerated(EnumType.STRING)

@@ -1,7 +1,7 @@
 package com.pulsecare.backend.module.user.controller;
 
 import com.pulsecare.backend.common.template.response.ResponseBody;
-import com.pulsecare.backend.module.user.dto.LoginRequestDTO;
+import com.pulsecare.backend.module.user.dto.UserImageProjection;
 import com.pulsecare.backend.module.user.dto.UserRequestDTO;
 import com.pulsecare.backend.module.user.dto.UserResponseDTO;
 import com.pulsecare.backend.module.user.facade.UserFacade;
@@ -9,12 +9,17 @@ import com.pulsecare.backend.module.user.mapper.UserMapper;
 import com.pulsecare.backend.module.user.service.UserService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
+import java.util.UUID;
 
 @CrossOrigin
 @RestController
@@ -34,7 +39,7 @@ public class UserControllerImpl implements UserController {
 
     @Override
     @GetMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN', 'DOCTOR', 'SUPER_DOCTOR', 'NURSE', 'SUPER_NURSE')")
     public ResponseEntity<ResponseBody<UserResponseDTO>> findById(@PathVariable("id") String id) {
         UserResponseDTO data = mapper.toDTO(service.findById(id));
 
@@ -48,13 +53,26 @@ public class UserControllerImpl implements UserController {
     }
 
     @Override
-    @GetMapping("/")
-    @PreAuthorize("hasAnyRole('ADMIN', 'NURSE')")
+    @GetMapping("/username/{username}")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN', 'DOCTOR', 'SUPER_DOCTOR', 'NURSE', 'SUPER_NURSE')")
+    public ResponseEntity<ResponseBody<UserResponseDTO>> findByUsername(@PathVariable("username") String username) {
+        return ResponseEntity
+                .ok()
+                .body(new ResponseBody<>(
+                        HttpStatus.OK.value(),
+                        "User fetched successfully",
+                        service.findByUsername(username)
+                ));
+    }
+
+    @Override
+    @GetMapping
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN', 'DOCTOR', 'SUPER_DOCTOR', 'NURSE', 'SUPER_NURSE')")
     public ResponseEntity<ResponseBody<List<UserResponseDTO>>> findAll() {
         List<UserResponseDTO> data = service.findAll().stream()
                 .map(mapper::toDTO)
                 .toList();
-        
+
         return ResponseEntity
                 .ok()
                 .body(new ResponseBody<>(
@@ -65,8 +83,8 @@ public class UserControllerImpl implements UserController {
     }
 
     @Override
-    @PostMapping("/")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PostMapping
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN')")
     public ResponseEntity<ResponseBody<UserResponseDTO>> create(@RequestBody UserRequestDTO data) {
         return ResponseEntity
                 .ok()
@@ -79,7 +97,7 @@ public class UserControllerImpl implements UserController {
 
     @Override
     @PutMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'NURSE')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN', 'DOCTOR', 'SUPER_DOCTOR', 'NURSE', 'SUPER_NURSE')")
     public ResponseEntity<ResponseBody<UserResponseDTO>> update(@PathVariable("id") String id,
                                                                 @RequestBody UserRequestDTO data) {
         return ResponseEntity
@@ -93,7 +111,7 @@ public class UserControllerImpl implements UserController {
 
     @Override
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN')")
     public ResponseEntity<ResponseBody<String>> delete(@PathVariable("id") String id) {
         service.delete(id);
         return ResponseEntity
@@ -106,14 +124,41 @@ public class UserControllerImpl implements UserController {
     }
 
     @Override
-    @PostMapping("/login")
-    public ResponseEntity<ResponseBody<String>> login(@RequestBody LoginRequestDTO data) {
+    @GetMapping("/username/validate/{username}")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN', 'DOCTOR', 'SUPER_DOCTOR', 'NURSE', 'SUPER_NURSE')")
+    public ResponseEntity<Boolean> isUsernameAlreadyTaken(@PathVariable("username") String username) {
         return ResponseEntity
                 .ok()
-                .body(new ResponseBody<>(
-                        HttpStatus.OK.value(),
-                        "success",
-                        service.login(data)
-                ));
+                .body(service.isUsernameExist(username));
+    }
+
+
+    @Override
+    @GetMapping("/{id}/image")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN', 'DOCTOR', 'SUPER_DOCTOR', 'NURSE', 'SUPER_NURSE')")
+    public ResponseEntity<byte[]> fetchProfileImage(@PathVariable UUID id) {
+
+        UserImageProjection image = service.getUserProfileImage(id);
+
+        return ResponseEntity.ok()
+                .contentType(MediaType.parseMediaType(image.getContentType()))
+                .body(image.getImageData());
+    }
+
+    @Override
+    @PutMapping(
+            value = "/{id}/image",
+            consumes = MediaType.MULTIPART_FORM_DATA_VALUE
+    )
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN', 'DOCTOR', 'SUPER_DOCTOR', 'NURSE', 'SUPER_NURSE')")
+    public ResponseEntity<String> saveProfileImage(@PathVariable UUID id, @RequestPart("image") MultipartFile image) {
+        try {
+            service.saveUserProfileImage(id, image);
+            return ResponseEntity.ok()
+                    .contentType(MediaType.parseMediaType(Objects.requireNonNull(image.getContentType())))
+                    .body("Profile image updated successfully");
+        } catch (IOException e) {
+            throw new IllegalArgumentException("Failed to store profile image");
+        }
     }
 }

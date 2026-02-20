@@ -9,12 +9,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(
-        name = "patient",
-        uniqueConstraints = {
-                @UniqueConstraint(columnNames = "nic")
-        }
-)
+@Table(name = "patient")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -34,7 +29,7 @@ public class Patient {
 
     private String bloodGroup;
 
-    @Column(length = 20, nullable = false)
+    @Column(length = 20)
     private String nic;
 
     @Column(length = 15)
@@ -42,6 +37,9 @@ public class Patient {
 
     @Column(nullable = false)
     private String gender;
+
+    @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT true")
+    private Boolean isActive = true;
 
     @CreationTimestamp
     @Column(nullable = false, updatable = false)

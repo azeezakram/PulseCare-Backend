@@ -1,5 +1,6 @@
 package com.pulsecare.backend.module.patient_admission.service;
 
+import com.pulsecare.backend.common.exception.ResourceAlreadyExistsException;
 import com.pulsecare.backend.common.exception.ResourceNotFoundException;
 import com.pulsecare.backend.module.patient.model.Patient;
 import com.pulsecare.backend.module.patient.service.PatientService;
@@ -12,6 +13,8 @@ import com.pulsecare.backend.module.patient_admission.repository.PatientAdmissio
 import com.pulsecare.backend.module.patient_queue.enums.QueueStatus;
 import com.pulsecare.backend.module.patient_queue.model.PatientQueue;
 import com.pulsecare.backend.module.patient_queue.service.PatientQueueService;
+import com.pulsecare.backend.module.prescription.model.Prescription;
+import com.pulsecare.backend.module.prescription.repository.PrescriptionRepository;
 import com.pulsecare.backend.module.resource.bed.model.Bed;
 import com.pulsecare.backend.module.resource.bed.service.BedService;
 import com.pulsecare.backend.module.resource.ward.model.Ward;
@@ -32,15 +35,17 @@ public class PatientAdmissionServiceImpl implements PatientAdmissionService {
     private final PatientQueueService patientQueueService;
     private final BedService bedService;
     private final WardService wardService;
+    private final PrescriptionRepository prescriptionRepository;
 
     public PatientAdmissionServiceImpl(PatientAdmissionRepository repository, @Qualifier("patientAdmissionMapperImpl") PatientAdmissionMapper mapper,
-                                       PatientService patientService, PatientQueueService patientQueueService, BedService bedService, WardService wardService) {
+                                       PatientService patientService, PatientQueueService patientQueueService, BedService bedService, WardService wardService, PrescriptionRepository prescriptionRepository) {
         this.repository = repository;
         this.mapper = mapper;
         this.patientService = patientService;
         this.patientQueueService = patientQueueService;
         this.bedService = bedService;
         this.wardService = wardService;
+        this.prescriptionRepository = prescriptionRepository;
     }
 
     @Override
@@ -70,7 +75,7 @@ public class PatientAdmissionServiceImpl implements PatientAdmissionService {
 
         if (repository.existsByPatientIdAndStatus(
                 data.patientId(), PatientAdmissionStatus.ACTIVE)) {
-            throw new IllegalStateException("Patient already has an active admission");
+            throw new ResourceAlreadyExistsException("Patient already has an active admission");
         }
 
         PatientQueue queue = null;
@@ -81,7 +86,7 @@ public class PatientAdmissionServiceImpl implements PatientAdmissionService {
                 throw new IllegalStateException("Queue does not belong to this patient");
             }
 
-            if (queue.getStatus() != QueueStatus.WAITING) {
+            if (queue.getStatus() != QueueStatus.WAITING && queue.getAdmitted().equals(true)) {
                 throw new IllegalStateException("Patient is not in WAITING queue status");
             }
 
@@ -105,6 +110,18 @@ public class PatientAdmissionServiceImpl implements PatientAdmissionService {
 
         PatientAdmission saved = repository.save(newAdmission);
 
+        if (saved.getPatientQueue() != null) {
+            Long qid = saved.getPatientQueue().getId();
+
+            List<Prescription> orphanPrescs =
+                    prescriptionRepository.findAllByPatientQueue_IdAndAdmissionIsNull(qid);
+
+            for (Prescription p : orphanPrescs) {
+                p.setAdmission(saved);
+            }
+            prescriptionRepository.saveAll(orphanPrescs);
+        }
+
         return mapper.toDTO(saved);
     }
 
@@ -114,7 +131,7 @@ public class PatientAdmissionServiceImpl implements PatientAdmissionService {
 
         PatientAdmission existing = findEntityById(id);
 
-        if (existing.getStatus() == PatientAdmissionStatus.DISCHARGED) {
+        if (existing.getStatus() == PatientAdmissionStatus.DISCHARGED && existing.getDischargedAt() != null) {
             throw new IllegalStateException("Cannot update a discharged admission");
         }
 
@@ -148,7 +165,9 @@ public class PatientAdmissionServiceImpl implements PatientAdmissionService {
         if (data.status() == PatientAdmissionStatus.DISCHARGED) {
 
             existing.setStatus(PatientAdmissionStatus.DISCHARGED);
-            existing.setDischargedAt(LocalDateTime.now());
+            if (data.dischargeNotes() != null) {
+                existing.setDischargedAt(LocalDateTime.now());
+            }
             existing.setDischargeNotes(data.dischargeNotes());
 
             Bed bed = existing.getBed();
@@ -166,11 +185,19 @@ public class PatientAdmissionServiceImpl implements PatientAdmissionService {
 
 
     @Override
+    @Transactional
     public void delete(Long id) {
         PatientAdmission entity = repository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Patient admission not found"));
 
         repository.delete(entity);
+    }
+
+    @Override
+    public Boolean hasActiveAdmission(Long id) {
+        patientService.findById(id);
+        return repository.existsByPatientIdAndStatus(
+                id, PatientAdmissionStatus.ACTIVE);
     }
 
 }

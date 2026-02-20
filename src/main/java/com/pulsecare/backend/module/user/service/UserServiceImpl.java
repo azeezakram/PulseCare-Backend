@@ -2,17 +2,16 @@ package com.pulsecare.backend.module.user.service;
 
 import com.pulsecare.backend.common.exception.ResourceAlreadyExistsException;
 import com.pulsecare.backend.common.exception.ResourceNotFoundException;
-import com.pulsecare.backend.module.user.dto.LoginRequestDTO;
-import com.pulsecare.backend.module.user.exception.UserInvalidCredentialException;
+import com.pulsecare.backend.module.user.dto.UserImageProjection;
+import com.pulsecare.backend.module.user.dto.UserResponseDTO;
+import com.pulsecare.backend.module.user.mapper.UserMapper;
 import com.pulsecare.backend.module.user.model.Users;
 import com.pulsecare.backend.module.user.repository.UserRepository;
-import com.pulsecare.backend.utils.JwtUtil;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.AuthenticationException;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.time.LocalDateTime;
+import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
@@ -20,19 +19,17 @@ import java.util.UUID;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository repository;
-    private final AuthenticationManager authenticationManager;
-    private final JwtUtil jwtUtil;
+    private final UserMapper mapper;
 
-    public UserServiceImpl(UserRepository repository, AuthenticationManager authenticationManager, JwtUtil jwtUtil) {
+    public UserServiceImpl(UserRepository repository, @Qualifier("userMapperImpl") UserMapper mapper) {
         this.repository = repository;
-        this.authenticationManager = authenticationManager;
-        this.jwtUtil = jwtUtil;
+        this.mapper = mapper;
     }
 
     @Override
     public Users findById(String id) {
         return repository.findById(UUID.fromString(id))
-                .orElseThrow(() -> new ResourceNotFoundException("User with id " + id + " not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
     }
 
     @Override
@@ -54,33 +51,50 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String login(LoginRequestDTO data) {
-        try {
-            authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(
-                            data.username(),
-                            data.password()
-                    )
-            );
+    public UserResponseDTO findByUsername(String username) {
+        return mapper.toDTO(
+                repository.findByUsername(username)
+                        .orElseThrow(() -> new ResourceNotFoundException("User with username " + username + " not found"))
+        );
+    }
 
-            Users user = repository.findByUsername(data.username());
-            if (user == null) {
-                throw new UserInvalidCredentialException("User not found");
-            }
+    public UserImageProjection getUserProfileImage(UUID userId) {
 
-            user.setLastLoginAt(LocalDateTime.now());
-            repository.save(user);
+        UserImageProjection image = repository.findUserImageById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("Profile image not found"));
 
-            return jwtUtil.generateToken(user);
-
-        } catch (AuthenticationException e) {
-            throw new UserInvalidCredentialException("Invalid username or password");
+        if (image.getImageData() == null || image.getImageData().length == 0) {
+            throw new ResourceNotFoundException("Profile image not found");
         }
+
+        if (image.getContentType() == null || image.getContentType().isBlank()) {
+            throw new ResourceNotFoundException("Profile image not found");
+        }
+
+        return image;
+    }
+
+
+    @Override
+    public void saveUserProfileImage(UUID userId, MultipartFile image) throws IOException {
+        if (image == null || image.isEmpty()) {
+            throw new IllegalArgumentException("Image is empty");
+        }
+
+        repository.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+
+        repository.updateProfileImage(userId, image.getBytes(), image.getOriginalFilename(), image.getContentType());
+    }
+
+    @Override
+    public Boolean isUsernameExist(String username) {
+        return repository.findByUsername(username).isPresent();
     }
 
     @Override
     public void validateUsernameUniqueness(String newUsername, UUID currentUserId) {
-        Users existByUsername = repository.findByUsername(newUsername);
+        Users existByUsername = repository.findByUsername(newUsername).orElse(null);
         if (existByUsername != null && !existByUsername.getId().equals(currentUserId)) {
             throw new ResourceAlreadyExistsException("User with this username already exists");
         }
@@ -88,10 +102,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void validateUsernameDoesNotExist(String username) {
-        Users existingUser = repository.findByUsername(username);
-        if (existingUser != null) {
-            throw new ResourceAlreadyExistsException("User with username '" + username + "' already exists");
-        }
+        repository.findByUsername(username)
+                .ifPresent(
+                        s -> {
+                            throw new ResourceAlreadyExistsException("User with username '" + username + "' already exists");
+                        }
+                );
     }
 
 

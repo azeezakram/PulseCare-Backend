@@ -18,4 +18,5 @@ public interface PrescriptionController extends
         UpdatableController<PrescriptionReqDTO, ResponseBody<PrescriptionDetailResDTO>, Long>,
         DeletableController<ResponseBody<String>, Long> {
     ResponseEntity<ResponseBody<PrescriptionDetailResDTO>> findWithDetailById(Long id);
+    ResponseEntity<ResponseBody<List<PrescriptionDetailResDTO>>> findAllByAdmissionsId(Long id);
 }

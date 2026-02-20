@@ -9,6 +9,7 @@ import com.pulsecare.backend.module.patient.model.Patient;
 import com.pulsecare.backend.module.patient.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -27,7 +28,7 @@ public class PatientServiceImpl implements PatientService {
     public PatientResDTO findById(Long id) {
         return mapper.toDTO(
                 repository.findById(id)
-                        .orElseThrow(() ->  new ResourceNotFoundException("Patient with id " + id + " not found")));
+                        .orElseThrow(() ->  new ResourceNotFoundException("Patient not found")));
     }
 
     @Override
@@ -38,22 +39,45 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public Patient findEntityById(Long id) {
-        return repository.findById(id)
-                .orElseThrow(() ->  new ResourceNotFoundException("Patient with id " + id + " not found"));
+    public PatientResDTO findByIdAndActive(Long id) {
+        return mapper.toDTO(
+                repository.findByIdAndIsActiveTrue(id)
+                        .orElseThrow(() ->  new ResourceNotFoundException("Patient not found")));
+    }
+
+    @Override
+    public List<PatientResDTO> findAllAndActive() {
+        return repository.findAllByIsActiveTrue().stream()
+                .map(mapper::toDTO)
+                .toList();
     }
 
     @Override
     public PatientResDTO findByNic(String nic) {
         return mapper.toDTO(
                 repository.findByNic(nic)
-                        .orElseThrow(() ->  new ResourceNotFoundException("Patient with NIC: " + nic + " not found")));
+                        .orElseThrow(() ->  new ResourceNotFoundException("Patient with this NIC not found")));
     }
 
     @Override
+    public PatientResDTO findByNicAndActive(String nic) {
+        return mapper.toDTO(
+                repository.findByNicAndIsActiveTrue(nic)
+                        .orElseThrow(() ->  new ResourceNotFoundException("Patient with this NIC not found")));
+    }
+
+    @Override
+    public Patient findEntityById(Long id) {
+        return repository.findById(id)
+                .orElseThrow(() ->  new ResourceNotFoundException("Patient not found"));
+    }
+
+
+    @Override
+    @Transactional
     public PatientResDTO save(PatientReqDTO data) {
 
-        if (data.nic() != null && repository.findByNic(data.nic()).isPresent()) {
+        if (data.nic() != null && repository.findByNicAndIsActiveTrue(data.nic()).isPresent()) {
             throw new ResourceAlreadyExistsException(
                     "Patient with NIC " + data.nic() + " already exists"
             );
@@ -65,10 +89,11 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
+    @Transactional
     public PatientResDTO update(Long id, PatientReqDTO data) {
 
         if (data.nic() != null) {
-            Patient byNic = repository.findByNic(data.nic()).orElse(null);
+            Patient byNic = repository.findByNicAndIsActiveTrue(data.nic()).orElse(null);
             if (byNic != null && !byNic.getId().equals(id)) {
                 throw new ResourceAlreadyExistsException(
                         "Patient with NIC " + data.nic() + " already exists"
@@ -86,11 +111,12 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
+    @Transactional
     public void delete(Long id) {
         Patient entity = repository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Patient not found"));
-
-        repository.delete(entity);
+        entity.setIsActive(false);
+        repository.save(entity);
     }
 
 

@@ -17,4 +17,7 @@ public interface PatientController extends
         UpdatableController<PatientReqDTO, ResponseBody<PatientResDTO>, Long>,
         DeletableController<ResponseBody<String>, Long> {
     ResponseEntity<ResponseBody<PatientResDTO>> findByNic(String nic);
+    ResponseEntity<ResponseBody<List<PatientResDTO>>> findAllAndActive();
+    ResponseEntity<ResponseBody<PatientResDTO>> findByIdAndActive(Long id);
+    ResponseEntity<ResponseBody<PatientResDTO>> findByNicAndActive(String nic);
 }

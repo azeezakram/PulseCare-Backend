@@ -33,6 +33,17 @@ public class GlobalExceptionHandler {
         );
     }
 
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<ErrorResponseBody> handleIllegalArgumentException(IllegalArgumentException ex) {
+        return new ResponseEntity<>(
+                new ErrorResponseBody(
+                        HttpStatus.BAD_REQUEST.value(),
+                        ex.getMessage()
+                ),
+                HttpStatus.BAD_REQUEST
+        );
+    }
+
     @ExceptionHandler(ValidationException.class)
     public ResponseEntity<ErrorResponseBody> handleValidationException(ValidationException ex) {
         return new ResponseEntity<>(
@@ -42,7 +53,6 @@ public class GlobalExceptionHandler {
                 ),
                 HttpStatus.BAD_REQUEST
         );
-
     }
 
     @ExceptionHandler(UserInvalidCredentialException.class)
