@@ -13,6 +13,8 @@ import com.pulsecare.backend.module.patient_admission.repository.PatientAdmissio
 import com.pulsecare.backend.module.patient_queue.enums.QueueStatus;
 import com.pulsecare.backend.module.patient_queue.model.PatientQueue;
 import com.pulsecare.backend.module.patient_queue.service.PatientQueueService;
+import com.pulsecare.backend.module.prescription.model.Prescription;
+import com.pulsecare.backend.module.prescription.repository.PrescriptionRepository;
 import com.pulsecare.backend.module.resource.bed.model.Bed;
 import com.pulsecare.backend.module.resource.bed.service.BedService;
 import com.pulsecare.backend.module.resource.ward.model.Ward;
@@ -33,15 +35,17 @@ public class PatientAdmissionServiceImpl implements PatientAdmissionService {
     private final PatientQueueService patientQueueService;
     private final BedService bedService;
     private final WardService wardService;
+    private final PrescriptionRepository prescriptionRepository;
 
     public PatientAdmissionServiceImpl(PatientAdmissionRepository repository, @Qualifier("patientAdmissionMapperImpl") PatientAdmissionMapper mapper,
-                                       PatientService patientService, PatientQueueService patientQueueService, BedService bedService, WardService wardService) {
+                                       PatientService patientService, PatientQueueService patientQueueService, BedService bedService, WardService wardService, PrescriptionRepository prescriptionRepository) {
         this.repository = repository;
         this.mapper = mapper;
         this.patientService = patientService;
         this.patientQueueService = patientQueueService;
         this.bedService = bedService;
         this.wardService = wardService;
+        this.prescriptionRepository = prescriptionRepository;
     }
 
     @Override
@@ -106,6 +110,18 @@ public class PatientAdmissionServiceImpl implements PatientAdmissionService {
 
         PatientAdmission saved = repository.save(newAdmission);
 
+        if (saved.getPatientQueue() != null) {
+            Long qid = saved.getPatientQueue().getId();
+
+            List<Prescription> orphanPrescs =
+                    prescriptionRepository.findAllByPatientQueue_IdAndAdmissionIsNull(qid);
+
+            for (Prescription p : orphanPrescs) {
+                p.setAdmission(saved);
+            }
+            prescriptionRepository.saveAll(orphanPrescs);
+        }
+
         return mapper.toDTO(saved);
     }
 
@@ -115,7 +131,7 @@ public class PatientAdmissionServiceImpl implements PatientAdmissionService {
 
         PatientAdmission existing = findEntityById(id);
 
-        if (existing.getStatus() == PatientAdmissionStatus.DISCHARGED) {
+        if (existing.getStatus() == PatientAdmissionStatus.DISCHARGED && existing.getDischargedAt() != null) {
             throw new IllegalStateException("Cannot update a discharged admission");
         }
 
@@ -149,7 +165,9 @@ public class PatientAdmissionServiceImpl implements PatientAdmissionService {
         if (data.status() == PatientAdmissionStatus.DISCHARGED) {
 
             existing.setStatus(PatientAdmissionStatus.DISCHARGED);
-            existing.setDischargedAt(LocalDateTime.now());
+            if (data.dischargeNotes() != null) {
+                existing.setDischargedAt(LocalDateTime.now());
+            }
             existing.setDischargeNotes(data.dischargeNotes());
 
             Bed bed = existing.getBed();

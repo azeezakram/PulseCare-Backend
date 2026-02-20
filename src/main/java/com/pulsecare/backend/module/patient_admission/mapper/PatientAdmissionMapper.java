@@ -22,7 +22,6 @@ public interface PatientAdmissionMapper {
     @Mapping(target = "bed", ignore = true)
     @Mapping(target = "status", ignore = true)
     @Mapping(target = "admittedAt", ignore = true)
-    @Mapping(target = "dischargedAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
     PatientAdmission toEntity(PatientAdmissionReqDTO dto);
 

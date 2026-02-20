@@ -52,6 +52,19 @@ public class PrescriptionControllerImpl implements PrescriptionController {
     }
 
     @Override
+    @GetMapping("/by-admission/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN', 'DOCTOR', 'SUPER_DOCTOR', 'NURSE', 'SUPER_NURSE')")
+    public ResponseEntity<ResponseBody<List<PrescriptionDetailResDTO>>> findAllByAdmissionsId(@PathVariable("id") Long id) {
+        return ResponseEntity.ok().body(
+                new ResponseBody<>(
+                        HttpStatus.OK.value(),
+                        "Prescriptions with admission id %d fetched successfully".formatted(id),
+                        service.findAllByAdmissionsId(id)
+                )
+        );
+    }
+
+    @Override
     @GetMapping
     @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN', 'DOCTOR', 'SUPER_DOCTOR', 'NURSE', 'SUPER_NURSE')")
     public ResponseEntity<ResponseBody<List<PrescriptionSummaryResDTO>>> findAll() {
