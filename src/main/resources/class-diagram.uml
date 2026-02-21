@@ -1,0 +1,2056 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>C:/Users/Azeez/Desktop/dir/Campus/Final Project/pulse-care-backend/src/main/java/com/pulsecare/backend</OriginalElement>
+  <nodes>
+    <node x="11499.5" y="9733.5">com.pulsecare.backend.module.specialization.repository.SpecializationRepository</node>
+    <node x="4239.5" y="7262.5">com.pulsecare.backend.module.user.dto.UserResponseDTO</node>
+    <node x="14337.0" y="12994.5">com.pulsecare.backend.module.resource.department.dto.DeptResponseDTO</node>
+    <node x="11212.5" y="12138.5">com.pulsecare.backend.module.user.facade.UserFacade</node>
+    <node x="3998.0" y="8162.5">com.pulsecare.backend.module.patient.dto.PatientReqDTO</node>
+    <node x="9752.5" y="13362.5">com.pulsecare.backend.module.doctor_detail.controller.DoctorDetailControllerImpl</node>
+    <node x="5780.5" y="9721.5">com.pulsecare.backend.module.patient_admission.service.PatientAdmissionService</node>
+    <node x="7956.5" y="9733.5">com.pulsecare.backend.module.prescription.repository.PrescriptionItemRepository</node>
+    <node x="3560.0" y="12994.5">com.pulsecare.backend.module.resource.bed.controller.BedControllerImpl</node>
+    <node x="9927.5" y="12150.5">com.pulsecare.backend.module.resource.ward.facade.WardFacade</node>
+    <node x="9413.5" y="12162.5">com.pulsecare.backend.module.resource.department.facade.DepartmentFacade</node>
+    <node x="7243.0" y="11442.5">com.pulsecare.backend.module.prescription.service.PrescriptionServiceImpl</node>
+    <node x="8522.5" y="9733.5">com.pulsecare.backend.common.exception.ResourceNotFoundException</node>
+    <node x="2106.5" y="12213.5">com.pulsecare.backend.module.resource.ward.controller.WardController</node>
+    <node x="3754.0" y="7382.5">com.pulsecare.backend.module.user.dto.UserLoginView</node>
+    <node x="12160.0" y="11562.5">com.pulsecare.backend.module.authentication.utils.JwtUtil</node>
+    <node x="1588.5" y="922.5">com.pulsecare.backend.module.triage.dto.TriageResDTO</node>
+    <node x="4710.0" y="12066.5">com.pulsecare.backend.module.patient.service.PatientServiceImpl</node>
+    <node x="4748.5" y="10013.5">com.pulsecare.backend.module.patient_admission.repository.PatientAdmissionRepository</node>
+    <node x="164.5" y="6234.5">com.pulsecare.backend.module.prescription.model.PrescriptionItem</node>
+    <node x="2644.0" y="11691.0">com.pulsecare.backend.module.role.controller.RoleController</node>
+    <node x="996.5" y="4570.5">com.pulsecare.backend.module.patient_admission.enums.PatientAdmissionStatus</node>
+    <node x="862.0" y="7946.5">com.pulsecare.backend.module.prescription.model.Prescription</node>
+    <node x="3813.5" y="9751.0">com.pulsecare.backend.module.triage.repository.TriageRepository</node>
+    <node x="13647.0" y="9989.5">com.pulsecare.backend.module.doctor_detail.service.DoctorDetailService</node>
+    <node x="13726.5" y="13054.5">com.pulsecare.backend.module.authentication.controller.AuthenticationControllerImpl</node>
+    <node x="7777.0" y="12213.5">com.pulsecare.backend.module.user.exception.UserInvalidCredentialException</node>
+    <node x="13897.0" y="9733.5">com.pulsecare.backend.common.base.controller.LoggableController</node>
+    <node x="1267.0" y="11691.0">com.pulsecare.backend.module.specialization.controller.SpecializationController</node>
+    <node x="2009.0" y="5934.5">com.pulsecare.backend.module.triage.dto.TriagePredictionResDTO</node>
+    <node x="14227.5" y="10013.5">com.pulsecare.backend.common.base.service.LoggableService</node>
+    <node x="14093.0" y="13374.5">com.pulsecare.backend.module.role.dto.RoleResDto</node>
+    <node x="11296.5" y="10013.5">com.pulsecare.backend.module.specialization.service.SpecializationService</node>
+    <node x="7808.0" y="13388.0">com.pulsecare.backend.advisor.GlobalExceptionHandler</node>
+    <node x="3517.0" y="8162.5">com.pulsecare.backend.module.prescription.dto.PrescriptionItemResDTO</node>
+    <node x="7948.0" y="11598.5">com.pulsecare.backend.module.authentication.dto.LoginResponseDTO</node>
+    <node x="2750.5" y="8853.5">com.pulsecare.backend.common.base.service.UpdatableService</node>
+    <node x="11015.5" y="9721.5">com.pulsecare.backend.module.resource.department.service.DepartmentService</node>
+    <node x="3286.0" y="7286.5">com.pulsecare.backend.module.triage.dto.TriagePredictionReqDTO</node>
+    <node x="6901.5" y="9721.5">com.pulsecare.backend.module.triage.service.TriageService</node>
+    <node x="6324.5" y="9697.5">com.pulsecare.backend.module.patient_queue.mapper.PatientQueueMapper</node>
+    <node x="13231.5" y="13066.5">com.pulsecare.backend.module.user.util.UserUtil</node>
+    <node x="682.5" y="4990.5">com.pulsecare.backend.module.resource.bed.model.Bed</node>
+    <node x="12713.5" y="12994.5">com.pulsecare.backend.common.enums.Roles</node>
+    <node x="3016.5" y="9977.5">com.pulsecare.backend.module.patient.repository.PatientRepository</node>
+    <node x="13399.5" y="13434.5">com.pulsecare.backend.config.JwtFilter</node>
+    <node x="2446.5" y="9989.5">com.pulsecare.backend.module.patient.mapper.PatientMapper</node>
+    <node x="-12.5" y="1510.5">com.pulsecare.backend.module.patient_queue.enums.QueuePriority</node>
+    <node x="12433.5" y="13374.5">com.pulsecare.backend.module.resource.ward.dto.WardReqDTO</node>
+    <node x="12152.0" y="12946.5">com.pulsecare.backend.module.prescription.dto.PrescriptionReqDTO</node>
+    <node x="11875.0" y="13350.5">com.pulsecare.backend.module.patient_queue.dto.PatientQueueReqDTO</node>
+    <node x="3950.5" y="12066.5">com.pulsecare.backend.module.resource.bed.BedServiceImpl</node>
+    <node x="3148.5" y="8320.0">com.pulsecare.backend.config.RestTemplateConfig</node>
+    <node x="269.5" y="11691.0">com.pulsecare.backend.module.patient_queue.controller.PatientQueueController</node>
+    <node x="6578.5" y="11562.5">com.pulsecare.backend.common.template.response.ResponseBody</node>
+    <node x="130.5" y="2314.5">com.pulsecare.backend.module.triage.model.Triage</node>
+    <node x="11726.5" y="13066.5">com.pulsecare.backend.module.specialization.dto.SpecializationReqDTO</node>
+    <node x="11555.5" y="13422.5">com.pulsecare.backend.module.authentication.dto.LoginRequestDTO</node>
+    <node x="822.0" y="166.5">com.pulsecare.backend.module.resource.department.model.Department</node>
+    <node x="4333.5" y="11454.5">com.pulsecare.backend.module.patient_queue.dto.PatientQueueResDTO</node>
+    <node x="6020.0" y="10001.5">com.pulsecare.backend.module.prescription.repository.PrescriptionRepository</node>
+    <node x="7538.0" y="9905.5">com.pulsecare.backend.module.prescription.mapper.PrescriptionMapper</node>
+    <node x="4126.5" y="9709.5">com.pulsecare.backend.module.resource.bed.mapper.BedMapper</node>
+    <node x="12956.0" y="9709.5">com.pulsecare.backend.module.doctor_detail.mapper.DoctorDetailMapper</node>
+    <node x="10265.0" y="9733.5">com.pulsecare.backend.module.resource.department.repository.DepartmentRepository</node>
+    <node x="2740.0" y="12213.5">com.pulsecare.backend.module.doctor_detail.controller.DoctorDetailController</node>
+    <node x="11382.5" y="13080.0">com.pulsecare.backend.PulseCareBackendApplication</node>
+    <node x="-107.5" y="4906.5">com.pulsecare.backend.module.patient_queue.model.PatientQueue</node>
+    <node x="13246.5" y="11646.5">com.pulsecare.backend.module.authentication.service.PrincipleUserDetailsServiceImpl</node>
+    <node x="1093.0" y="6450.5">com.pulsecare.backend.module.prescription.enums.PrescriptionStatus</node>
+    <node x="7439.5" y="13006.5">com.pulsecare.backend.module.patient_admission.controller.PatientAdmissionControllerImpl</node>
+    <node x="4502.5" y="9709.5">com.pulsecare.backend.module.patient_admission.mapper.PatientAdmissionMapper</node>
+    <node x="2498.0" y="8841.5">com.pulsecare.backend.module.user.dto.UserImageProjection</node>
+    <node x="554.0" y="11610.5">com.pulsecare.backend.module.patient_queue.ws.PatientQueueEventType</node>
+    <node x="8165.0" y="9989.5">com.pulsecare.backend.module.resource.ward.service.WardService</node>
+    <node x="834.5" y="2998.5">com.pulsecare.backend.module.resource.ward.model.Ward</node>
+    <node x="2812.5" y="7382.5">com.pulsecare.backend.module.resource.ward.dto.WardResDTO</node>
+    <node x="3926.0" y="9965.5">com.pulsecare.backend.module.patient.service.PatientService</node>
+    <node x="2580.0" y="8114.5">com.pulsecare.backend.module.patient.dto.PatientResDTO</node>
+    <node x="12527.0" y="12114.5">com.pulsecare.backend.module.doctor_detail.service.DoctorDetailServiceImpl</node>
+    <node x="1716.0" y="11661.5">com.pulsecare.backend.module.prescription.controller.PrescriptionController</node>
+    <node x="1412.5" y="12177.5">com.pulsecare.backend.module.patient.controller.PatientController</node>
+    <node x="8711.5" y="10013.5">com.pulsecare.backend.common.exception.ResourceAlreadyExistsException</node>
+    <node x="255.5" y="9733.5">com.pulsecare.backend.common.base.controller.CreatableController</node>
+    <node x="3310.0" y="12177.5">com.pulsecare.backend.module.user.controller.UserController</node>
+    <node x="2336.5" y="7382.5">com.pulsecare.backend.module.prescription.dto.PrescriptionItemReqDTO</node>
+    <node x="2095.5" y="8114.5">com.pulsecare.backend.module.patient_admission.dto.PatientAdmissionResDTO</node>
+    <node x="1334.0" y="3106.5">com.pulsecare.backend.module.specialization.model.Specialization</node>
+    <node x="616.5" y="6162.5">com.pulsecare.backend.module.patient_admission.model.PatientAdmission</node>
+    <node x="1865.5" y="7262.5">com.pulsecare.backend.module.triage.dto.TriageReqDTO</node>
+    <node x="10815.5" y="13386.5">com.pulsecare.backend.module.specialization.controller.SpecializationControllerImpl</node>
+    <node x="1758.0" y="8306.5">com.pulsecare.backend.module.role.dto.RoleReqDto</node>
+    <node x="1620.0" y="7526.5">com.pulsecare.backend.module.resource.department.dto.DeptRequestDTO</node>
+    <node x="14176.0" y="11673.5">com.pulsecare.backend.module.authentication.service.AuthenticationService</node>
+    <node x="3977.0" y="8853.5">com.pulsecare.backend.common.base.service.DeletableService</node>
+    <node x="13710.0" y="8841.5">com.pulsecare.backend.common.base.service.FindableService</node>
+    <node x="1299.5" y="8090.5">com.pulsecare.backend.module.prescription.dto.PrescriptionDetailResDTO</node>
+    <node x="5171.5" y="9733.5">com.pulsecare.backend.module.patient_queue.service.PatientQueueService</node>
+    <node x="2293.5" y="9733.5">com.pulsecare.backend.common.base.controller.DeletableController</node>
+    <node x="9893.0" y="8853.5">com.pulsecare.backend.common.base.service.SavableService</node>
+    <node x="13172.5" y="9914.5">com.pulsecare.backend.module.authentication.model.PrincipleUserDetails</node>
+    <node x="1575.5" y="4462.5">com.pulsecare.backend.module.role.model.Role</node>
+    <node x="9077.0" y="9989.5">com.pulsecare.backend.module.resource.ward.repository.WardRepository</node>
+    <node x="5723.5" y="12970.5">com.pulsecare.backend.module.patient.controller.PatientControllerImpl</node>
+    <node x="10096.5" y="10001.5">com.pulsecare.backend.module.resource.department.mapper.DepartmentMapper</node>
+    <node x="1348.0" y="5062.5">com.pulsecare.backend.module.doctor_detail.model.DoctorDetail</node>
+    <node x="7146.5" y="10031.0">com.pulsecare.backend.module.patient_queue.repository.PatientQueueRepository</node>
+    <node x="10458.5" y="9989.5">com.pulsecare.backend.module.resource.ward.maper.WardMapper</node>
+    <node x="13778.0" y="12213.5">com.pulsecare.backend.module.authentication.controller.AuthenticationController</node>
+    <node x="6695.0" y="13066.5">com.pulsecare.backend.config.OpenApiConfig</node>
+    <node x="3401.5" y="13398.5">com.pulsecare.backend.module.resource.bed.dto.BedReqDTO</node>
+    <node x="415.0" y="12231.0">com.pulsecare.backend.module.resource.department.contoller.DepartmentController</node>
+    <node x="2978.5" y="13044.0">com.pulsecare.backend.config.WebSecurityConfig</node>
+    <node x="5389.5" y="9989.5">com.pulsecare.backend.module.prescription.service.PrescriptionService</node>
+    <node x="1257.5" y="5702.5">com.pulsecare.backend.module.prescription.enums.PrescriptionType</node>
+    <node x="6874.0" y="12066.5">com.pulsecare.backend.module.patient_queue.service.PatientQueueServiceImpl</node>
+    <node x="14458.0" y="12201.5">com.pulsecare.backend.module.specialization.mapper.SpecializationMapper</node>
+    <node x="-36.0" y="10001.5">com.pulsecare.backend.common.base.controller.FindableController</node>
+    <node x="2679.5" y="9709.5">com.pulsecare.backend.module.resource.bed.BedService</node>
+    <node x="2764.5" y="13398.5">com.pulsecare.backend.module.doctor_detail.dto.DoctorDetailReqDto</node>
+    <node x="11688.0" y="9953.5">com.pulsecare.backend.module.user.service.UserService</node>
+    <node x="12098.5" y="9977.5">com.pulsecare.backend.module.user.repository.UserRepository</node>
+    <node x="12846.5" y="13410.5">com.pulsecare.backend.module.authentication.service.AuthenticationServiceImpl</node>
+    <node x="8885.0" y="12114.5">com.pulsecare.backend.module.resource.ward.service.WardServiceImpl</node>
+    <node x="8933.0" y="9733.5">com.pulsecare.backend.common.exception.ValidationException</node>
+    <node x="5161.5" y="13398.5">com.pulsecare.backend.module.patient_queue.controller.PatientQueueControllerImpl</node>
+    <node x="1570.0" y="5910.5">com.pulsecare.backend.module.user.model.Users</node>
+    <node x="8235.5" y="12102.5">com.pulsecare.backend.module.role.service.RoleServiceImpl</node>
+    <node x="5053.0" y="11502.5">com.pulsecare.backend.module.patient_admission.service.PatientAdmissionServiceImpl</node>
+    <node x="10410.0" y="12126.5">com.pulsecare.backend.module.resource.department.service.DepartmentServiceImpl</node>
+    <node x="1079.5" y="7358.5">com.pulsecare.backend.module.user.dto.UserRequestDTO</node>
+    <node x="-150.5" y="3238.5">com.pulsecare.backend.module.patient_queue.enums.QueueStatus</node>
+    <node x="8539.0" y="11660.0">com.pulsecare.backend.module.patient_queue.utils.PatientQueueUtils</node>
+    <node x="11848.0" y="12066.5">com.pulsecare.backend.module.user.service.UserServiceImpl</node>
+    <node x="9865.5" y="9721.5">com.pulsecare.backend.module.role.service.RoleService</node>
+    <node x="6875.0" y="13374.5">com.pulsecare.backend.module.prescription.controller.PrescriptionControllerImpl</node>
+    <node x="7288.5" y="9709.5">com.pulsecare.backend.module.prescription.mapper.PrescriptionItemMapper</node>
+    <node x="3319.5" y="9658.5">com.pulsecare.backend.module.triage.config.MLClientConfig</node>
+    <node x="5335.0" y="11994.5">com.pulsecare.backend.module.prescription.dto.PrescriptionSummaryResDTO</node>
+    <node x="6371.0" y="12126.5">com.pulsecare.backend.common.template.response.ErrorResponseBody</node>
+    <node x="6208.5" y="13386.5">com.pulsecare.backend.module.triage.controller.TriageControllerImpl</node>
+    <node x="12927.5" y="12138.5">com.pulsecare.backend.module.doctor_detail.facade.DoctorDetailFacade</node>
+    <node x="2120.0" y="10013.5">com.pulsecare.backend.common.base.controller.UpdatableController</node>
+    <node x="3449.0" y="9953.5">com.pulsecare.backend.module.triage.mapper.TriageMapper</node>
+    <node x="4283.5" y="10013.5">com.pulsecare.backend.module.resource.bed.repository.BedRepository</node>
+    <node x="720.0" y="12201.5">com.pulsecare.backend.module.resource.bed.controller.BedController</node>
+    <node x="13448.5" y="9721.5">com.pulsecare.backend.module.doctor_detail.repository.DoctorDetailRepository</node>
+    <node x="2483.5" y="12946.5">com.pulsecare.backend.module.resource.bed.dto.BedResDTO</node>
+    <node x="10678.5" y="9721.5">com.pulsecare.backend.module.role.mapper.RoleMapper</node>
+    <node x="8786.5" y="13362.5">com.pulsecare.backend.module.resource.ward.controller.WardControllerImpl</node>
+    <node x="8237.0" y="12994.5">com.pulsecare.backend.module.resource.department.contoller.DepartmentControllerImpl</node>
+    <node x="2006.5" y="13326.5">com.pulsecare.backend.module.patient_admission.dto.PatientAdmissionReqDTO</node>
+    <node x="-152.0" y="12213.5">com.pulsecare.backend.module.triage.controller.TriageController</node>
+    <node x="10808.5" y="10013.5">com.pulsecare.backend.module.role.repository.RoleRepository</node>
+    <node x="9298.5" y="13018.5">com.pulsecare.backend.module.role.controller.RoleControllerImpl</node>
+    <node x="1768.5" y="12994.5">com.pulsecare.backend.module.doctor_detail.dto.DoctorDetailResDto</node>
+    <node x="3036.5" y="11673.5">com.pulsecare.backend.module.patient_admission.controller.PatientAdmissionController</node>
+    <node x="10799.0" y="12126.5">com.pulsecare.backend.module.specialization.service.SpecializationServiceImpl</node>
+    <node x="383.5" y="-13.5">com.pulsecare.backend.module.patient.model.Patient</node>
+    <node x="5892.5" y="12066.5">com.pulsecare.backend.module.triage.service.TriageServiceImpl</node>
+    <node x="226.5" y="12994.5">com.pulsecare.backend.module.specialization.dto.SpecializationResDTO</node>
+    <node x="11903.0" y="9709.5">com.pulsecare.backend.module.user.mapper.UserMapper</node>
+    <node x="6545.0" y="9986.5">com.pulsecare.backend.module.patient_queue.ws.PatientQueueEventPublisher</node>
+    <node x="6.5" y="13448.0">com.pulsecare.backend.config.WebSocketConfig</node>
+    <node x="10301.0" y="12946.5">com.pulsecare.backend.module.user.controller.UserControllerImpl</node>
+    <node x="474.5" y="13338.5">com.pulsecare.backend.module.patient_queue.ws.PatientQueueEvent</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.pulsecare.backend.module.patient.service.PatientServiceImpl" target="com.pulsecare.backend.module.patient.mapper.PatientMapper" relationship="TO_ONE">
+      <point x="-129.33333333333331" y="-178.5" />
+      <point x="4774.666666666667" y="11425.0" />
+      <point x="3204.0" y="11425.0" />
+      <point x="3204.0" y="10745.0" />
+      <point x="2604.0" y="10745.0" />
+      <point x="0.0" y="55.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.patient_queue.ws.PatientQueueEvent" target="com.pulsecare.backend.module.patient_queue.ws.PatientQueueEventType" relationship="TO_ONE">
+      <point x="0.0" y="-166.5" />
+      <point x="0.0" y="94.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.patient_queue.service.PatientQueueServiceImpl" target="com.pulsecare.backend.module.patient_queue.mapper.PatientQueueMapper" relationship="TO_ONE">
+      <point x="0.0" y="-178.5" />
+      <point x="7084.0" y="10125.0" />
+      <point x="6524.0" y="10125.0" />
+      <point x="0.0" y="67.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.authentication.controller.AuthenticationControllerImpl" target="com.pulsecare.backend.module.authentication.controller.AuthenticationController" relationship="REALIZATION">
+      <point x="0.0" y="-70.5" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.user.controller.UserControllerImpl" target="com.pulsecare.backend.common.template.response.ResponseBody" relationship="CREATE">
+      <point x="0.0" y="-178.5" />
+      <point x="10604.0" y="12845.0" />
+      <point x="6744.0" y="12845.0" />
+      <point x="0.0" y="142.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.prescription.model.Prescription" target="com.pulsecare.backend.module.prescription.enums.PrescriptionType" relationship="TO_ONE">
+      <point x="0.0" y="-418.5" />
+      <point x="1064.0" y="7205.0" />
+      <point x="1384.0" y="7205.0" />
+      <point x="0.0" y="82.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.resource.department.service.DepartmentServiceImpl" target="com.pulsecare.backend.module.resource.department.service.DepartmentService" relationship="REALIZATION">
+      <point x="116.0" y="-118.5" />
+      <point x="10700.0" y="11245.0" />
+      <point x="11268.25" y="11245.0" />
+      <point x="84.25" y="43.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.patient.controller.PatientControllerImpl" target="com.pulsecare.backend.common.template.response.ResponseBody" relationship="CREATE">
+      <point x="187.0" y="-154.5" />
+      <point x="6191.0" y="12845.0" />
+      <point x="6744.0" y="12845.0" />
+      <point x="0.0" y="142.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.patient.service.PatientService" target="com.pulsecare.backend.common.base.service.FindableService" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-79.5" />
+      <point x="4084.0" y="9485.0" />
+      <point x="13824.0" y="9485.0" />
+      <point x="0.0" y="43.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.doctor_detail.service.DoctorDetailServiceImpl" target="com.pulsecare.backend.module.doctor_detail.service.DoctorDetailService" relationship="REALIZATION">
+      <point x="118.0" y="-130.5" />
+      <point x="12822.0" y="11585.0" />
+      <point x="13912.5" y="11585.0" />
+      <point x="88.5" y="55.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.doctor_detail.controller.DoctorDetailController" target="com.pulsecare.backend.common.base.controller.UpdatableController" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-31.5" />
+      <point x="3004.0" y="11665.0" />
+      <point x="2764.0" y="11665.0" />
+      <point x="2764.0" y="10925.0" />
+      <point x="2264.0" y="10925.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.resource.ward.service.WardService" target="com.pulsecare.backend.common.base.service.DeletableService" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-55.5" />
+      <point x="8404.0" y="9685.0" />
+      <point x="10084.0" y="9685.0" />
+      <point x="10084.0" y="9185.0" />
+      <point x="4084.0" y="9185.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.prescription.controller.PrescriptionController" target="com.pulsecare.backend.common.base.controller.UpdatableController" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-43.5" />
+      <point x="2044.0" y="11625.0" />
+      <point x="2264.0" y="11625.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.patient_queue.service.PatientQueueServiceImpl" target="com.pulsecare.backend.common.exception.ResourceNotFoundException" relationship="CREATE">
+      <point x="140.0" y="-178.5" />
+      <point x="7224.0" y="11325.0" />
+      <point x="8964.0" y="11325.0" />
+      <point x="8964.0" y="11025.0" />
+      <point x="8364.0" y="11025.0" />
+      <point x="8364.0" y="10125.0" />
+      <point x="8664.0" y="10125.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.resource.bed.controller.BedControllerImpl" target="com.pulsecare.backend.common.template.response.ResponseBody" relationship="CREATE">
+      <point x="216.0" y="-130.5" />
+      <point x="4100.0" y="12845.0" />
+      <point x="6744.0" y="12845.0" />
+      <point x="0.0" y="142.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.resource.ward.service.WardService" target="com.pulsecare.backend.common.base.service.SavableService" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-55.5" />
+      <point x="8404.0" y="9685.0" />
+      <point x="10084.0" y="9685.0" />
+      <point x="10084.0" y="9085.0" />
+      <point x="10004.0" y="9085.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.resource.department.facade.DepartmentFacade" target="com.pulsecare.backend.module.resource.department.service.DepartmentService" relationship="TO_ONE">
+      <point x="115.25" y="-82.5" />
+      <point x="9759.25" y="12105.0" />
+      <point x="9764.0" y="12105.0" />
+      <point x="9764.0" y="10445.0" />
+      <point x="10524.0" y="10445.0" />
+      <point x="10524.0" y="10125.0" />
+      <point x="11099.75" y="10125.0" />
+      <point x="-84.25" y="43.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.triage.service.TriageServiceImpl" target="com.pulsecare.backend.common.exception.ResourceNotFoundException" relationship="CREATE">
+      <point x="141.0" y="-178.5" />
+      <point x="6245.0" y="10305.0" />
+      <point x="8364.0" y="10305.0" />
+      <point x="8364.0" y="10125.0" />
+      <point x="8664.0" y="10125.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.patient_queue.controller.PatientQueueControllerImpl" target="com.pulsecare.backend.module.patient_queue.controller.PatientQueueController" relationship="REALIZATION">
+      <point x="-215.0" y="-106.5" />
+      <point x="5269.0" y="12825.0" />
+      <point x="384.0" y="12825.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.resource.ward.model.Ward" target="com.pulsecare.backend.module.resource.bed.model.Bed" relationship="TO_MANY">
+      <point x="0.0" y="-346.5" />
+      <point x="1044.0" y="2965.0" />
+      <point x="804.0" y="2965.0" />
+      <point x="804.0" y="4945.0" />
+      <point x="904.0" y="4945.0" />
+      <point x="0.0" y="-274.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.patient_admission.controller.PatientAdmissionControllerImpl" target="com.pulsecare.backend.module.patient_admission.service.PatientAdmissionService" relationship="TO_ONE">
+      <point x="0.0" y="-118.5" />
+      <point x="7784.0" y="12625.0" />
+      <point x="5864.0" y="12625.0" />
+      <point x="5864.0" y="11325.0" />
+      <point x="6004.0" y="11325.0" />
+      <point x="6004.0" y="9845.0" />
+      <point x="5995.75" y="9845.0" />
+      <point x="71.75" y="43.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.doctor_detail.controller.DoctorDetailControllerImpl" target="com.pulsecare.backend.module.doctor_detail.facade.DoctorDetailFacade" relationship="TO_ONE">
+      <point x="207.66666666666669" y="-142.5" />
+      <point x="10271.666666666666" y="12865.0" />
+      <point x="13664.0" y="12865.0" />
+      <point x="13664.0" y="12365.0" />
+      <point x="12904.0" y="12365.0" />
+      <point x="12904.0" y="12105.0" />
+      <point x="13164.0" y="12105.0" />
+      <point x="0.0" y="-106.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.user.controller.UserController" target="com.pulsecare.backend.common.base.controller.CreatableController" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-67.5" />
+      <point x="3584.0" y="11645.0" />
+      <point x="3164.0" y="11645.0" />
+      <point x="3164.0" y="10825.0" />
+      <point x="384.0" y="10825.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.patient_admission.service.PatientAdmissionServiceImpl" target="com.pulsecare.backend.module.patient_admission.repository.PatientAdmissionRepository" relationship="TO_ONE">
+      <point x="-154.0" y="-202.5" />
+      <point x="5130.0" y="11465.0" />
+      <point x="4984.0" y="11465.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.resource.ward.service.WardServiceImpl" target="com.pulsecare.backend.module.resource.ward.repository.WardRepository" relationship="TO_ONE">
+      <point x="159.33333333333331" y="-130.5" />
+      <point x="9283.333333333334" y="11265.0" />
+      <point x="9304.0" y="11265.0" />
+      <point x="0.0" y="55.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.resource.ward.controller.WardControllerImpl" target="com.pulsecare.backend.module.resource.ward.controller.WardController" relationship="REALIZATION">
+      <point x="-198.33333333333331" y="-142.5" />
+      <point x="8885.666666666666" y="12645.0" />
+      <point x="2404.0" y="12645.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.specialization.controller.SpecializationControllerImpl" target="com.pulsecare.backend.module.specialization.service.SpecializationService" relationship="TO_ONE">
+      <point x="219.0" y="-118.5" />
+      <point x="11363.0" y="12885.0" />
+      <point x="13704.0" y="12885.0" />
+      <point x="13704.0" y="11385.0" />
+      <point x="13164.0" y="11385.0" />
+      <point x="13164.0" y="10205.0" />
+      <point x="11547.75" y="10205.0" />
+      <point x="83.75" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.resource.bed.BedServiceImpl" target="com.pulsecare.backend.module.resource.bed.repository.BedRepository" relationship="TO_ONE">
+      <point x="0.0" y="-178.5" />
+      <point x="4164.0" y="12045.0" />
+      <point x="4264.0" y="12045.0" />
+      <point x="4264.0" y="10105.0" />
+      <point x="4484.0" y="10105.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.patient_admission.service.PatientAdmissionServiceImpl" target="com.pulsecare.backend.module.resource.ward.service.WardService" relationship="TO_ONE">
+      <point x="-154.0" y="-202.5" />
+      <point x="5130.0" y="11465.0" />
+      <point x="4984.0" y="11465.0" />
+      <point x="4984.0" y="10265.0" />
+      <point x="7464.0" y="10265.0" />
+      <point x="7464.0" y="10205.0" />
+      <point x="8284.5" y="10205.0" />
+      <point x="-119.5" y="55.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.patient_admission.controller.PatientAdmissionControllerImpl" target="com.pulsecare.backend.common.template.response.ResponseBody" relationship="CREATE">
+      <point x="229.66666666666669" y="-118.5" />
+      <point x="8013.666666666666" y="12845.0" />
+      <point x="6744.0" y="12845.0" />
+      <point x="0.0" y="142.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.patient_admission.service.PatientAdmissionService" target="com.pulsecare.backend.common.base.service.FindableService" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-43.5" />
+      <point x="5924.0" y="9545.0" />
+      <point x="13824.0" y="9545.0" />
+      <point x="0.0" y="43.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.user.facade.UserFacade" target="com.pulsecare.backend.module.user.service.UserService" relationship="TO_ONE">
+      <point x="0.0" y="-106.5" />
+      <point x="11444.0" y="12085.0" />
+      <point x="11744.0" y="12085.0" />
+      <point x="11744.0" y="11425.0" />
+      <point x="11784.0" y="11425.0" />
+      <point x="11784.0" y="10165.0" />
+      <point x="11776.0" y="10165.0" />
+      <point x="-88.0" y="91.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.triage.controller.TriageController" target="com.pulsecare.backend.common.base.controller.DeletableController" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-31.5" />
+      <point x="104.0" y="11405.0" />
+      <point x="2424.0" y="11405.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.resource.department.contoller.DepartmentControllerImpl" target="com.pulsecare.backend.common.template.response.ResponseBody" relationship="CREATE">
+      <point x="0.0" y="-130.5" />
+      <point x="8544.0" y="12845.0" />
+      <point x="6744.0" y="12845.0" />
+      <point x="0.0" y="142.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.triage.service.TriageService" target="com.pulsecare.backend.common.base.service.DeletableService" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-43.5" />
+      <point x="7044.0" y="9265.0" />
+      <point x="4084.0" y="9265.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.patient_queue.controller.PatientQueueController" target="com.pulsecare.backend.common.base.controller.CreatableController" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.role.service.RoleService" target="com.pulsecare.backend.common.base.service.DeletableService" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-43.5" />
+      <point x="10004.0" y="9225.0" />
+      <point x="4084.0" y="9225.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.patient.controller.PatientControllerImpl" target="com.pulsecare.backend.module.patient.service.PatientService" relationship="TO_ONE">
+      <point x="0.0" y="-154.5" />
+      <point x="6004.0" y="12745.0" />
+      <point x="3924.0" y="12745.0" />
+      <point x="3924.0" y="11345.0" />
+      <point x="3964.0" y="11345.0" />
+      <point x="3964.0" y="10145.0" />
+      <point x="4163.0" y="10145.0" />
+      <point x="79.0" y="79.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.resource.ward.service.WardServiceImpl" target="com.pulsecare.backend.module.resource.ward.service.WardService" relationship="REALIZATION">
+      <point x="0.0" y="-130.5" />
+      <point x="9124.0" y="11005.0" />
+      <point x="8523.5" y="11005.0" />
+      <point x="119.5" y="55.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.prescription.service.PrescriptionServiceImpl" target="com.pulsecare.backend.module.patient_queue.service.PatientQueueService" relationship="TO_ONE">
+      <point x="0.0" y="-262.5" />
+      <point x="7484.0" y="11405.0" />
+      <point x="7504.0" y="11405.0" />
+      <point x="7504.0" y="10585.0" />
+      <point x="5324.0" y="10585.0" />
+      <point x="5324.0" y="9825.0" />
+      <point x="5237.75" y="9825.0" />
+      <point x="-66.25" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.resource.bed.controller.BedControllerImpl" target="com.pulsecare.backend.module.resource.bed.BedService" relationship="TO_ONE">
+      <point x="0.0" y="-130.5" />
+      <point x="3884.0" y="10165.0" />
+      <point x="2986.25" y="10165.0" />
+      <point x="102.25" y="55.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.resource.bed.BedService" target="com.pulsecare.backend.common.base.service.FindableService" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-55.5" />
+      <point x="2884.0" y="9645.0" />
+      <point x="13824.0" y="9645.0" />
+      <point x="0.0" y="43.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.doctor_detail.service.DoctorDetailService" target="com.pulsecare.backend.common.base.service.FindableService" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-55.5" />
+      <point x="0.0" y="43.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.resource.ward.controller.WardControllerImpl" target="com.pulsecare.backend.module.resource.ward.service.WardService" relationship="TO_ONE">
+      <point x="198.33333333333331" y="-142.5" />
+      <point x="9282.333333333334" y="13005.0" />
+      <point x="9904.0" y="13005.0" />
+      <point x="9904.0" y="12405.0" />
+      <point x="7744.0" y="12405.0" />
+      <point x="7744.0" y="10505.0" />
+      <point x="7464.0" y="10505.0" />
+      <point x="7464.0" y="10205.0" />
+      <point x="8284.5" y="10205.0" />
+      <point x="-119.5" y="55.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.doctor_detail.facade.DoctorDetailFacade" target="com.pulsecare.backend.module.user.service.UserService" relationship="TO_ONE">
+      <point x="0.0" y="-106.5" />
+      <point x="13164.0" y="11485.0" />
+      <point x="11784.0" y="11485.0" />
+      <point x="11784.0" y="10165.0" />
+      <point x="11776.0" y="10165.0" />
+      <point x="-88.0" y="91.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.doctor_detail.controller.DoctorDetailController" target="com.pulsecare.backend.common.base.controller.FindableController" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-31.5" />
+      <point x="3004.0" y="11665.0" />
+      <point x="2764.0" y="11665.0" />
+      <point x="2764.0" y="11025.0" />
+      <point x="104.0" y="11025.0" />
+      <point x="0.0" y="43.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.prescription.service.PrescriptionService" target="com.pulsecare.backend.common.base.service.UpdatableService" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-55.5" />
+      <point x="5604.0" y="9385.0" />
+      <point x="2884.0" y="9385.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.patient_admission.controller.PatientAdmissionController" target="com.pulsecare.backend.common.base.controller.DeletableController" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-31.5" />
+      <point x="3284.0" y="11405.0" />
+      <point x="3124.0" y="11405.0" />
+      <point x="3124.0" y="10805.0" />
+      <point x="2424.0" y="10805.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.resource.ward.facade.WardFacade" target="com.pulsecare.backend.module.resource.ward.service.WardService" relationship="TO_ONE">
+      <point x="108.25" y="-94.5" />
+      <point x="10252.25" y="12105.0" />
+      <point x="10524.0" y="12105.0" />
+      <point x="10524.0" y="10485.0" />
+      <point x="7464.0" y="10485.0" />
+      <point x="7464.0" y="10205.0" />
+      <point x="8284.5" y="10205.0" />
+      <point x="-119.5" y="55.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.resource.department.facade.DepartmentFacade" target="com.pulsecare.backend.common.exception.ValidationException" relationship="CREATE">
+      <point x="-115.25" y="-82.5" />
+      <point x="9528.75" y="11625.0" />
+      <point x="9044.0" y="11625.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.resource.department.contoller.DepartmentController" target="com.pulsecare.backend.common.base.controller.FindableController" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="524.0" y="11325.0" />
+      <point x="104.0" y="11325.0" />
+      <point x="0.0" y="43.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.prescription.model.Prescription" target="com.pulsecare.backend.module.patient_queue.model.PatientQueue" relationship="TO_ONE">
+      <point x="0.0" y="-418.5" />
+      <point x="1064.0" y="7205.0" />
+      <point x="584.0" y="7205.0" />
+      <point x="584.0" y="4885.0" />
+      <point x="104.0" y="4885.0" />
+      <point x="0.0" y="-358.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.prescription.controller.PrescriptionControllerImpl" target="com.pulsecare.backend.common.template.response.ResponseBody" relationship="CREATE">
+      <point x="219.33333333333331" y="-130.5" />
+      <point x="7423.333333333333" y="12845.0" />
+      <point x="6744.0" y="12845.0" />
+      <point x="0.0" y="142.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.user.facade.UserFacade" target="com.pulsecare.backend.module.role.service.RoleService" relationship="TO_ONE">
+      <point x="0.0" y="-106.5" />
+      <point x="11444.0" y="12085.0" />
+      <point x="11744.0" y="12085.0" />
+      <point x="11744.0" y="10265.0" />
+      <point x="11704.0" y="10265.0" />
+      <point x="11704.0" y="10225.0" />
+      <point x="10073.25" y="10225.0" />
+      <point x="69.25" y="43.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.user.service.UserService" target="com.pulsecare.backend.common.base.service.DeletableService" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-91.5" />
+      <point x="11864.0" y="9145.0" />
+      <point x="4084.0" y="9145.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.patient_admission.service.PatientAdmissionServiceImpl" target="com.pulsecare.backend.module.prescription.repository.PrescriptionRepository" relationship="TO_ONE">
+      <point x="-154.0" y="-202.5" />
+      <point x="5130.0" y="11465.0" />
+      <point x="4984.0" y="11465.0" />
+      <point x="4984.0" y="10245.0" />
+      <point x="6264.0" y="10245.0" />
+      <point x="0.0" y="43.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.patient_queue.model.PatientQueue" target="com.pulsecare.backend.module.triage.model.Triage" relationship="TO_ONE">
+      <point x="0.0" y="-358.5" />
+      <point x="104.0" y="4405.0" />
+      <point x="544.0" y="4405.0" />
+      <point x="544.0" y="2285.0" />
+      <point x="324.0" y="2285.0" />
+      <point x="0.0" y="-1030.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.authentication.controller.AuthenticationControllerImpl" target="com.pulsecare.backend.module.authentication.service.AuthenticationService" relationship="TO_ONE">
+      <point x="185.0" y="-70.5" />
+      <point x="14189.0" y="12965.0" />
+      <point x="14428.0" y="12965.0" />
+      <point x="84.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.resource.bed.BedServiceImpl" target="com.pulsecare.backend.module.resource.ward.service.WardService" relationship="TO_ONE">
+      <point x="0.0" y="-178.5" />
+      <point x="4164.0" y="12045.0" />
+      <point x="4264.0" y="12045.0" />
+      <point x="4264.0" y="10225.0" />
+      <point x="7464.0" y="10225.0" />
+      <point x="7464.0" y="10205.0" />
+      <point x="8284.5" y="10205.0" />
+      <point x="-119.5" y="55.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.patient_admission.controller.PatientAdmissionController" target="com.pulsecare.backend.common.base.controller.UpdatableController" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-31.5" />
+      <point x="3284.0" y="11405.0" />
+      <point x="3124.0" y="11405.0" />
+      <point x="3124.0" y="10845.0" />
+      <point x="2264.0" y="10845.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.patient_admission.service.PatientAdmissionServiceImpl" target="com.pulsecare.backend.module.patient_admission.mapper.PatientAdmissionMapper" relationship="TO_ONE">
+      <point x="-154.0" y="-202.5" />
+      <point x="5130.0" y="11465.0" />
+      <point x="4984.0" y="11465.0" />
+      <point x="4984.0" y="10645.0" />
+      <point x="4724.0" y="10645.0" />
+      <point x="0.0" y="55.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.resource.bed.controller.BedController" target="com.pulsecare.backend.common.base.controller.UpdatableController" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-43.5" />
+      <point x="1044.0" y="11485.0" />
+      <point x="2264.0" y="11485.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.patient_admission.service.PatientAdmissionService" target="com.pulsecare.backend.common.base.service.DeletableService" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-43.5" />
+      <point x="5924.0" y="9285.0" />
+      <point x="4084.0" y="9285.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.resource.department.contoller.DepartmentController" target="com.pulsecare.backend.common.base.controller.UpdatableController" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="524.0" y="11445.0" />
+      <point x="2264.0" y="11445.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.patient.controller.PatientController" target="com.pulsecare.backend.common.base.controller.UpdatableController" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-67.5" />
+      <point x="1684.0" y="11585.0" />
+      <point x="2264.0" y="11585.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.prescription.model.PrescriptionItem" target="com.pulsecare.backend.module.prescription.model.Prescription" relationship="TO_ONE">
+      <point x="0.0" y="310.5" />
+      <point x="364.0" y="7925.0" />
+      <point x="1064.0" y="7925.0" />
+      <point x="0.0" y="-418.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.prescription.model.Prescription" target="com.pulsecare.backend.module.prescription.enums.PrescriptionStatus" relationship="TO_ONE">
+      <point x="0.0" y="-418.5" />
+      <point x="1064.0" y="7205.0" />
+      <point x="1224.0" y="7205.0" />
+      <point x="0.0" y="94.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.doctor_detail.service.DoctorDetailServiceImpl" target="com.pulsecare.backend.common.exception.ResourceAlreadyExistsException" relationship="CREATE">
+      <point x="-118.0" y="-130.5" />
+      <point x="12586.0" y="11545.0" />
+      <point x="8924.0" y="11545.0" />
+      <point x="8924.0" y="11045.0" />
+      <point x="8864.0" y="11045.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.patient_admission.model.PatientAdmission" target="com.pulsecare.backend.module.resource.bed.model.Bed" relationship="TO_ONE">
+      <point x="0.0" y="-382.5" />
+      <point x="824.0" y="6105.0" />
+      <point x="664.0" y="6105.0" />
+      <point x="664.0" y="4965.0" />
+      <point x="904.0" y="4965.0" />
+      <point x="0.0" y="-274.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.role.service.RoleService" target="com.pulsecare.backend.common.base.service.FindableService" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-43.5" />
+      <point x="10004.0" y="9665.0" />
+      <point x="13824.0" y="9665.0" />
+      <point x="0.0" y="43.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.resource.bed.BedService" target="com.pulsecare.backend.common.base.service.UpdatableService" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-55.5" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.role.controller.RoleControllerImpl" target="com.pulsecare.backend.module.role.controller.RoleController" relationship="REALIZATION">
+      <point x="-177.0" y="-106.5" />
+      <point x="9387.0" y="12605.0" />
+      <point x="2724.0" y="12605.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.resource.department.contoller.DepartmentControllerImpl" target="com.pulsecare.backend.module.resource.department.facade.DepartmentFacade" relationship="TO_ONE">
+      <point x="204.66666666666669" y="-130.5" />
+      <point x="8748.666666666666" y="12885.0" />
+      <point x="10384.0" y="12885.0" />
+      <point x="10384.0" y="12385.0" />
+      <point x="9384.0" y="12385.0" />
+      <point x="9384.0" y="12125.0" />
+      <point x="9759.25" y="12125.0" />
+      <point x="115.25" y="-82.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.specialization.service.SpecializationService" target="com.pulsecare.backend.common.base.service.UpdatableService" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-31.5" />
+      <point x="11464.0" y="9705.0" />
+      <point x="10044.0" y="9705.0" />
+      <point x="10044.0" y="9605.0" />
+      <point x="2884.0" y="9605.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.triage.service.TriageServiceImpl" target="com.pulsecare.backend.module.triage.config.MLClientConfig" relationship="TO_ONE">
+      <point x="-141.0" y="-178.5" />
+      <point x="5963.0" y="11405.0" />
+      <point x="3924.0" y="11405.0" />
+      <point x="3924.0" y="11385.0" />
+      <point x="3424.0" y="11385.0" />
+      <point x="0.0" y="106.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.prescription.controller.PrescriptionController" target="com.pulsecare.backend.common.base.controller.DeletableController" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-43.5" />
+      <point x="2044.0" y="11645.0" />
+      <point x="2424.0" y="11645.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.role.controller.RoleControllerImpl" target="com.pulsecare.backend.common.template.response.ResponseBody" relationship="CREATE">
+      <point x="0.0" y="-106.5" />
+      <point x="9564.0" y="12845.0" />
+      <point x="6744.0" y="12845.0" />
+      <point x="0.0" y="142.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.resource.bed.controller.BedController" target="com.pulsecare.backend.common.base.controller.CreatableController" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-43.5" />
+      <point x="1044.0" y="11265.0" />
+      <point x="384.0" y="11265.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.doctor_detail.model.DoctorDetail" target="com.pulsecare.backend.module.user.model.Users" relationship="TO_ONE">
+      <point x="0.0" y="-202.5" />
+      <point x="1544.0" y="4445.0" />
+      <point x="1984.0" y="4445.0" />
+      <point x="1984.0" y="5665.0" />
+      <point x="1764.0" y="5665.0" />
+      <point x="0.0" y="-634.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.user.model.Users" target="com.pulsecare.backend.module.doctor_detail.model.DoctorDetail" relationship="TO_ONE">
+      <point x="0.0" y="-634.5" />
+      <point x="1764.0" y="5685.0" />
+      <point x="1324.0" y="5685.0" />
+      <point x="1324.0" y="5025.0" />
+      <point x="1544.0" y="5025.0" />
+      <point x="0.0" y="-202.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.doctor_detail.controller.DoctorDetailController" target="com.pulsecare.backend.common.base.controller.DeletableController" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-31.5" />
+      <point x="3004.0" y="11665.0" />
+      <point x="2764.0" y="11665.0" />
+      <point x="2764.0" y="10865.0" />
+      <point x="2424.0" y="10865.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.patient_queue.utils.PatientQueueUtils" target="com.pulsecare.backend.common.exception.ValidationException" relationship="CREATE">
+      <point x="0.0" y="-45.0" />
+      <point x="8744.0" y="11625.0" />
+      <point x="9044.0" y="11625.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.patient_admission.service.PatientAdmissionServiceImpl" target="com.pulsecare.backend.module.patient_admission.service.PatientAdmissionService" relationship="REALIZATION">
+      <point x="0.0" y="-202.5" />
+      <point x="5284.0" y="11285.0" />
+      <point x="5852.25" y="11285.0" />
+      <point x="-71.75" y="43.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.patient_admission.service.PatientAdmissionServiceImpl" target="com.pulsecare.backend.common.exception.ResourceNotFoundException" relationship="CREATE">
+      <point x="154.0" y="-202.5" />
+      <point x="5438.0" y="11345.0" />
+      <point x="8324.0" y="11345.0" />
+      <point x="8324.0" y="11045.0" />
+      <point x="8364.0" y="11045.0" />
+      <point x="8364.0" y="10125.0" />
+      <point x="8664.0" y="10125.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.config.JwtFilter" target="com.pulsecare.backend.module.authentication.utils.JwtUtil" relationship="TO_ONE">
+      <point x="0.0" y="-70.5" />
+      <point x="13624.0" y="12785.0" />
+      <point x="12464.0" y="12785.0" />
+      <point x="12464.0" y="11885.0" />
+      <point x="12324.0" y="11885.0" />
+      <point x="0.0" y="142.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.prescription.service.PrescriptionService" target="com.pulsecare.backend.common.base.service.SavableService" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-55.5" />
+      <point x="5604.0" y="8985.0" />
+      <point x="10004.0" y="8985.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.resource.ward.controller.WardController" target="com.pulsecare.backend.common.base.controller.FindableController" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-31.5" />
+      <point x="2404.0" y="11125.0" />
+      <point x="104.0" y="11125.0" />
+      <point x="0.0" y="43.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.patient_queue.service.PatientQueueServiceImpl" target="com.pulsecare.backend.module.patient_admission.service.PatientAdmissionService" relationship="TO_ONE">
+      <point x="0.0" y="-178.5" />
+      <point x="7084.0" y="10605.0" />
+      <point x="6004.0" y="10605.0" />
+      <point x="6004.0" y="9845.0" />
+      <point x="5995.75" y="9845.0" />
+      <point x="71.75" y="43.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.specialization.controller.SpecializationController" target="com.pulsecare.backend.common.base.controller.DeletableController" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="1384.0" y="11565.0" />
+      <point x="2424.0" y="11565.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.patient_admission.service.PatientAdmissionServiceImpl" target="com.pulsecare.backend.module.patient_queue.service.PatientQueueService" relationship="TO_ONE">
+      <point x="-154.0" y="-202.5" />
+      <point x="5130.0" y="11465.0" />
+      <point x="4984.0" y="11465.0" />
+      <point x="4984.0" y="10105.0" />
+      <point x="5324.0" y="10105.0" />
+      <point x="5324.0" y="9825.0" />
+      <point x="5237.75" y="9825.0" />
+      <point x="-66.25" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.resource.ward.controller.WardControllerImpl" target="com.pulsecare.backend.module.resource.ward.maper.WardMapper" relationship="TO_ONE">
+      <point x="198.33333333333331" y="-142.5" />
+      <point x="9282.333333333334" y="13005.0" />
+      <point x="9904.0" y="13005.0" />
+      <point x="9904.0" y="12405.0" />
+      <point x="11704.0" y="12405.0" />
+      <point x="11704.0" y="10285.0" />
+      <point x="10604.0" y="10285.0" />
+      <point x="0.0" y="55.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.patient_admission.controller.PatientAdmissionControllerImpl" target="com.pulsecare.backend.module.patient_admission.controller.PatientAdmissionController" relationship="REALIZATION">
+      <point x="-229.66666666666674" y="-118.5" />
+      <point x="7554.333333333333" y="12685.0" />
+      <point x="3284.0" y="12685.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.resource.department.service.DepartmentService" target="com.pulsecare.backend.common.base.service.FindableService" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-43.5" />
+      <point x="11184.0" y="9025.0" />
+      <point x="13824.0" y="9025.0" />
+      <point x="0.0" y="43.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.role.service.RoleServiceImpl" target="com.pulsecare.backend.module.role.mapper.RoleMapper" relationship="TO_ONE">
+      <point x="112.33333333333334" y="-142.5" />
+      <point x="8516.333333333334" y="11285.0" />
+      <point x="10784.0" y="11285.0" />
+      <point x="0.0" y="43.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.resource.ward.controller.WardController" target="com.pulsecare.backend.common.base.controller.DeletableController" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-31.5" />
+      <point x="2404.0" y="12185.0" />
+      <point x="2424.0" y="12185.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.user.controller.UserControllerImpl" target="com.pulsecare.backend.module.user.mapper.UserMapper" relationship="TO_ONE">
+      <point x="202.0" y="-178.5" />
+      <point x="10806.0" y="12925.0" />
+      <point x="11784.0" y="12925.0" />
+      <point x="11784.0" y="12425.0" />
+      <point x="11824.0" y="12425.0" />
+      <point x="11824.0" y="11465.0" />
+      <point x="12024.0" y="11465.0" />
+      <point x="12024.0" y="10165.0" />
+      <point x="12064.0" y="10165.0" />
+      <point x="0.0" y="55.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.role.service.RoleServiceImpl" target="com.pulsecare.backend.common.exception.ResourceAlreadyExistsException" relationship="CREATE">
+      <point x="0.0" y="-142.5" />
+      <point x="8404.0" y="11165.0" />
+      <point x="8864.0" y="11165.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.authentication.service.AuthenticationServiceImpl" target="com.pulsecare.backend.module.authentication.dto.LoginResponseDTO" relationship="CREATE">
+      <point x="-145.0" y="-94.5" />
+      <point x="12919.0" y="12905.0" />
+      <point x="9864.0" y="12905.0" />
+      <point x="9864.0" y="12545.0" />
+      <point x="8104.0" y="12545.0" />
+      <point x="0.0" y="106.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.role.service.RoleService" target="com.pulsecare.backend.common.base.service.SavableService" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-43.5" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.resource.department.contoller.DepartmentControllerImpl" target="com.pulsecare.backend.module.resource.department.service.DepartmentService" relationship="TO_ONE">
+      <point x="204.66666666666669" y="-130.5" />
+      <point x="8748.666666666666" y="12885.0" />
+      <point x="10384.0" y="12885.0" />
+      <point x="10384.0" y="12385.0" />
+      <point x="10784.0" y="12385.0" />
+      <point x="10784.0" y="10305.0" />
+      <point x="10524.0" y="10305.0" />
+      <point x="10524.0" y="10125.0" />
+      <point x="11099.75" y="10125.0" />
+      <point x="-84.25" y="43.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.role.service.RoleService" target="com.pulsecare.backend.common.base.service.UpdatableService" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-43.5" />
+      <point x="10004.0" y="9625.0" />
+      <point x="2884.0" y="9625.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.doctor_detail.service.DoctorDetailServiceImpl" target="com.pulsecare.backend.module.doctor_detail.repository.DoctorDetailRepository" relationship="TO_ONE">
+      <point x="0.0" y="-130.5" />
+      <point x="12704.0" y="11445.0" />
+      <point x="13624.0" y="11445.0" />
+      <point x="0.0" y="43.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.patient_queue.controller.PatientQueueControllerImpl" target="com.pulsecare.backend.common.template.response.ResponseBody" relationship="CREATE">
+      <point x="215.0" y="-106.5" />
+      <point x="5699.0" y="12845.0" />
+      <point x="6744.0" y="12845.0" />
+      <point x="0.0" y="142.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.prescription.service.PrescriptionServiceImpl" target="com.pulsecare.backend.common.exception.ResourceNotFoundException" relationship="CREATE">
+      <point x="160.66666666666669" y="-262.5" />
+      <point x="7644.666666666667" y="10305.0" />
+      <point x="8364.0" y="10305.0" />
+      <point x="8364.0" y="10125.0" />
+      <point x="8664.0" y="10125.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.resource.department.service.DepartmentServiceImpl" target="com.pulsecare.backend.common.exception.ResourceNotFoundException" relationship="CREATE">
+      <point x="-116.0" y="-118.5" />
+      <point x="10468.0" y="11605.0" />
+      <point x="8804.0" y="11605.0" />
+      <point x="8804.0" y="11245.0" />
+      <point x="8364.0" y="11245.0" />
+      <point x="8364.0" y="10125.0" />
+      <point x="8664.0" y="10125.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.specialization.controller.SpecializationControllerImpl" target="com.pulsecare.backend.module.specialization.mapper.SpecializationMapper" relationship="TO_ONE">
+      <point x="219.0" y="-118.5" />
+      <point x="11363.0" y="12885.0" />
+      <point x="13704.0" y="12885.0" />
+      <point x="13704.0" y="12825.0" />
+      <point x="14624.0" y="12825.0" />
+      <point x="0.0" y="43.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.doctor_detail.facade.DoctorDetailFacade" target="com.pulsecare.backend.module.specialization.service.SpecializationService" relationship="TO_ONE">
+      <point x="0.0" y="-106.5" />
+      <point x="13164.0" y="10205.0" />
+      <point x="11547.75" y="10205.0" />
+      <point x="83.75" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.resource.ward.model.Ward" target="com.pulsecare.backend.module.resource.department.model.Department" relationship="TO_ONE">
+      <point x="0.0" y="-346.5" />
+      <point x="0.0" y="238.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.specialization.service.SpecializationService" target="com.pulsecare.backend.common.base.service.FindableService" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-31.5" />
+      <point x="11464.0" y="9705.0" />
+      <point x="10044.0" y="9705.0" />
+      <point x="10044.0" y="8965.0" />
+      <point x="13824.0" y="8965.0" />
+      <point x="0.0" y="43.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.resource.ward.service.WardService" target="com.pulsecare.backend.common.base.service.FindableService" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-55.5" />
+      <point x="8404.0" y="9685.0" />
+      <point x="10084.0" y="9685.0" />
+      <point x="10084.0" y="8985.0" />
+      <point x="13824.0" y="8985.0" />
+      <point x="0.0" y="43.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.resource.bed.BedServiceImpl" target="com.pulsecare.backend.common.exception.ResourceNotFoundException" relationship="CREATE">
+      <point x="142.33333333333331" y="-178.5" />
+      <point x="4306.333333333333" y="11385.0" />
+      <point x="8204.0" y="11385.0" />
+      <point x="8204.0" y="10325.0" />
+      <point x="8364.0" y="10325.0" />
+      <point x="8364.0" y="10125.0" />
+      <point x="8664.0" y="10125.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.patient.service.PatientServiceImpl" target="com.pulsecare.backend.common.exception.ResourceNotFoundException" relationship="CREATE">
+      <point x="129.33333333333331" y="-178.5" />
+      <point x="5033.333333333333" y="11365.0" />
+      <point x="8244.0" y="11365.0" />
+      <point x="8244.0" y="10365.0" />
+      <point x="8364.0" y="10365.0" />
+      <point x="8364.0" y="10125.0" />
+      <point x="8664.0" y="10125.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.triage.service.TriageServiceImpl" target="com.pulsecare.backend.module.triage.mapper.TriageMapper" relationship="TO_ONE">
+      <point x="-141.0" y="-178.5" />
+      <point x="5963.0" y="11405.0" />
+      <point x="3924.0" y="11405.0" />
+      <point x="3924.0" y="11385.0" />
+      <point x="3664.0" y="11385.0" />
+      <point x="0.0" y="91.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.specialization.controller.SpecializationControllerImpl" target="com.pulsecare.backend.common.template.response.ResponseBody" relationship="CREATE">
+      <point x="0.0" y="-118.5" />
+      <point x="11144.0" y="12845.0" />
+      <point x="6744.0" y="12845.0" />
+      <point x="0.0" y="142.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.role.service.RoleServiceImpl" target="com.pulsecare.backend.module.role.repository.RoleRepository" relationship="TO_ONE">
+      <point x="112.33333333333334" y="-142.5" />
+      <point x="8516.333333333334" y="11285.0" />
+      <point x="10784.0" y="11285.0" />
+      <point x="10784.0" y="11265.0" />
+      <point x="10944.0" y="11265.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.specialization.controller.SpecializationController" target="com.pulsecare.backend.common.base.controller.FindableController" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="1384.0" y="11245.0" />
+      <point x="104.0" y="11245.0" />
+      <point x="0.0" y="43.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.patient.controller.PatientControllerImpl" target="com.pulsecare.backend.module.patient.controller.PatientController" relationship="REALIZATION">
+      <point x="-187.0" y="-154.5" />
+      <point x="5817.0" y="12765.0" />
+      <point x="1684.0" y="12765.0" />
+      <point x="0.0" y="67.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.resource.ward.service.WardServiceImpl" target="com.pulsecare.backend.common.exception.ResourceNotFoundException" relationship="CREATE">
+      <point x="-159.33333333333331" y="-130.5" />
+      <point x="8964.666666666666" y="11645.0" />
+      <point x="8764.0" y="11645.0" />
+      <point x="8764.0" y="11265.0" />
+      <point x="8364.0" y="11265.0" />
+      <point x="8364.0" y="10125.0" />
+      <point x="8664.0" y="10125.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.advisor.GlobalExceptionHandler" target="com.pulsecare.backend.common.template.response.ErrorResponseBody" relationship="CREATE">
+      <point x="0.0" y="-117.0" />
+      <point x="8164.0" y="12585.0" />
+      <point x="6544.0" y="12585.0" />
+      <point x="0.0" y="118.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.patient_queue.model.PatientQueue" target="com.pulsecare.backend.module.patient_queue.enums.QueuePriority" relationship="TO_ONE">
+      <point x="0.0" y="-358.5" />
+      <point x="0.0" y="94.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.triage.service.TriageServiceImpl" target="com.pulsecare.backend.module.patient.service.PatientService" relationship="TO_ONE">
+      <point x="-141.0" y="-178.5" />
+      <point x="5963.0" y="11405.0" />
+      <point x="3924.0" y="11405.0" />
+      <point x="3924.0" y="11365.0" />
+      <point x="3964.0" y="11365.0" />
+      <point x="3964.0" y="10145.0" />
+      <point x="4163.0" y="10145.0" />
+      <point x="79.0" y="79.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.prescription.model.Prescription" target="com.pulsecare.backend.module.user.model.Users" relationship="TO_ONE">
+      <point x="0.0" y="-418.5" />
+      <point x="1064.0" y="7205.0" />
+      <point x="1984.0" y="7205.0" />
+      <point x="1984.0" y="5885.0" />
+      <point x="1764.0" y="5885.0" />
+      <point x="0.0" y="-634.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.specialization.service.SpecializationServiceImpl" target="com.pulsecare.backend.common.exception.ResourceAlreadyExistsException" relationship="CREATE">
+      <point x="-123.33333333333337" y="-118.5" />
+      <point x="10860.666666666666" y="11305.0" />
+      <point x="8844.0" y="11305.0" />
+      <point x="8844.0" y="11265.0" />
+      <point x="8864.0" y="11265.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.patient_queue.service.PatientQueueServiceImpl" target="com.pulsecare.backend.common.exception.ResourceAlreadyExistsException" relationship="CREATE">
+      <point x="140.0" y="-178.5" />
+      <point x="7224.0" y="11325.0" />
+      <point x="8964.0" y="11325.0" />
+      <point x="8964.0" y="10985.0" />
+      <point x="8864.0" y="10985.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.role.controller.RoleController" target="com.pulsecare.backend.common.base.controller.CreatableController" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="2724.0" y="11045.0" />
+      <point x="384.0" y="11045.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.triage.controller.TriageController" target="com.pulsecare.backend.common.base.controller.FindableController" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-31.5" />
+      <point x="0.0" y="43.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.patient_queue.service.PatientQueueServiceImpl" target="com.pulsecare.backend.module.triage.service.TriageService" relationship="TO_ONE">
+      <point x="0.0" y="-178.5" />
+      <point x="7084.0" y="11325.0" />
+      <point x="7124.0" y="11325.0" />
+      <point x="7124.0" y="9845.0" />
+      <point x="7115.25" y="9845.0" />
+      <point x="71.25" y="43.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.prescription.controller.PrescriptionControllerImpl" target="com.pulsecare.backend.module.prescription.controller.PrescriptionController" relationship="REALIZATION">
+      <point x="-219.33333333333326" y="-130.5" />
+      <point x="6984.666666666667" y="12705.0" />
+      <point x="2044.0" y="12705.0" />
+      <point x="0.0" y="43.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.prescription.controller.PrescriptionController" target="com.pulsecare.backend.common.base.controller.FindableController" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-43.5" />
+      <point x="2044.0" y="11185.0" />
+      <point x="104.0" y="11185.0" />
+      <point x="0.0" y="43.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.user.controller.UserControllerImpl" target="com.pulsecare.backend.module.user.service.UserService" relationship="TO_ONE">
+      <point x="202.0" y="-178.5" />
+      <point x="10806.0" y="12925.0" />
+      <point x="11784.0" y="12925.0" />
+      <point x="11784.0" y="10165.0" />
+      <point x="11776.0" y="10165.0" />
+      <point x="-88.0" y="91.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.patient_queue.service.PatientQueueServiceImpl" target="com.pulsecare.backend.module.patient_queue.service.PatientQueueService" relationship="REALIZATION">
+      <point x="-140.0" y="-178.5" />
+      <point x="6944.0" y="11265.0" />
+      <point x="5370.25" y="11265.0" />
+      <point x="66.25" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.resource.department.service.DepartmentService" target="com.pulsecare.backend.common.base.service.SavableService" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-43.5" />
+      <point x="11184.0" y="9045.0" />
+      <point x="10004.0" y="9045.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.resource.bed.BedServiceImpl" target="com.pulsecare.backend.common.exception.ResourceAlreadyExistsException" relationship="CREATE">
+      <point x="142.33333333333331" y="-178.5" />
+      <point x="4306.333333333333" y="11385.0" />
+      <point x="8204.0" y="11385.0" />
+      <point x="8204.0" y="10345.0" />
+      <point x="8864.0" y="10345.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.resource.department.service.DepartmentServiceImpl" target="com.pulsecare.backend.module.resource.department.repository.DepartmentRepository" relationship="TO_ONE">
+      <point x="0.0" y="-118.5" />
+      <point x="10584.0" y="10465.0" />
+      <point x="10424.0" y="10465.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.patient.service.PatientServiceImpl" target="com.pulsecare.backend.common.exception.ResourceAlreadyExistsException" relationship="CREATE">
+      <point x="129.33333333333331" y="-178.5" />
+      <point x="5033.333333333333" y="11365.0" />
+      <point x="8244.0" y="11365.0" />
+      <point x="8244.0" y="10385.0" />
+      <point x="8864.0" y="10385.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.resource.department.service.DepartmentService" target="com.pulsecare.backend.common.base.service.DeletableService" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-43.5" />
+      <point x="11184.0" y="9165.0" />
+      <point x="4084.0" y="9165.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.resource.bed.BedService" target="com.pulsecare.backend.common.base.service.SavableService" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-55.5" />
+      <point x="2884.0" y="9465.0" />
+      <point x="10004.0" y="9465.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.resource.bed.BedService" target="com.pulsecare.backend.common.base.service.DeletableService" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-55.5" />
+      <point x="2884.0" y="9425.0" />
+      <point x="4084.0" y="9425.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.user.controller.UserControllerImpl" target="com.pulsecare.backend.module.user.controller.UserController" relationship="REALIZATION">
+      <point x="-202.0" y="-178.5" />
+      <point x="10402.0" y="12525.0" />
+      <point x="3584.0" y="12525.0" />
+      <point x="0.0" y="67.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.authentication.controller.AuthenticationController" target="com.pulsecare.backend.common.base.controller.LoggableController" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-31.5" />
+      <point x="14004.0" y="12185.0" />
+      <point x="14024.0" y="12185.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.patient_queue.service.PatientQueueServiceImpl" target="com.pulsecare.backend.module.patient.service.PatientService" relationship="TO_ONE">
+      <point x="0.0" y="-178.5" />
+      <point x="7084.0" y="10625.0" />
+      <point x="3964.0" y="10625.0" />
+      <point x="3964.0" y="10145.0" />
+      <point x="4163.0" y="10145.0" />
+      <point x="79.0" y="79.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.patient_admission.service.PatientAdmissionService" target="com.pulsecare.backend.common.base.service.UpdatableService" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-43.5" />
+      <point x="5924.0" y="9325.0" />
+      <point x="2884.0" y="9325.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.user.controller.UserController" target="com.pulsecare.backend.common.base.controller.FindableController" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-67.5" />
+      <point x="3584.0" y="11645.0" />
+      <point x="3164.0" y="11645.0" />
+      <point x="3164.0" y="10905.0" />
+      <point x="104.0" y="10905.0" />
+      <point x="0.0" y="43.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.specialization.service.SpecializationService" target="com.pulsecare.backend.common.base.service.DeletableService" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-31.5" />
+      <point x="11464.0" y="9705.0" />
+      <point x="10044.0" y="9705.0" />
+      <point x="10044.0" y="9205.0" />
+      <point x="4084.0" y="9205.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.doctor_detail.facade.DoctorDetailFacade" target="com.pulsecare.backend.module.doctor_detail.service.DoctorDetailService" relationship="TO_ONE">
+      <point x="0.0" y="-106.5" />
+      <point x="13164.0" y="11565.0" />
+      <point x="13744.0" y="11565.0" />
+      <point x="13744.0" y="10125.0" />
+      <point x="13735.5" y="10125.0" />
+      <point x="-88.5" y="55.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.specialization.controller.SpecializationControllerImpl" target="com.pulsecare.backend.module.specialization.controller.SpecializationController" relationship="REALIZATION">
+      <point x="-219.0" y="-118.5" />
+      <point x="10925.0" y="12725.0" />
+      <point x="1384.0" y="12725.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.role.controller.RoleController" target="com.pulsecare.backend.common.base.controller.FindableController" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="2724.0" y="11085.0" />
+      <point x="104.0" y="11085.0" />
+      <point x="0.0" y="43.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.patient_queue.controller.PatientQueueController" target="com.pulsecare.backend.common.base.controller.FindableController" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="384.0" y="11345.0" />
+      <point x="104.0" y="11345.0" />
+      <point x="0.0" y="43.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.resource.ward.facade.WardFacade" target="com.pulsecare.backend.module.resource.department.service.DepartmentService" relationship="TO_ONE">
+      <point x="108.25" y="-94.5" />
+      <point x="10252.25" y="12105.0" />
+      <point x="10524.0" y="12105.0" />
+      <point x="10524.0" y="10125.0" />
+      <point x="11099.75" y="10125.0" />
+      <point x="-84.25" y="43.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.resource.ward.facade.WardFacade" target="com.pulsecare.backend.common.exception.ValidationException" relationship="CREATE">
+      <point x="-108.25" y="-94.5" />
+      <point x="10035.75" y="11625.0" />
+      <point x="9044.0" y="11625.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.patient_queue.controller.PatientQueueControllerImpl" target="com.pulsecare.backend.module.patient_queue.service.PatientQueueService" relationship="TO_ONE">
+      <point x="0.0" y="-106.5" />
+      <point x="5484.0" y="12825.0" />
+      <point x="5784.0" y="12825.0" />
+      <point x="5784.0" y="11325.0" />
+      <point x="5324.0" y="11325.0" />
+      <point x="5324.0" y="9825.0" />
+      <point x="5237.75" y="9825.0" />
+      <point x="-66.25" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.doctor_detail.controller.DoctorDetailControllerImpl" target="com.pulsecare.backend.module.doctor_detail.mapper.DoctorDetailMapper" relationship="TO_ONE">
+      <point x="207.66666666666669" y="-142.5" />
+      <point x="10271.666666666666" y="12865.0" />
+      <point x="13664.0" y="12865.0" />
+      <point x="13664.0" y="11405.0" />
+      <point x="13204.0" y="11405.0" />
+      <point x="13204.0" y="10225.0" />
+      <point x="13144.0" y="10225.0" />
+      <point x="0.0" y="55.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.user.service.UserServiceImpl" target="com.pulsecare.backend.common.exception.ResourceAlreadyExistsException" relationship="CREATE">
+      <point x="-117.33333333333337" y="-178.5" />
+      <point x="11906.666666666666" y="11525.0" />
+      <point x="8884.0" y="11525.0" />
+      <point x="8884.0" y="11105.0" />
+      <point x="8864.0" y="11105.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.doctor_detail.service.DoctorDetailService" target="com.pulsecare.backend.common.base.service.DeletableService" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-55.5" />
+      <point x="13824.0" y="9125.0" />
+      <point x="4084.0" y="9125.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.triage.service.TriageServiceImpl" target="com.pulsecare.backend.module.triage.repository.TriageRepository" relationship="TO_ONE">
+      <point x="-141.0" y="-178.5" />
+      <point x="5963.0" y="11405.0" />
+      <point x="3924.0" y="11405.0" />
+      <point x="3924.0" y="11385.0" />
+      <point x="3904.0" y="11385.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.patient_queue.service.PatientQueueServiceImpl" target="com.pulsecare.backend.module.patient_queue.repository.PatientQueueRepository" relationship="TO_ONE">
+      <point x="0.0" y="-178.5" />
+      <point x="7084.0" y="10125.0" />
+      <point x="7264.0" y="10125.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.resource.bed.controller.BedController" target="com.pulsecare.backend.common.base.controller.DeletableController" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-43.5" />
+      <point x="1044.0" y="11525.0" />
+      <point x="2424.0" y="11525.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.doctor_detail.controller.DoctorDetailController" target="com.pulsecare.backend.common.base.controller.CreatableController" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-31.5" />
+      <point x="3004.0" y="11665.0" />
+      <point x="2764.0" y="11665.0" />
+      <point x="2764.0" y="10985.0" />
+      <point x="384.0" y="10985.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.patient_queue.model.PatientQueue" target="com.pulsecare.backend.module.patient.model.Patient" relationship="TO_ONE">
+      <point x="0.0" y="-358.5" />
+      <point x="104.0" y="4405.0" />
+      <point x="584.0" y="4405.0" />
+      <point x="0.0" y="418.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.doctor_detail.service.DoctorDetailService" target="com.pulsecare.backend.common.base.service.SavableService" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-55.5" />
+      <point x="13824.0" y="9585.0" />
+      <point x="10004.0" y="9585.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.doctor_detail.controller.DoctorDetailControllerImpl" target="com.pulsecare.backend.common.template.response.ResponseBody" relationship="CREATE">
+      <point x="0.0" y="-142.5" />
+      <point x="10064.0" y="12845.0" />
+      <point x="6744.0" y="12845.0" />
+      <point x="0.0" y="142.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.user.controller.UserControllerImpl" target="com.pulsecare.backend.module.user.facade.UserFacade" relationship="TO_ONE">
+      <point x="202.0" y="-178.5" />
+      <point x="10806.0" y="12925.0" />
+      <point x="11784.0" y="12925.0" />
+      <point x="11784.0" y="12425.0" />
+      <point x="11184.0" y="12425.0" />
+      <point x="11184.0" y="12105.0" />
+      <point x="11444.0" y="12105.0" />
+      <point x="0.0" y="-106.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.triage.controller.TriageControllerImpl" target="com.pulsecare.backend.common.template.response.ResponseBody" relationship="CREATE">
+      <point x="183.66666666666669" y="-118.5" />
+      <point x="6667.666666666667" y="12845.0" />
+      <point x="6744.0" y="12845.0" />
+      <point x="0.0" y="142.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.doctor_detail.controller.DoctorDetailControllerImpl" target="com.pulsecare.backend.module.doctor_detail.controller.DoctorDetailController" relationship="REALIZATION">
+      <point x="-207.66666666666674" y="-142.5" />
+      <point x="9856.333333333334" y="12565.0" />
+      <point x="3004.0" y="12565.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.patient_queue.controller.PatientQueueController" target="com.pulsecare.backend.common.base.controller.UpdatableController" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="384.0" y="11425.0" />
+      <point x="2264.0" y="11425.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.prescription.service.PrescriptionService" target="com.pulsecare.backend.common.base.service.FindableService" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-55.5" />
+      <point x="5604.0" y="9525.0" />
+      <point x="13824.0" y="9525.0" />
+      <point x="0.0" y="43.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.patient_admission.service.PatientAdmissionServiceImpl" target="com.pulsecare.backend.module.resource.bed.BedService" relationship="TO_ONE">
+      <point x="-154.0" y="-202.5" />
+      <point x="5130.0" y="11465.0" />
+      <point x="4984.0" y="11465.0" />
+      <point x="4984.0" y="10685.0" />
+      <point x="3884.0" y="10685.0" />
+      <point x="3884.0" y="10165.0" />
+      <point x="2986.25" y="10165.0" />
+      <point x="102.25" y="55.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.resource.department.contoller.DepartmentController" target="com.pulsecare.backend.common.base.controller.DeletableController" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="524.0" y="11505.0" />
+      <point x="2424.0" y="11505.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.resource.bed.model.Bed" target="com.pulsecare.backend.module.resource.ward.model.Ward" relationship="TO_ONE">
+      <point x="0.0" y="-274.5" />
+      <point x="904.0" y="4545.0" />
+      <point x="1284.0" y="4545.0" />
+      <point x="1284.0" y="2945.0" />
+      <point x="1044.0" y="2945.0" />
+      <point x="0.0" y="-346.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.user.service.UserServiceImpl" target="com.pulsecare.backend.module.user.mapper.UserMapper" relationship="TO_ONE">
+      <point x="0.0" y="-178.5" />
+      <point x="12024.0" y="10165.0" />
+      <point x="12064.0" y="10165.0" />
+      <point x="0.0" y="55.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.prescription.service.PrescriptionServiceImpl" target="com.pulsecare.backend.module.prescription.repository.PrescriptionItemRepository" relationship="TO_ONE">
+      <point x="0.0" y="-262.5" />
+      <point x="7484.0" y="11405.0" />
+      <point x="7504.0" y="11405.0" />
+      <point x="7504.0" y="11105.0" />
+      <point x="8144.0" y="11105.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.prescription.service.PrescriptionServiceImpl" target="com.pulsecare.backend.module.prescription.mapper.PrescriptionMapper" relationship="TO_ONE">
+      <point x="0.0" y="-262.5" />
+      <point x="7484.0" y="11405.0" />
+      <point x="7504.0" y="11405.0" />
+      <point x="7504.0" y="11105.0" />
+      <point x="7824.0" y="11105.0" />
+      <point x="0.0" y="139.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.doctor_detail.controller.DoctorDetailControllerImpl" target="com.pulsecare.backend.module.doctor_detail.service.DoctorDetailService" relationship="TO_ONE">
+      <point x="207.66666666666669" y="-142.5" />
+      <point x="10271.666666666666" y="12865.0" />
+      <point x="13664.0" y="12865.0" />
+      <point x="13664.0" y="12365.0" />
+      <point x="13744.0" y="12365.0" />
+      <point x="13744.0" y="10125.0" />
+      <point x="13735.5" y="10125.0" />
+      <point x="-88.5" y="55.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.user.controller.UserController" target="com.pulsecare.backend.common.base.controller.UpdatableController" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-67.5" />
+      <point x="3584.0" y="11645.0" />
+      <point x="3164.0" y="11645.0" />
+      <point x="3164.0" y="10785.0" />
+      <point x="2264.0" y="10785.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.patient.service.PatientService" target="com.pulsecare.backend.common.base.service.SavableService" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-79.5" />
+      <point x="4084.0" y="9445.0" />
+      <point x="10004.0" y="9445.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.doctor_detail.facade.DoctorDetailFacade" target="com.pulsecare.backend.module.doctor_detail.mapper.DoctorDetailMapper" relationship="TO_ONE">
+      <point x="0.0" y="-106.5" />
+      <point x="13164.0" y="11425.0" />
+      <point x="13204.0" y="11425.0" />
+      <point x="13204.0" y="10225.0" />
+      <point x="13144.0" y="10225.0" />
+      <point x="0.0" y="55.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.triage.controller.TriageController" target="com.pulsecare.backend.common.base.controller.CreatableController" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-31.5" />
+      <point x="104.0" y="11365.0" />
+      <point x="384.0" y="11365.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.prescription.service.PrescriptionServiceImpl" target="com.pulsecare.backend.module.prescription.repository.PrescriptionRepository" relationship="TO_ONE">
+      <point x="0.0" y="-262.5" />
+      <point x="7484.0" y="11405.0" />
+      <point x="7504.0" y="11405.0" />
+      <point x="7504.0" y="10525.0" />
+      <point x="6264.0" y="10525.0" />
+      <point x="0.0" y="43.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.patient_admission.service.PatientAdmissionServiceImpl" target="com.pulsecare.backend.common.exception.ResourceAlreadyExistsException" relationship="CREATE">
+      <point x="154.0" y="-202.5" />
+      <point x="5438.0" y="11345.0" />
+      <point x="8324.0" y="11345.0" />
+      <point x="8324.0" y="11065.0" />
+      <point x="8864.0" y="11065.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.authentication.service.AuthenticationServiceImpl" target="com.pulsecare.backend.module.user.repository.UserRepository" relationship="TO_ONE">
+      <point x="0.0" y="-94.5" />
+      <point x="13064.0" y="12925.0" />
+      <point x="12504.0" y="12925.0" />
+      <point x="12504.0" y="11465.0" />
+      <point x="12304.0" y="11465.0" />
+      <point x="0.0" y="67.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.resource.ward.facade.WardFacade" target="com.pulsecare.backend.module.resource.ward.maper.WardMapper" relationship="TO_ONE">
+      <point x="108.25" y="-94.5" />
+      <point x="10252.25" y="12105.0" />
+      <point x="10524.0" y="12105.0" />
+      <point x="10524.0" y="11265.0" />
+      <point x="10604.0" y="11265.0" />
+      <point x="0.0" y="55.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.doctor_detail.service.DoctorDetailServiceImpl" target="com.pulsecare.backend.common.exception.ResourceNotFoundException" relationship="CREATE">
+      <point x="-118.0" y="-130.5" />
+      <point x="12586.0" y="11545.0" />
+      <point x="8924.0" y="11545.0" />
+      <point x="8924.0" y="11085.0" />
+      <point x="8364.0" y="11085.0" />
+      <point x="8364.0" y="10125.0" />
+      <point x="8664.0" y="10125.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.prescription.model.Prescription" target="com.pulsecare.backend.module.prescription.model.PrescriptionItem" relationship="TO_MANY">
+      <point x="0.0" y="-418.5" />
+      <point x="1064.0" y="7205.0" />
+      <point x="364.0" y="7205.0" />
+      <point x="0.0" y="310.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.prescription.model.Prescription" target="com.pulsecare.backend.module.patient_admission.model.PatientAdmission" relationship="TO_ONE">
+      <point x="0.0" y="-418.5" />
+      <point x="1064.0" y="6125.0" />
+      <point x="824.0" y="6125.0" />
+      <point x="0.0" y="-382.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.config.JwtFilter" target="com.pulsecare.backend.module.authentication.service.PrincipleUserDetailsServiceImpl" relationship="TO_ONE">
+      <point x="0.0" y="-70.5" />
+      <point x="13624.0" y="11625.0" />
+      <point x="13335.25" y="11625.0" />
+      <point x="-88.75" y="-58.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.resource.department.contoller.DepartmentControllerImpl" target="com.pulsecare.backend.module.resource.department.contoller.DepartmentController" relationship="REALIZATION">
+      <point x="-204.66666666666669" y="-130.5" />
+      <point x="8339.333333333334" y="12785.0" />
+      <point x="524.0" y="12785.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.specialization.controller.SpecializationController" target="com.pulsecare.backend.common.base.controller.CreatableController" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="1384.0" y="11225.0" />
+      <point x="384.0" y="11225.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.patient_admission.model.PatientAdmission" target="com.pulsecare.backend.module.patient_admission.enums.PatientAdmissionStatus" relationship="TO_ONE">
+      <point x="0.0" y="-382.5" />
+      <point x="824.0" y="6105.0" />
+      <point x="664.0" y="6105.0" />
+      <point x="664.0" y="5565.0" />
+      <point x="1144.0" y="5565.0" />
+      <point x="0.0" y="94.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.prescription.controller.PrescriptionController" target="com.pulsecare.backend.common.base.controller.CreatableController" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-43.5" />
+      <point x="2044.0" y="11145.0" />
+      <point x="384.0" y="11145.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.triage.model.Triage" target="com.pulsecare.backend.module.patient.model.Patient" relationship="TO_ONE">
+      <point x="0.0" y="-1030.5" />
+      <point x="324.0" y="2265.0" />
+      <point x="584.0" y="2265.0" />
+      <point x="0.0" y="418.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.patient_admission.controller.PatientAdmissionController" target="com.pulsecare.backend.common.base.controller.CreatableController" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-31.5" />
+      <point x="3284.0" y="11405.0" />
+      <point x="3124.0" y="11405.0" />
+      <point x="3124.0" y="10885.0" />
+      <point x="384.0" y="10885.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.role.service.RoleServiceImpl" target="com.pulsecare.backend.module.role.service.RoleService" relationship="REALIZATION">
+      <point x="-112.33333333333337" y="-142.5" />
+      <point x="8291.666666666666" y="10405.0" />
+      <point x="9934.75" y="10405.0" />
+      <point x="-69.25" y="43.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.role.controller.RoleController" target="com.pulsecare.backend.common.base.controller.UpdatableController" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="2724.0" y="11005.0" />
+      <point x="2264.0" y="11005.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.resource.ward.controller.WardControllerImpl" target="com.pulsecare.backend.module.resource.ward.facade.WardFacade" relationship="TO_ONE">
+      <point x="198.33333333333331" y="-142.5" />
+      <point x="9282.333333333334" y="13005.0" />
+      <point x="9904.0" y="13005.0" />
+      <point x="9904.0" y="12125.0" />
+      <point x="10252.25" y="12125.0" />
+      <point x="108.25" y="-94.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.resource.bed.BedServiceImpl" target="com.pulsecare.backend.module.resource.bed.BedService" relationship="REALIZATION">
+      <point x="-142.33333333333331" y="-178.5" />
+      <point x="4021.666666666667" y="10725.0" />
+      <point x="2781.75" y="10725.0" />
+      <point x="-102.25" y="55.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.patient.controller.PatientController" target="com.pulsecare.backend.common.base.controller.DeletableController" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-67.5" />
+      <point x="1684.0" y="11605.0" />
+      <point x="2424.0" y="11605.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.authentication.service.AuthenticationService" target="com.pulsecare.backend.common.base.service.LoggableService" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-31.5" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.prescription.controller.PrescriptionControllerImpl" target="com.pulsecare.backend.module.prescription.service.PrescriptionService" relationship="TO_ONE">
+      <point x="0.0" y="-130.5" />
+      <point x="7204.0" y="12665.0" />
+      <point x="5824.0" y="12665.0" />
+      <point x="5824.0" y="11305.0" />
+      <point x="5496.75" y="11305.0" />
+      <point x="-107.25" y="55.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.user.service.UserService" target="com.pulsecare.backend.common.base.service.FindableService" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-91.5" />
+      <point x="11864.0" y="9105.0" />
+      <point x="13824.0" y="9105.0" />
+      <point x="0.0" y="43.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.specialization.service.SpecializationService" target="com.pulsecare.backend.common.base.service.SavableService" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-31.5" />
+      <point x="11464.0" y="9705.0" />
+      <point x="10044.0" y="9705.0" />
+      <point x="10044.0" y="9065.0" />
+      <point x="10004.0" y="9065.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.patient_admission.service.PatientAdmissionServiceImpl" target="com.pulsecare.backend.module.patient.service.PatientService" relationship="TO_ONE">
+      <point x="-154.0" y="-202.5" />
+      <point x="5130.0" y="11465.0" />
+      <point x="4984.0" y="11465.0" />
+      <point x="4984.0" y="10665.0" />
+      <point x="3964.0" y="10665.0" />
+      <point x="3964.0" y="10145.0" />
+      <point x="4163.0" y="10145.0" />
+      <point x="79.0" y="79.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.patient_queue.service.PatientQueueService" target="com.pulsecare.backend.common.base.service.SavableService" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-31.5" />
+      <point x="5304.0" y="8965.0" />
+      <point x="10004.0" y="8965.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.patient_admission.service.PatientAdmissionService" target="com.pulsecare.backend.common.base.service.SavableService" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-43.5" />
+      <point x="5924.0" y="9025.0" />
+      <point x="10004.0" y="9025.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.triage.controller.TriageControllerImpl" target="com.pulsecare.backend.module.triage.service.TriageService" relationship="TO_ONE">
+      <point x="0.0" y="-118.5" />
+      <point x="6484.0" y="12825.0" />
+      <point x="6344.0" y="12825.0" />
+      <point x="6344.0" y="11305.0" />
+      <point x="7124.0" y="11305.0" />
+      <point x="7124.0" y="9845.0" />
+      <point x="7115.25" y="9845.0" />
+      <point x="71.25" y="43.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.triage.service.TriageService" target="com.pulsecare.backend.common.base.service.FindableService" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-43.5" />
+      <point x="7044.0" y="9565.0" />
+      <point x="13824.0" y="9565.0" />
+      <point x="0.0" y="43.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.prescription.service.PrescriptionServiceImpl" target="com.pulsecare.backend.module.prescription.service.PrescriptionService" relationship="REALIZATION">
+      <point x="-160.66666666666669" y="-262.5" />
+      <point x="7323.333333333333" y="10565.0" />
+      <point x="5711.25" y="10565.0" />
+      <point x="107.25" y="55.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.user.service.UserServiceImpl" target="com.pulsecare.backend.common.exception.ResourceNotFoundException" relationship="CREATE">
+      <point x="-117.33333333333337" y="-178.5" />
+      <point x="11906.666666666666" y="11525.0" />
+      <point x="8884.0" y="11525.0" />
+      <point x="8884.0" y="11145.0" />
+      <point x="8364.0" y="11145.0" />
+      <point x="8364.0" y="10125.0" />
+      <point x="8664.0" y="10125.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.authentication.controller.AuthenticationControllerImpl" target="com.pulsecare.backend.common.template.response.ResponseBody" relationship="CREATE">
+      <point x="-185.0" y="-70.5" />
+      <point x="13819.0" y="12845.0" />
+      <point x="6744.0" y="12845.0" />
+      <point x="0.0" y="142.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.resource.bed.BedServiceImpl" target="com.pulsecare.backend.module.resource.bed.mapper.BedMapper" relationship="TO_ONE">
+      <point x="0.0" y="-178.5" />
+      <point x="4164.0" y="12045.0" />
+      <point x="4264.0" y="12045.0" />
+      <point x="0.0" y="55.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.authentication.service.AuthenticationServiceImpl" target="com.pulsecare.backend.module.user.exception.UserInvalidCredentialException" relationship="CREATE">
+      <point x="-145.0" y="-94.5" />
+      <point x="12919.0" y="12905.0" />
+      <point x="9864.0" y="12905.0" />
+      <point x="9864.0" y="12545.0" />
+      <point x="7924.0" y="12545.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.authentication.service.AuthenticationServiceImpl" target="com.pulsecare.backend.module.authentication.utils.JwtUtil" relationship="TO_ONE">
+      <point x="0.0" y="-94.5" />
+      <point x="13064.0" y="12925.0" />
+      <point x="12504.0" y="12925.0" />
+      <point x="12504.0" y="12825.0" />
+      <point x="12464.0" y="12825.0" />
+      <point x="12464.0" y="11885.0" />
+      <point x="12324.0" y="11885.0" />
+      <point x="0.0" y="142.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.patient_admission.controller.PatientAdmissionController" target="com.pulsecare.backend.common.base.controller.FindableController" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-31.5" />
+      <point x="3284.0" y="11405.0" />
+      <point x="3124.0" y="11405.0" />
+      <point x="3124.0" y="10965.0" />
+      <point x="104.0" y="10965.0" />
+      <point x="0.0" y="43.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.prescription.service.PrescriptionServiceImpl" target="com.pulsecare.backend.module.prescription.mapper.PrescriptionItemMapper" relationship="TO_ONE">
+      <point x="0.0" y="-262.5" />
+      <point x="7484.0" y="11405.0" />
+      <point x="7504.0" y="11405.0" />
+      <point x="0.0" y="55.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.resource.department.service.DepartmentServiceImpl" target="com.pulsecare.backend.common.exception.ResourceAlreadyExistsException" relationship="CREATE">
+      <point x="-116.0" y="-118.5" />
+      <point x="10468.0" y="11605.0" />
+      <point x="8804.0" y="11605.0" />
+      <point x="8804.0" y="11225.0" />
+      <point x="8864.0" y="11225.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.patient.controller.PatientController" target="com.pulsecare.backend.common.base.controller.CreatableController" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-67.5" />
+      <point x="1684.0" y="11165.0" />
+      <point x="384.0" y="11165.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.resource.bed.controller.BedController" target="com.pulsecare.backend.common.base.controller.FindableController" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-43.5" />
+      <point x="1044.0" y="11285.0" />
+      <point x="104.0" y="11285.0" />
+      <point x="0.0" y="43.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.patient.service.PatientServiceImpl" target="com.pulsecare.backend.module.patient.service.PatientService" relationship="REALIZATION">
+      <point x="0.0" y="-178.5" />
+      <point x="4904.0" y="10705.0" />
+      <point x="4005.0" y="10705.0" />
+      <point x="-79.0" y="79.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.resource.department.model.Department" target="com.pulsecare.backend.module.resource.ward.model.Ward" relationship="TO_MANY">
+      <point x="0.0" y="238.5" />
+      <point x="0.0" y="-346.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.resource.department.contoller.DepartmentController" target="com.pulsecare.backend.common.base.controller.CreatableController" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="524.0" y="11305.0" />
+      <point x="384.0" y="11305.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.patient_queue.service.PatientQueueService" target="com.pulsecare.backend.common.base.service.UpdatableService" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-31.5" />
+      <point x="5304.0" y="9365.0" />
+      <point x="2884.0" y="9365.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.user.facade.UserFacade" target="com.pulsecare.backend.module.user.mapper.UserMapper" relationship="TO_ONE">
+      <point x="0.0" y="-106.5" />
+      <point x="11444.0" y="12085.0" />
+      <point x="11744.0" y="12085.0" />
+      <point x="11744.0" y="11445.0" />
+      <point x="12024.0" y="11445.0" />
+      <point x="12024.0" y="10165.0" />
+      <point x="12064.0" y="10165.0" />
+      <point x="0.0" y="55.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.user.service.UserServiceImpl" target="com.pulsecare.backend.module.user.repository.UserRepository" relationship="TO_ONE">
+      <point x="0.0" y="-178.5" />
+      <point x="12024.0" y="11525.0" />
+      <point x="12304.0" y="11525.0" />
+      <point x="0.0" y="67.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.patient.controller.PatientController" target="com.pulsecare.backend.common.base.controller.FindableController" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-67.5" />
+      <point x="1684.0" y="11205.0" />
+      <point x="104.0" y="11205.0" />
+      <point x="0.0" y="43.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.user.service.UserServiceImpl" target="com.pulsecare.backend.module.user.service.UserService" relationship="REALIZATION">
+      <point x="117.33333333333334" y="-178.5" />
+      <point x="12141.333333333334" y="11505.0" />
+      <point x="11952.0" y="11505.0" />
+      <point x="88.0" y="91.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.prescription.service.PrescriptionService" target="com.pulsecare.backend.common.base.service.DeletableService" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-55.5" />
+      <point x="5604.0" y="9245.0" />
+      <point x="4084.0" y="9245.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.resource.bed.controller.BedControllerImpl" target="com.pulsecare.backend.module.resource.bed.controller.BedController" relationship="REALIZATION">
+      <point x="-216.0" y="-130.5" />
+      <point x="3668.0" y="12925.0" />
+      <point x="1044.0" y="12925.0" />
+      <point x="0.0" y="43.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.resource.ward.controller.WardController" target="com.pulsecare.backend.common.base.controller.UpdatableController" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-31.5" />
+      <point x="2404.0" y="11065.0" />
+      <point x="2264.0" y="11065.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.triage.controller.TriageControllerImpl" target="com.pulsecare.backend.module.triage.controller.TriageController" relationship="REALIZATION">
+      <point x="-183.66666666666669" y="-118.5" />
+      <point x="6300.333333333333" y="12805.0" />
+      <point x="104.0" y="12805.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.authentication.service.PrincipleUserDetailsServiceImpl" target="com.pulsecare.backend.module.user.repository.UserRepository" relationship="TO_ONE">
+      <point x="-88.75" y="-58.5" />
+      <point x="13335.25" y="11465.0" />
+      <point x="12304.0" y="11465.0" />
+      <point x="0.0" y="67.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.specialization.service.SpecializationServiceImpl" target="com.pulsecare.backend.module.specialization.service.SpecializationService" relationship="REALIZATION">
+      <point x="0.0" y="-118.5" />
+      <point x="10984.0" y="11485.0" />
+      <point x="11380.25" y="11485.0" />
+      <point x="-83.75" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.patient.service.PatientServiceImpl" target="com.pulsecare.backend.module.patient.repository.PatientRepository" relationship="TO_ONE">
+      <point x="-129.33333333333331" y="-178.5" />
+      <point x="4774.666666666667" y="11425.0" />
+      <point x="3204.0" y="11425.0" />
+      <point x="0.0" y="67.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.patient_queue.service.PatientQueueServiceImpl" target="com.pulsecare.backend.module.patient_queue.ws.PatientQueueEventPublisher" relationship="TO_ONE">
+      <point x="0.0" y="-178.5" />
+      <point x="7084.0" y="10125.0" />
+      <point x="6744.0" y="10125.0" />
+      <point x="0.0" y="58.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.role.controller.RoleController" target="com.pulsecare.backend.common.base.controller.DeletableController" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="2724.0" y="10945.0" />
+      <point x="2424.0" y="10945.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.triage.service.TriageService" target="com.pulsecare.backend.common.base.service.UpdatableService" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-43.5" />
+      <point x="7044.0" y="9305.0" />
+      <point x="2884.0" y="9305.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.patient_queue.controller.PatientQueueController" target="com.pulsecare.backend.common.base.controller.DeletableController" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="384.0" y="11465.0" />
+      <point x="2424.0" y="11465.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.resource.ward.controller.WardController" target="com.pulsecare.backend.common.base.controller.CreatableController" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-31.5" />
+      <point x="2404.0" y="11105.0" />
+      <point x="384.0" y="11105.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.triage.service.TriageService" target="com.pulsecare.backend.common.base.service.SavableService" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-43.5" />
+      <point x="7044.0" y="9105.0" />
+      <point x="10004.0" y="9105.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.authentication.service.AuthenticationServiceImpl" target="com.pulsecare.backend.module.authentication.service.AuthenticationService" relationship="REALIZATION">
+      <point x="145.0" y="-94.5" />
+      <point x="13209.0" y="12805.0" />
+      <point x="14260.0" y="12805.0" />
+      <point x="-84.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.user.controller.UserController" target="com.pulsecare.backend.common.base.controller.DeletableController" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-67.5" />
+      <point x="3584.0" y="11645.0" />
+      <point x="3164.0" y="11645.0" />
+      <point x="3164.0" y="10765.0" />
+      <point x="2424.0" y="10765.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.user.service.UserService" target="com.pulsecare.backend.common.base.service.SavableService" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-91.5" />
+      <point x="11864.0" y="9005.0" />
+      <point x="10004.0" y="9005.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.patient.service.PatientService" target="com.pulsecare.backend.common.base.service.DeletableService" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-79.5" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.resource.ward.service.WardServiceImpl" target="com.pulsecare.backend.common.exception.ResourceAlreadyExistsException" relationship="CREATE">
+      <point x="-159.33333333333331" y="-130.5" />
+      <point x="8964.666666666666" y="11645.0" />
+      <point x="8764.0" y="11645.0" />
+      <point x="8764.0" y="11205.0" />
+      <point x="8864.0" y="11205.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.specialization.service.SpecializationServiceImpl" target="com.pulsecare.backend.module.specialization.repository.SpecializationRepository" relationship="TO_ONE">
+      <point x="123.33333333333334" y="-118.5" />
+      <point x="11107.333333333334" y="11505.0" />
+      <point x="11664.0" y="11505.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.specialization.model.Specialization" target="com.pulsecare.backend.module.doctor_detail.model.DoctorDetail" relationship="TO_MANY">
+      <point x="0.0" y="238.5" />
+      <point x="0.0" y="-202.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.doctor_detail.model.DoctorDetail" target="com.pulsecare.backend.module.specialization.model.Specialization" relationship="TO_MANY">
+      <point x="0.0" y="-202.5" />
+      <point x="0.0" y="238.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.resource.department.contoller.DepartmentControllerImpl" target="com.pulsecare.backend.module.resource.department.mapper.DepartmentMapper" relationship="TO_ONE">
+      <point x="204.66666666666669" y="-130.5" />
+      <point x="8748.666666666666" y="12885.0" />
+      <point x="10384.0" y="12885.0" />
+      <point x="10384.0" y="11265.0" />
+      <point x="10244.0" y="11265.0" />
+      <point x="0.0" y="43.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.role.service.RoleServiceImpl" target="com.pulsecare.backend.common.exception.ResourceNotFoundException" relationship="CREATE">
+      <point x="0.0" y="-142.5" />
+      <point x="8404.0" y="11305.0" />
+      <point x="8364.0" y="11305.0" />
+      <point x="8364.0" y="10125.0" />
+      <point x="8664.0" y="10125.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.specialization.controller.SpecializationController" target="com.pulsecare.backend.common.base.controller.UpdatableController" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="1384.0" y="11545.0" />
+      <point x="2264.0" y="11545.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.patient_admission.model.PatientAdmission" target="com.pulsecare.backend.module.patient_queue.model.PatientQueue" relationship="TO_ONE">
+      <point x="0.0" y="-382.5" />
+      <point x="824.0" y="6105.0" />
+      <point x="664.0" y="6105.0" />
+      <point x="664.0" y="6085.0" />
+      <point x="584.0" y="6085.0" />
+      <point x="584.0" y="4885.0" />
+      <point x="104.0" y="4885.0" />
+      <point x="0.0" y="-358.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.resource.department.facade.DepartmentFacade" target="com.pulsecare.backend.module.resource.department.mapper.DepartmentMapper" relationship="TO_ONE">
+      <point x="115.25" y="-82.5" />
+      <point x="9759.25" y="12105.0" />
+      <point x="9764.0" y="12105.0" />
+      <point x="9764.0" y="10425.0" />
+      <point x="10244.0" y="10425.0" />
+      <point x="0.0" y="43.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.patient_queue.service.PatientQueueServiceImpl" target="com.pulsecare.backend.common.exception.ValidationException" relationship="CREATE">
+      <point x="140.0" y="-178.5" />
+      <point x="7224.0" y="11325.0" />
+      <point x="8964.0" y="11325.0" />
+      <point x="8964.0" y="11265.0" />
+      <point x="9044.0" y="11265.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.patient_queue.service.PatientQueueService" target="com.pulsecare.backend.common.base.service.DeletableService" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-31.5" />
+      <point x="5304.0" y="9345.0" />
+      <point x="4084.0" y="9345.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.triage.controller.TriageController" target="com.pulsecare.backend.common.base.controller.UpdatableController" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-31.5" />
+      <point x="104.0" y="11385.0" />
+      <point x="2264.0" y="11385.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.patient_queue.service.PatientQueueService" target="com.pulsecare.backend.common.base.service.FindableService" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-31.5" />
+      <point x="5304.0" y="9505.0" />
+      <point x="13824.0" y="9505.0" />
+      <point x="0.0" y="43.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.authentication.service.PrincipleUserDetailsServiceImpl" target="com.pulsecare.backend.module.authentication.model.PrincipleUserDetails" relationship="CREATE">
+      <point x="88.75" y="-58.5" />
+      <point x="13512.75" y="11605.0" />
+      <point x="13384.0" y="11605.0" />
+      <point x="0.0" y="130.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.patient.service.PatientService" target="com.pulsecare.backend.common.base.service.UpdatableService" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-79.5" />
+      <point x="4084.0" y="9405.0" />
+      <point x="2884.0" y="9405.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.role.controller.RoleControllerImpl" target="com.pulsecare.backend.module.role.service.RoleService" relationship="TO_ONE">
+      <point x="177.0" y="-106.5" />
+      <point x="9741.0" y="12825.0" />
+      <point x="11744.0" y="12825.0" />
+      <point x="11744.0" y="10245.0" />
+      <point x="11704.0" y="10245.0" />
+      <point x="11704.0" y="10225.0" />
+      <point x="10073.25" y="10225.0" />
+      <point x="69.25" y="43.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.patient_queue.model.PatientQueue" target="com.pulsecare.backend.module.patient_queue.enums.QueueStatus" relationship="TO_ONE">
+      <point x="0.0" y="-358.5" />
+      <point x="104.0" y="4405.0" />
+      <point x="-36.0" y="4405.0" />
+      <point x="0.0" y="106.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.specialization.service.SpecializationServiceImpl" target="com.pulsecare.backend.common.exception.ResourceNotFoundException" relationship="CREATE">
+      <point x="-123.33333333333337" y="-118.5" />
+      <point x="10860.666666666666" y="11305.0" />
+      <point x="8844.0" y="11305.0" />
+      <point x="8844.0" y="11185.0" />
+      <point x="8364.0" y="11185.0" />
+      <point x="8364.0" y="10125.0" />
+      <point x="8664.0" y="10125.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.prescription.service.PrescriptionServiceImpl" target="com.pulsecare.backend.module.patient_admission.service.PatientAdmissionService" relationship="TO_ONE">
+      <point x="0.0" y="-262.5" />
+      <point x="7484.0" y="11405.0" />
+      <point x="7504.0" y="11405.0" />
+      <point x="7504.0" y="10545.0" />
+      <point x="6004.0" y="10545.0" />
+      <point x="6004.0" y="9845.0" />
+      <point x="5995.75" y="9845.0" />
+      <point x="71.75" y="43.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.triage.service.TriageServiceImpl" target="com.pulsecare.backend.module.triage.service.TriageService" relationship="REALIZATION">
+      <point x="0.0" y="-178.5" />
+      <point x="6104.0" y="10285.0" />
+      <point x="6972.75" y="10285.0" />
+      <point x="-71.25" y="43.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.user.model.Users" target="com.pulsecare.backend.module.role.model.Role" relationship="TO_ONE">
+      <point x="0.0" y="-634.5" />
+      <point x="0.0" y="202.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.patient_admission.model.PatientAdmission" target="com.pulsecare.backend.module.patient.model.Patient" relationship="TO_ONE">
+      <point x="0.0" y="-382.5" />
+      <point x="824.0" y="6105.0" />
+      <point x="664.0" y="6105.0" />
+      <point x="664.0" y="5565.0" />
+      <point x="624.0" y="5565.0" />
+      <point x="624.0" y="2265.0" />
+      <point x="584.0" y="2265.0" />
+      <point x="0.0" y="418.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.prescription.service.PrescriptionServiceImpl" target="com.pulsecare.backend.module.user.service.UserService" relationship="TO_ONE">
+      <point x="0.0" y="-262.5" />
+      <point x="7484.0" y="11405.0" />
+      <point x="7504.0" y="11405.0" />
+      <point x="7504.0" y="11125.0" />
+      <point x="11784.0" y="11125.0" />
+      <point x="11784.0" y="10165.0" />
+      <point x="11776.0" y="10165.0" />
+      <point x="-88.0" y="91.5" />
+    </edge>
+    <edge source="com.pulsecare.backend.module.resource.ward.controller.WardControllerImpl" target="com.pulsecare.backend.common.template.response.ResponseBody" relationship="CREATE">
+      <point x="0.0" y="-142.5" />
+      <point x="9084.0" y="12845.0" />
+      <point x="6744.0" y="12845.0" />
+      <point x="0.0" y="142.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Compact" zoom="0.7578282722806019" showDependencies="true" x="2961.3736118200745" y="13269.001324821153" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
