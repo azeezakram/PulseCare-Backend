@@ -20,7 +20,6 @@ public class PrincipleUserDetails implements UserDetails {
         this.authority = authority;
     }
 
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(authority);

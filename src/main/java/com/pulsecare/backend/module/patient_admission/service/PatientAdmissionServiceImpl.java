@@ -16,7 +16,7 @@ import com.pulsecare.backend.module.patient_queue.service.PatientQueueService;
 import com.pulsecare.backend.module.prescription.model.Prescription;
 import com.pulsecare.backend.module.prescription.repository.PrescriptionRepository;
 import com.pulsecare.backend.module.resource.bed.model.Bed;
-import com.pulsecare.backend.module.resource.bed.service.BedService;
+import com.pulsecare.backend.module.resource.bed.BedService;
 import com.pulsecare.backend.module.resource.ward.model.Ward;
 import com.pulsecare.backend.module.resource.ward.service.WardService;
 import org.springframework.beans.factory.annotation.Qualifier;

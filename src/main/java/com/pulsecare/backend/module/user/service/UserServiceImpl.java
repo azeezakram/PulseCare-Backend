@@ -63,13 +63,11 @@ public class UserServiceImpl implements UserService {
         UserImageProjection image = repository.findUserImageById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("Profile image not found"));
 
-        if (image.getImageData() == null || image.getImageData().length == 0) {
-            throw new ResourceNotFoundException("Profile image not found");
-        }
+        byte[] data = image.getImageData();
+        if (data == null || data.length == 0) throw new ResourceNotFoundException("Profile image not found");
 
-        if (image.getContentType() == null || image.getContentType().isBlank()) {
-            throw new ResourceNotFoundException("Profile image not found");
-        }
+        String ct = image.getContentType();
+        if (ct == null || ct.isBlank()) throw new ResourceNotFoundException("Profile image not found");
 
         return image;
     }

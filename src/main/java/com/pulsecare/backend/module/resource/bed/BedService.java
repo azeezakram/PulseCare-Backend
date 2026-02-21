@@ -1,4 +1,4 @@
-package com.pulsecare.backend.module.resource.bed.service;
+package com.pulsecare.backend.module.resource.bed;
 
 import com.pulsecare.backend.common.base.service.DeletableService;
 import com.pulsecare.backend.common.base.service.FindableService;

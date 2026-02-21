@@ -3,7 +3,7 @@ package com.pulsecare.backend.module.resource.bed.controller;
 import com.pulsecare.backend.common.template.response.ResponseBody;
 import com.pulsecare.backend.module.resource.bed.dto.BedReqDTO;
 import com.pulsecare.backend.module.resource.bed.dto.BedResDTO;
-import com.pulsecare.backend.module.resource.bed.service.BedService;
+import com.pulsecare.backend.module.resource.bed.BedService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
