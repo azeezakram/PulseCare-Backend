@@ -9,7 +9,7 @@ public record TriageResDTO(
         // ========== Basic Categorical Features ==========
         Integer sex, // 0=Female, 1=Male
         Integer arrivalMode, // 1=Walking, 2=Public Ambulance, 3=Private Vehicle, 4=Private Ambulance, 5/6/7=Other
-        Integer injury, // 1=Yes, 2=No
+        Integer injury, // 2=Yes, 1=No
         Integer mental, // 1=Alert, 2=Verbal Response, 3=Pain Response, 4=Unresponsive
         Integer pain, // 0=No, 1=Yes
 
