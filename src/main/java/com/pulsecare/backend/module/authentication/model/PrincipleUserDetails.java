@@ -13,7 +13,8 @@ public class PrincipleUserDetails implements UserDetails {
     private final boolean isActive;
     private final GrantedAuthority authority;
 
-    public PrincipleUserDetails(String username, String password, boolean isActive, GrantedAuthority authority) {
+    public PrincipleUserDetails(String username, String password,
+                                boolean isActive, GrantedAuthority authority) {
         this.username = username;
         this.password = password;
         this.isActive = isActive;

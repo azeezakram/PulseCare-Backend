@@ -1,6 +1,5 @@
 package com.pulsecare.backend.module.authentication.utils;
 
-import com.pulsecare.backend.module.role.model.Role;
 import com.pulsecare.backend.module.user.model.Users;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -60,7 +59,6 @@ public class JwtUtil {
                 .parseSignedClaims(jwtToken)
                 .getPayload();
     }
-
 
     public boolean isTokenValid(String jwtToken, UserDetails userDetails) {
         final String username = extractUsername(jwtToken);

@@ -12,9 +12,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
     @Override
     public void configureMessageBroker(MessageBrokerRegistry registry) {
-        // server -> client
         registry.enableSimpleBroker("/topic");
-        // client -> server (not needed for your case, but keep)
         registry.setApplicationDestinationPrefixes("/app");
     }
 

@@ -22,7 +22,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private final UserRepository userRepository;
     private final JwtUtil jwtUtil;
 
-    public AuthenticationServiceImpl(AuthenticationManager authenticationManager, UserRepository userRepository, JwtUtil jwtUtil) {
+    public AuthenticationServiceImpl(AuthenticationManager authenticationManager,
+                                     UserRepository userRepository, JwtUtil jwtUtil) {
         this.authenticationManager = authenticationManager;
         this.userRepository = userRepository;
         this.jwtUtil = jwtUtil;

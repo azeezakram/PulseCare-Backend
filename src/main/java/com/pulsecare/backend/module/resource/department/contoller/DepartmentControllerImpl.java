@@ -26,7 +26,8 @@ public class DepartmentControllerImpl implements DepartmentController {
     private final DepartmentFacade facade;
     private final DepartmentMapper mapper;
 
-    public DepartmentControllerImpl(DepartmentService service, DepartmentFacade facade, @Qualifier("departmentMapperImpl") DepartmentMapper mapper) {
+    public DepartmentControllerImpl(DepartmentService service, DepartmentFacade facade,
+                                    @Qualifier("departmentMapperImpl") DepartmentMapper mapper) {
         this.service = service;
         this.facade = facade;
         this.mapper = mapper;

@@ -27,7 +27,10 @@ public class TriageServiceImpl implements TriageService {
     private final MLClientConfig mlClientConfig;
     private final RestTemplate restTemplate;
 
-    public TriageServiceImpl(TriageRepository repository, PatientService patientService, @Qualifier("triageMapperImpl") TriageMapper mapper, MLClientConfig mlClientConfig, RestTemplate restTemplate) {
+    public TriageServiceImpl(TriageRepository repository,
+                             PatientService patientService,
+                             @Qualifier("triageMapperImpl") TriageMapper mapper,
+                             MLClientConfig mlClientConfig, RestTemplate restTemplate) {
         this.repository = repository;
         this.patientService = patientService;
         this.mapper = mapper;
@@ -83,7 +86,6 @@ public class TriageServiceImpl implements TriageService {
         repository.delete(entity);
     }
 
-
     @Override
     public TriageResDTO predict(TriageReqDTO data) {
         Patient patient = patientService.findEntityById(data.patientId());
@@ -108,7 +110,5 @@ public class TriageServiceImpl implements TriageService {
         predicted.setPatient(patient);
         return mapper.toDTO(repository.save(predicted));
     }
-
-
 
 }

@@ -72,7 +72,6 @@ public class UserServiceImpl implements UserService {
         return image;
     }
 
-
     @Override
     public void saveUserProfileImage(UUID userId, MultipartFile image) throws IOException {
         if (image == null || image.isEmpty()) {
@@ -107,6 +106,5 @@ public class UserServiceImpl implements UserService {
                         }
                 );
     }
-
 
 }

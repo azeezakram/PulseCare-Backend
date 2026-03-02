@@ -6,7 +6,6 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 public record UserResponseDTO(
-
         UUID id,
         String firstName,
         String lastName,
@@ -14,12 +13,9 @@ public record UserResponseDTO(
         String email,
         String mobileNumber,
         RoleResDto role,
-
         String imageUrl,            // "/api/v1/user/{id}/image"
-
         LocalDateTime createdAt,
         LocalDateTime updatedAt,
         LocalDateTime lastLoginAt,
         Boolean isActive
-
 ) { }

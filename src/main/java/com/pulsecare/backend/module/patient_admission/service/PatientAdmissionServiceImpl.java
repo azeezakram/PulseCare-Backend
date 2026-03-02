@@ -165,7 +165,7 @@ public class PatientAdmissionServiceImpl implements PatientAdmissionService {
             existing.setStatus(PatientAdmissionStatus.DISCHARGED);
             existing.setDischargeNotes(data.dischargeNotes());
 
-            LocalDateTime dt = data.dischargedAt() != null ? data.dischargedAt() : LocalDateTime.now();
+            LocalDateTime dt = data.dischargedAt();
             existing.setDischargedAt(dt);
 
             Bed bed = existing.getBed();
