@@ -180,19 +180,19 @@ VALUES
 -- =========================================================
 
 -- Admission 1: Nimal Perera -> C-01 (ACTIVE)
-INSERT INTO patient_admission (
-    patient_id, queue_id, bed_id, status, admitted_at, discharged_at, discharge_notes, updated_at
-)
-VALUES (
-           (SELECT id FROM patient WHERE full_name='Nimal Perera' LIMIT 1),
-           NULL,
-           (SELECT id FROM bed WHERE bed_no='C-01' LIMIT 1),
-           'ACTIVE',
-           NOW() - INTERVAL '2 days',
-           NULL,
-           NULL,
-           NOW()
-       );
+-- INSERT INTO patient_admission (
+--     patient_id, queue_id, bed_id, status, admitted_at, discharged_at, discharge_notes, updated_at
+-- )
+-- VALUES (
+--            (SELECT id FROM patient WHERE full_name='Nimal Perera' LIMIT 1),
+--            NULL,
+--            (SELECT id FROM bed WHERE bed_no='C-01' LIMIT 1),
+--            'ACTIVE',
+--            NOW() - INTERVAL '2 days',
+--            NULL,
+--            NULL,
+--            NOW()
+--        );
 
 -- Admission 2: Kavindi Silva -> N-01 (DISCHARGED but nurse confirm pending: discharged_at NULL)
 INSERT INTO patient_admission (
@@ -320,79 +320,79 @@ VALUES (
 -- =========================================================
 
 -- Items for Nimal Perera prescription
-INSERT INTO prescription_item (
-    prescription_id, medicine_name, dosage, frequency, duration_days, instructions
-)
-VALUES
-    (
-        (
-            SELECT pr.id
-            FROM prescription pr
-                     JOIN patient_admission pa ON pa.id = pr.admission_id
-                     JOIN patient p ON p.id = pa.patient_id
-            WHERE p.full_name='Nimal Perera'
-            ORDER BY pr.id DESC
-            LIMIT 1
-        ),
-        'Paracetamol',
-        '500mg',
-        'TDS',
-        5,
-        'After meals'
-    ),
-    (
-        (
-            SELECT pr.id
-            FROM prescription pr
-                     JOIN patient_admission pa ON pa.id = pr.admission_id
-                     JOIN patient p ON p.id = pa.patient_id
-            WHERE p.full_name='Nimal Perera'
-            ORDER BY pr.id DESC
-            LIMIT 1
-        ),
-        'Amlodipine',
-        '5mg',
-        'OD',
-        14,
-        'Morning'
-    );
+-- INSERT INTO prescription_item (
+--     prescription_id, medicine_name, dosage, frequency, duration_days, instructions
+-- )
+-- VALUES
+--     (
+--         (
+--             SELECT pr.id
+--             FROM prescription pr
+--                      JOIN patient_admission pa ON pa.id = pr.admission_id
+--                      JOIN patient p ON p.id = pa.patient_id
+--             WHERE p.full_name='Nimal Perera'
+--             ORDER BY pr.id DESC
+--             LIMIT 1
+--         ),
+--         'Paracetamol',
+--         '500mg',
+--         'TDS',
+--         5,
+--         'After meals'
+--     ),
+--     (
+--         (
+--             SELECT pr.id
+--             FROM prescription pr
+--                      JOIN patient_admission pa ON pa.id = pr.admission_id
+--                      JOIN patient p ON p.id = pa.patient_id
+--             WHERE p.full_name='Nimal Perera'
+--             ORDER BY pr.id DESC
+--             LIMIT 1
+--         ),
+--         'Amlodipine',
+--         '5mg',
+--         'OD',
+--         14,
+--         'Morning'
+--     );
 
-INSERT INTO prescription_item (
-    prescription_id, medicine_name, dosage, frequency, duration_days, instructions
-)
-VALUES
-    (
-        (
-            SELECT pr.id
-            FROM prescription pr
-                     JOIN patient_admission pa ON pa.id = pr.admission_id
-                     JOIN patient p ON p.id = pa.patient_id
-            WHERE p.full_name='Nimal Perera'
-            ORDER BY pr.id DESC
-            LIMIT 1
-        ),
-        'Panadol',
-        '10mg',
-        'TDS',
-        5,
-        'After breadkfast'
-    ),
-    (
-        (
-            SELECT pr.id
-            FROM prescription pr
-                     JOIN patient_admission pa ON pa.id = pr.admission_id
-                     JOIN patient p ON p.id = pa.patient_id
-            WHERE p.full_name='Nimal Perera'
-            ORDER BY pr.id DESC
-            LIMIT 1
-        ),
-        'Amlodipine',
-        '5mg',
-        'OD',
-        14,
-        'Morning'
-    );
+-- INSERT INTO prescription_item (
+--     prescription_id, medicine_name, dosage, frequency, duration_days, instructions
+-- )
+-- VALUES
+--     (
+--         (
+--             SELECT pr.id
+--             FROM prescription pr
+--                      JOIN patient_admission pa ON pa.id = pr.admission_id
+--                      JOIN patient p ON p.id = pa.patient_id
+--             WHERE p.full_name='Nimal Perera'
+--             ORDER BY pr.id DESC
+--             LIMIT 1
+--         ),
+--         'Panadol',
+--         '10mg',
+--         'TDS',
+--         5,
+--         'After breadkfast'
+--     ),
+--     (
+--         (
+--             SELECT pr.id
+--             FROM prescription pr
+--                      JOIN patient_admission pa ON pa.id = pr.admission_id
+--                      JOIN patient p ON p.id = pa.patient_id
+--             WHERE p.full_name='Nimal Perera'
+--             ORDER BY pr.id DESC
+--             LIMIT 1
+--         ),
+--         'Amlodipine',
+--         '5mg',
+--         'OD',
+--         14,
+--         'Morning'
+--     );
 
 -- Items for Kavindi Silva prescription
 INSERT INTO prescription_item (
